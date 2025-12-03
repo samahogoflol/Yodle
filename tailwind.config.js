@@ -9,7 +9,11 @@ export default {
     extend: {
       colors : {
         backgroundapp : "#D3DCF8",
-      }
+      },
+     fontFamily: {
+      sans: ['Urbanist', 'sans-serif'],
+      special: ['Georgia', 'serif'], // Новий, унікальний клас
+},
     },
   },
   

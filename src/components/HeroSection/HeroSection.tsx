@@ -4,6 +4,7 @@ import snow64 from "../../assets/icons/snow_64x64.png"
 import snow116 from "../../assets/icons/snow_116x127.png"
 import Header from "../Header/Header"
 import SearchInstructor from "../SearchInctructor/SearchInstructor"
+import OurInstructors from "../OurInstructors/OurInstructors"
 
 
 const HeroSection = () => {
@@ -35,6 +36,10 @@ const HeroSection = () => {
                     <SearchInstructor/>
                 </div>
             </section>
+
+            <div className="bg-[#D3DCF8]">
+                <OurInstructors/>
+            </div>
         </>
     )
 }
