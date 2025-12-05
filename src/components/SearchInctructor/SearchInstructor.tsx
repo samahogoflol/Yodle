@@ -1,5 +1,7 @@
 import { useState} from "react";
 import { RESORTS_BY_STATE } from "../../data/resortsList";
+import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
+import type { BookingDetailsState } from "../../store/BookingDetailsContext";
 
 import Checkbox from "../UI/Checkbox";
 import Location from "../UI/Icons/Location";
@@ -19,6 +21,8 @@ interface SearchData {
 }
 
 const SearchInstructor = () => {
+
+    const {setBookingDetails} = useBookingDetails()
 
     const [searchData, setSearchData] = useState<SearchData>({
         sport: null,
@@ -43,6 +47,37 @@ const SearchInstructor = () => {
 
         return newState;
     });
+
+    setBookingDetails(prevDetails => {
+        let update: Partial<BookingDetailsState> = {};
+
+        if (key === 'state') {
+            
+            update = {
+                location: (value as string) || '', 
+            }; 
+        }else if (key === 'resort') {
+
+            update = {
+                resort: (value as string) || '', 
+            };
+        } else if (key === 'date') {
+            
+            update = {
+                date: value as Date | null, 
+            };
+        } else if (key === "sport") {
+            update = {
+                typeOfSport : value as string || "",
+            }
+        }
+
+        return {
+            ...prevDetails,
+            ...update,
+        };
+})
+
     }
 
     const handleSportChange = (sport: SportType) => {
@@ -54,7 +89,6 @@ const SearchInstructor = () => {
     };
 
     const handleSubmit = () => {
-        console.log(searchData)
         setSearchData(
             {
                 sport: null,

@@ -1,15 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import arrowToBottom from "../../assets/icons/arrow-to-bottom.png"
+import ArrowDownIcon from "./Icons/ArrowDownIcon";
 
 interface DropdownProps  {
     options : readonly string [];
     value : string | null;
     onChange : (newValue: string) => void;
-    placeholder: string;
+    placeholder?: string;
     className?: string;
+    icon? : React.ReactNode;
 }
 
-const Dropdown:React.FC<DropdownProps> = ({options, value, onChange, placeholder, className}) => {
+const Dropdown:React.FC<DropdownProps> = ({options, value, onChange, placeholder, className, icon}) => {
 
     const dropdownRef = useRef<HTMLDivElement>(null);
     
@@ -51,15 +52,16 @@ const Dropdown:React.FC<DropdownProps> = ({options, value, onChange, placeholder
             
             <button 
                 type="button"
-                className={`${className}  border-2 border-[#D3DCF8] w-[278px] h-[45px] text-left p-3 flex justify-between items-center text-[#D3DCF8] cursor-pointer`}
+                className={`${className}  border-1 border-[#D3DCF8] w-[278px] h-[45px] text-left p-3 flex justify-between items-center text-[#D3DCF8] cursor-pointer`}
                 onClick={handleToggle} 
             >
-                <span>{displayValue}</span> 
-                <img 
-                src={arrowToBottom} 
-                alt="Choose the State"
-                className={`${isOpen ? 'rotate-180' : null}`}
-                />
+                <div className="flex items-center gap-2 ">
+                    {icon? icon : null }
+                    <span>{displayValue}</span> 
+                </div>
+                <div className={`${isOpen ? 'rotate-180' : null}`}>
+                    <ArrowDownIcon/>
+                </div>
             </button>
             
             {isOpen && (

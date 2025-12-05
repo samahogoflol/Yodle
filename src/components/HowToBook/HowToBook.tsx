@@ -12,8 +12,8 @@ const HowToBook = () => {
             </div>
             <h2 className="text-[56px] font-semibold text-center">How to book your lesson</h2>
             <div className="mt-15 flex-col">
-                <div className="grid grid-cols-3 gap-45 mb-10">
-                    <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5">
+                <div className="grid grid-cols-3 gap-45 mb-5">
+                    <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5 z-10">
                         <div className="flex justify-between items-center">
                             <h2 className="text-[26px] font-semibold">Choose Your Location</h2>
                             <p className="text-[60px] opacity-40">01</p>
@@ -22,7 +22,7 @@ const HowToBook = () => {
                            <p className="text-[20px] mt-20">Select your favorite ski resort</p>
                         </div>
                     </div>
-                    <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5">
+                    <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5 z-10">
                         <div className="flex justify-between items-center">
                             <h2 className="text-[26px] font-semibold">Pick Your Date & Time</h2>
                             <p className="text-[60px] opacity-40">02</p>
@@ -33,7 +33,7 @@ const HowToBook = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-45 mb-10">
-                     <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5 col-start-2">
+                     <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5 col-start-2 z-10">
                         <div className="flex justify-between items-center">
                             <h2 className="text-[26px] font-semibold">Select Your Instructor</h2>
                             <p className="text-[60px] opacity-40">03</p>

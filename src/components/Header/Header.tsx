@@ -1,5 +1,4 @@
 import companyLogo from "../../assets/icons/yolde-logo.png"
-import phoneIcon from "../../assets/icons/phone-icone.png"
 
 import "../../styles/index.css"
 
@@ -29,8 +28,7 @@ const Header = () => {
                     </ul>
                 </nav>
                 <div className="flex items-center justify-end gap-2">
-                    <img src={phoneIcon} alt="Contact with us" />
-                    <a href="tel:+4408762122213">+44 (0) 876 2122213</a>
+                    <a className="hover:text-blue-400" href="tel:+4408762122213">+44 (0) 876 2122213</a>
                 </div>
              </header>
         </>

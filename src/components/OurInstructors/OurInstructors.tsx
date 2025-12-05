@@ -20,7 +20,7 @@ const OurInstructors = () => {
 
         
           <div className="grid grid-cols-4 mt-10 gap-40 mb-10">
-            {INSTRUCTORS_MOCK_DATA.map((instructor) => {
+            {INSTRUCTORS_MOCK_DATA.filter((item) => item.mainPageReview).map((instructor) => {
 
                 const isOpen = instructor.id === openCardId;
 
@@ -48,7 +48,7 @@ const OurInstructors = () => {
                     }}
                 >
                     <div className="p-5 text-black ">
-                        <h3 className="text-[20px] font-semibold">{instructor.name}</h3>
+                        <h3 className="text-[26px] font-semibold">{instructor.name}</h3>
                         <p className="mt-2 text-[20px]">{instructor.aboutInstructor}</p>
                         <p className="mt-2 mb-2 text-[20px]"> {instructor.experience} exp</p>
                         <div className="flex items-center gap-2">
