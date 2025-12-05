@@ -89,7 +89,13 @@ const FindYourInstructor = () => {
                     </div>
                 </div>
                 <div>
-                    <SummaryBlock/>
+                    <SummaryBlock 
+                    showDataAndTime={true}
+                    showInstructor={true}
+                    showLocation={true}
+                    showParticipants={true}
+                    showType={true}
+                    buttonText="Proceed to Checkout"/>
                 </div>
             </div>
         </div>

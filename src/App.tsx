@@ -8,7 +8,9 @@ import HeroSection from './components/HeroSection/HeroSection'
 import HowToBook from './components/HowToBook/HowToBook'
 import OurPartners from './components/OurPartners/OurPartners'
 import Reviews from './components/Reviews/Reviews'
-import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
+// import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
+// import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
+import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
 
 function App() {
 
@@ -21,7 +23,9 @@ function App() {
       <OurPartners/>
       <Reviews/>
       <Footer/>
-      <FindYourInstructor/>
+      <BookingConfirmed/>
+      {/* <SecureCheckout/> */}
+      {/* <FindYourInstructor/> */}
     </BookingProvider>
     </>
   )
