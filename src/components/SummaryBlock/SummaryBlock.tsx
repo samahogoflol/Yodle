@@ -9,6 +9,7 @@ import DataAndTimeSummaryCard from "../DataAndTimeSummaryCard/DataAndTimeSummary
 import TypeSummeryCard from "../TypeSummeryCard/TypeSummeryCard";
 import ParticipantsSummaryCard from "../ParticipantsSummaryCard/ParticipantsSummaryCard";
 import InstructorsSummaryBlock from "../InstructorsSummaryBlock/InstructorsSummaryBlock";
+import TotalPriceSummaryBlock from "../TotalPriceSummaryBlock/TotalPriceSummaryBlock";
 
 interface SummaryBlockProps {
     showLocation: boolean;
@@ -17,10 +18,11 @@ interface SummaryBlockProps {
     showType : boolean;
     showParticipants : boolean;
     buttonText : string;
+    totalPriceStyles : string;
 }
 
 
-const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText}) => {
+const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText, totalPriceStyles}) => {
 
     const {bookingDetails} = useBookingDetails()
 
@@ -39,10 +41,7 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
             )}
             {showDataAndTime && (
             <DataAndTimeSummaryCard
-                date={bookingDetails.date?.toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric',
-                }) || 'Not selected'}
+                date={bookingDetails.date}
                 bookingEndTime={bookingDetails.bookingEndTime}
                 bookingStartTime={bookingDetails.bookingStartTime}
                 bookingDetails={bookingDetails.lessonTime}
@@ -68,10 +67,10 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
             />
             )}
                 <div className="pt-6">
-                    <div className={`flex text-[26px] font-semibold justify-between w-full p-4`}>
-                        <p>Total</p>
-                        <p>{finalPrice.toFixed(2)}</p>
-                    </div>
+                   <TotalPriceSummaryBlock
+                    finalPrice={finalPrice.toFixed(2)}
+                    totalPriceStyles={totalPriceStyles}
+                    />
                 </div>
                 <div className="flex justify-center">
                     <ButtonSearchInstruktor

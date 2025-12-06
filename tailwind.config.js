@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require('tailwindcss/defaultTheme');
+const forms = require('@tailwindcss/forms');
+
 export default {
   content: [
     "./index.html",
@@ -11,9 +15,8 @@ export default {
         backgroundapp : "#D3DCF8",
       },
      fontFamily: {
-      sans: ['Urbanist', 'sans-serif'],
-      special: ['Georgia', 'serif'], // Новий, унікальний клас
-},
+      'urbanist': ['Urbanist', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   

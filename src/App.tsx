@@ -10,12 +10,13 @@ import OurPartners from './components/OurPartners/OurPartners'
 import Reviews from './components/Reviews/Reviews'
 // import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
 // import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
-import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
+// import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
 
 function App() {
 
   return (
     <>
+    <div className='font-urbanist'>
     <BookingProvider>
       <HeroSection/>
       <ForYouBlock/>
@@ -23,10 +24,11 @@ function App() {
       <OurPartners/>
       <Reviews/>
       <Footer/>
-      <BookingConfirmed/>
+      {/* <BookingConfirmed/> */}
       {/* <SecureCheckout/> */}
       {/* <FindYourInstructor/> */}
     </BookingProvider>
+    </div>
     </>
   )
 }

@@ -1,0 +1,12 @@
+export const BigSnowFull = () => {
+    return (
+        <div>
+            <svg width="577" height="709" viewBox="0 0 577 709" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="163.803" y="176.765" width="100" height="510" transform="rotate(-35.4192 163.803 176.765)" fill="#FDFDFD"/>
+            <rect x="173.504" y="544.128" width="100" height="510" transform="rotate(-125.419 173.504 544.128)" fill="#FDFDFD"/>
+            <rect x="92.5703" y="362.455" width="100" height="510" transform="rotate(-80.4192 92.5703 362.455)" fill="#FDFDFD"/>
+            <rect x="345.475" y="95.8291" width="100" height="510" transform="rotate(9.58081 345.475 95.8291)" fill="#FDFDFD"/>
+        </svg>
+        </div>
+    )
+}

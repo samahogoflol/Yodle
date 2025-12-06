@@ -1,0 +1,25 @@
+interface BigSnowProps {
+    witdh : string;
+    height : string;
+    viewBox : string;
+}
+
+const BigSnow:React.FC<BigSnowProps> = ({witdh, height, viewBox}) => {
+
+  return (
+    <svg 
+    width={witdh} 
+    height={height} 
+    viewBox={viewBox}
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg">
+
+    <rect x="163.803" y="176.766" width="100" height="510" transform="rotate(-35.4192 163.803 176.766)" fill="#FDFDFD"/>
+    <rect x="173.504" y="544.129" width="100" height="510" transform="rotate(-125.419 173.504 544.129)" fill="#FDFDFD"/>
+    <rect x="92.5703" y="362.455" width="100" height="510" transform="rotate(-80.4192 92.5703 362.455)" fill="#FDFDFD"/>
+    <rect x="345.475" y="95.8301" width="100" height="510" transform="rotate(9.58081 345.475 95.8301)" fill="#FDFDFD"/>
+</svg>
+  );
+};
+
+export default BigSnow;

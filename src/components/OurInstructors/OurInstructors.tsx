@@ -1,5 +1,6 @@
 import "../../styles/index.css"
 import star from "../../assets/icons/star.png"
+import BigSnow from "../UI/Icons/BigSnow";
 
 import { useState } from "react";
 
@@ -14,7 +15,7 @@ const OurInstructors = () => {
 };
 
     return (
-        <div id="our-instructors" className="container mt-30">
+        <div id="our-instructors" className="container mt-30 leading-[130%] relative">
             <h2 className="text-[56px] font-semibold">Our Featured Ski Instructors</h2>
             <p className="w-[567px] h-[78pxv] text-[20px] mt-[172px]">Every instructor on our platform is fully vetted and covered by comprehensive liability insurance, so you can focus on learning and enjoying the mountain. </p>
 
@@ -49,9 +50,9 @@ const OurInstructors = () => {
                 >
                     <div className="p-5 text-black ">
                         <h3 className="text-[26px] font-semibold">{instructor.name}</h3>
-                        <p className="mt-2 text-[20px]">{instructor.aboutInstructor}</p>
-                        <p className="mt-2 mb-2 text-[20px]"> {instructor.experience} exp</p>
-                        <div className="flex items-center gap-2">
+                        <p className="mt-2 text-[16px]">{instructor.aboutInstructor}</p>
+                        <p className="mt-2 mb-2 text-[20px]"> {instructor.experience} years exp</p>
+                        <div className="flex items-center gap-2 pt-2">
                             <img  src={star} alt="raiting" />
                             <p className="text-[20px]">{instructor.rating}</p>
                         </div>   
@@ -66,6 +67,15 @@ const OurInstructors = () => {
                 We connect winter sports enthusiasts with certified ski and snowboard instructors who are passionate about teaching.
             </div>
           </div>  
+
+            <div className="absolute top-[11vw] right-[22vw]">
+                <BigSnow
+                    witdh="64px"
+                    height="64px"
+                    viewBox="0 0 574 640"
+                />
+            </div>
+
           </div>  
     )
 }
