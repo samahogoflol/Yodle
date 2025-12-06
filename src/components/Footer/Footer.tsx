@@ -2,7 +2,7 @@ import footerLogo from "../../assets/icons/logo_footer.png"
 
 const Footer = () => {
 return (
-    <div className="bg-white grid grid-cols-3 w-full">
+    <div className="bg-white grid grid-cols-3 w-full leading-[130%]">
         <div className="mt-[150px] mb-[150px] container">
             <a href="#">
                 <img width={168} src={footerLogo} alt="Yodle logo" />
@@ -10,7 +10,7 @@ return (
         </div>
         <div className="mt-30">
             <nav>
-                <ul className="gap-2">
+                <ul className="flex flex-col gap-2">
                     <a href="#our-instructors">
                         <li className="hover:text-[#2E78E5]">Our instructors </li>
                     </a>
@@ -36,7 +36,7 @@ return (
                         <li className="hover:text-[#2E78E5]">Privacy Policy</li>
                     </a>
                     <a href="#">
-                        <li className="hover:text-[#2E78E5]">Public Offer </li>
+                        <li className="hover:text-[#2E78E5] mt-2">Public Offer </li>
                     </a>
                 </ul>
             </nav>

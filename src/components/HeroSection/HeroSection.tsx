@@ -17,7 +17,7 @@ const HeroSection = () => {
                 <div className="w-1/2 relative flex justify-center z-10 mt-[16.5vw]">
                     <section>
                         <h1 className="font-medium text-[52px]">Snow skills start here</h1>
-                        <p className="font-medium text-[26px]">Book your ski or snowboard <br/> instructor online</p>
+                        <p className="font-medium text-[26px] leading-[130%]">Book your ski or snowboard <br/> instructor online</p>
                     </section>
                 </div>
                 <div className="w-1/2">
@@ -32,7 +32,7 @@ const HeroSection = () => {
                 <img  className="absolute right-[33vw] top-[21vw]" src={snow64} alt="snowImg" />
                 <img className="absolute right-[7vw] top-[45vw]" src={snow116} alt="snowImg" />
 
-                <div className="absolute top-145 left-50 z-50" >
+                <div className="absolute top-[39.7vw] left-[12.8vw] z-50" >
                     <SearchInstructor/>
                 </div>
             </section>

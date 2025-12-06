@@ -5,7 +5,7 @@ import "../../styles/index.css"
 const Header = () => {
     return (
         <>
-            <header className="flex items-center justify-between px-10">
+            <header className="flex items-center justify-between px-10 leading-[130%]">
                 <div>
                     <a href="#">
                         <img src={companyLogo} alt="Our Company logotype" />
@@ -14,7 +14,7 @@ const Header = () => {
                 <nav>
                     <ul className="flex gap-6">
                         <a href="#our-instructors">
-                            <li className="cursor-pointer hover:text-blue-400 font-urbanist">Our instructors</li>    
+                            <li className="cursor-pointer hover:text-blue-400">Our instructors</li>    
                         </a>
                         <a href="#how-to-book">
                             <li className="cursor-pointer hover:text-blue-400">How to book</li>
