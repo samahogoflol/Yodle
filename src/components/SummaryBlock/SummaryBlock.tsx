@@ -60,7 +60,7 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
             {showInstructor && (
             <InstructorsSummaryBlock
                 instructorId={bookingDetails.instructor?.id}
-                instructorPhoto={bookingDetails.instructor?.photo}
+                instructorPhoto={bookingDetails.instructor?.photoMain}
                 instructorName={bookingDetails.instructor?.name}
                 instructorRating={bookingDetails.instructor?.rating}
                 instructorExperience={bookingDetails.instructor?.experience}

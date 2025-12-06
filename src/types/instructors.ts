@@ -4,15 +4,17 @@ type LessonItem = {
 
 export interface InstructorsProps {
     id: number;
-    photo: string;
+    photoMain?: string;
+    photoInAWork?: string;
     name: string;
     aboutInstructor: string;
     isWorking?: boolean;
-    experience: number;
+    experience?: number;
     rating: number;
     howManyFeedback? : number;
     price? : number;
-    mainPageReview : boolean;
+    mainPageReview?: boolean;
     lessons? : LessonItem[];
     time? : LessonItem[];
+    mainPageReviewSlider? : boolean;
 }

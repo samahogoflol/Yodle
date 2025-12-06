@@ -7,10 +7,14 @@ import ForYouBlock from './components/ForYouBlock/ForYouBlock'
 import HeroSection from './components/HeroSection/HeroSection'
 import HowToBook from './components/HowToBook/HowToBook'
 import OurPartners from './components/OurPartners/OurPartners'
-import Reviews from './components/Reviews/Reviews'
+import ReviewsSwiper from './components/Reviews/ReviewsSwiper'
 // import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
 // import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
 // import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 function App() {
 
@@ -22,7 +26,7 @@ function App() {
       <ForYouBlock/>
       <HowToBook/>
       <OurPartners/>
-      <Reviews/>
+      <ReviewsSwiper/>
       <Footer/>
       {/* <BookingConfirmed/> */}
       {/* <SecureCheckout/> */}

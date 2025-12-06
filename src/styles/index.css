@@ -31,3 +31,17 @@
 .hidden {
     display: none;
 }
+
+.swiper-button-disabled {
+  pointer-events: none; 
+  color : black;
+  opacity: 0.9; 
+}
+
+.swiper-button-disabled rect {
+    stroke: #A3A3A3 !important; 
+}
+
+.swiper-button-disabled path {
+    fill: #A3A3A3 !important; 
+}

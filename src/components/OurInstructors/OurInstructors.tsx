@@ -34,7 +34,7 @@ const OurInstructors = () => {
             <article className="h-full">
                 <img 
                     className="w-[325px] h-[346px] object-cover" 
-                    src={instructor.photo} 
+                    src={instructor.photoMain} 
                     alt={`Our Instructor - ${instructor.name}`} 
                 />
                 <div className="bg-white text-black p-5 text-[26px] font-semibold">

@@ -31,7 +31,7 @@ const InstructorCard:React.FC<InstructorCardProps> = ({instructor}) => {
         > 
             <div className="col-span-1.5">
                 <img 
-                    src={instructor?.photo} 
+                    src={instructor?.photoMain} 
                     alt={instructor.name}
                     className={`w-15 h-15 object-cover rounded-[50%] ${instructor.id === 4 ? "object-top" : null}`}
                 />

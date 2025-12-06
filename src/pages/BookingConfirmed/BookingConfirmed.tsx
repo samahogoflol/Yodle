@@ -40,7 +40,7 @@ const BookingConfirmed = () => {
                     instructorExperience={bookingDetails.instructor?.experience}
                     instructorId={bookingDetails.instructor?.id}
                     instructorName={bookingDetails.instructor?.name}
-                    instructorPhoto={bookingDetails.instructor?.photo}
+                    instructorPhoto={bookingDetails.instructor?.photoMain}
                     instructorRating={bookingDetails.instructor?.rating}
                 />
                 <TotalPriceSummaryBlock
