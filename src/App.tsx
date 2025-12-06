@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-    <div className='font-urbanist'>
+    <div>
     <BookingProvider>
       <HeroSection/>
       <ForYouBlock/>

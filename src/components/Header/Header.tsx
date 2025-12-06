@@ -14,7 +14,7 @@ const Header = () => {
                 <nav>
                     <ul className="flex gap-6">
                         <a href="#our-instructors">
-                            <li className="cursor-pointer hover:text-blue-400">Our instructors</li>
+                            <li className="cursor-pointer hover:text-blue-400 font-urbanist">Our instructors</li>    
                         </a>
                         <a href="#how-to-book">
                             <li className="cursor-pointer hover:text-blue-400">How to book</li>
