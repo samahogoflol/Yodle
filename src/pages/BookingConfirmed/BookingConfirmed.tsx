@@ -22,8 +22,8 @@ const BookingConfirmed = () => {
         : 0;
 
     return (
-        <div className="flex justify-center py-[90px] relative z-10">
-            <div className="bg-[#2E78E5] p-7 leading-[130%] z-10 w-9/20">
+        <div className="flex flex-col py-[90px] relative z-10">
+            <div className="bg-[#2E78E5] p-7 leading-[130%] z-10 w-9/20  ml-auto mr-auto">
             <section className="flex flex-col gap-6">
                 <h2 className="text-center text-white text-[26px] font-semibold">Booking confirmed! </h2>
                 <p className="text-center text-white text-[20px] mb-6">A confirmation email has been sent to your email address</p>
