@@ -12,7 +12,7 @@ const LocationSummaryCard: React.FC<LocationSummaryCardProps> = ({ resort, locat
              <h2>Location</h2>
                 <div className="text-[#EA4300] flex align-center pt-3">
                     <Location/>
-                    <p className="text-black pl-2 text-[20px]">{resort}, {location}</p>
+                    <p className="text-black pl-2 text-[20px]">{resort && location? (<>{resort}, {location}</>) :  "Not selected"}</p>
                 </div>
         </div>
     );

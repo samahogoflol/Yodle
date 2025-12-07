@@ -21,7 +21,7 @@ const DataAndTimeSummaryCard:React.FC<DataAndTimeSummaryCardProps> = ({date, boo
                             day: 'numeric',
                             }) || 'Not selected'},
                     </p>
-                    <p className="text-black pl-1 text-[20px]">{bookingStartTime} - {bookingEndTime} </p>
+                    <p className="text-black pl-1 text-[20px]">{bookingStartTime && bookingEndTime ? (<>{bookingStartTime} - {bookingEndTime} </>) : null}</p>
                   </div>
                   <div className="flex items-center mt-3">
                     <CheckmarkIcon/>

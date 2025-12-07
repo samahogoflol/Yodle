@@ -11,6 +11,8 @@ import type { InstructorsProps } from "../../types/instructors";
 
 import { useState } from "react";
 
+import Header from "../../components/Header/Header";
+
 interface FilterValues {
     price: string;
     experience: string;
@@ -75,8 +77,11 @@ const FindYourInstructor = () => {
     );
 
     return (
-        <div className="mb-16 relative z-10">
-            <h2 className="text-center text-[56px] font-semibold mt-10 mb-[85px]">Find Your Instructor</h2>
+        <div className="mb-16 relative z-10 ">
+            <div className="mt-5">
+                <Header/>
+            </div>
+            <h2 className="text-center text-[56px] font-semibold mt-40 mb-[85px]">Find Your Instructor</h2>
             <div className="grid grid-cols-3 px-[85px] gap-7 z-10">
                 <div className="col-span-2 z-10">
                     <TimeAndDuration/>
@@ -98,21 +103,23 @@ const FindYourInstructor = () => {
                     showParticipants={true}
                     showType={true}
                     buttonText="Proceed to Checkout"
-                    totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"/>
+                    totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"
+                    linkButtonTo="/secureCheckout"
+                    />
                 </div>
             </div>
 
             <div className="absolute top-[88vw] right-0">
                 <BigSnowFull/>
             </div>
-            <div className="absolute top-[8vw] right-[7vw] rotate-60">
+            <div className="absolute top-[22vw] right-[7vw] rotate-60">
                 <BigSnow
                     witdh="64px"
                     height="64px"
                     viewBox="0 0 574 640"
                 />
             </div>
-            <div className="absolute top-0 left-[10vw] rotate-60">
+            <div className="absolute top-[10vw] left-[10vw] rotate-60">
                 <BigSnow
                     witdh="64px"
                     height="64px"

@@ -1,30 +1,30 @@
 import companyLogo from "../../assets/icons/yolde-logo.png"
-
+import { Link } from "react-router-dom"
 import "../../styles/index.css"
 
 const Header = () => {
     return (
         <>
-            <header className="flex items-center justify-between px-10 leading-[130%]">
-                <div>
-                    <a href="#">
+            <header id="header" className="flex items-center justify-between px-10 leading-[130%] bg-white w-full">
+                <div >
+                    <Link to="/">
                         <img src={companyLogo} alt="Our Company logotype" />
-                    </a>
+                    </Link>
                 </div>
-                <nav>
+                <nav >
                     <ul className="flex gap-6">
-                        <a href="#our-instructors">
+                        <Link to="/#our-instructors">
                             <li className="cursor-pointer hover:text-blue-400">Our instructors</li>    
-                        </a>
-                        <a href="#how-to-book">
+                        </Link>
+                        <Link to="/#how-to-book">
                             <li className="cursor-pointer hover:text-blue-400">How to book</li>
-                        </a>
-                        <a href="#partners">
+                        </Link>
+                        <Link to="/#partners">
                             <li className="cursor-pointer hover:text-blue-400">Partners</li>
-                        </a>
-                        <a href="#reviews">
+                        </Link>
+                        <Link to="/#reviews">
                             <li className="cursor-pointer hover:text-blue-400">Reviews</li>
-                        </a>
+                        </Link>
                     </ul>
                 </nav>
                 <div className="flex items-center justify-end gap-2">

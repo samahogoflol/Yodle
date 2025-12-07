@@ -32,7 +32,7 @@ const HowToBook = () => {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-45 mb-10">
+                <div className="grid grid-cols-3 gap-45 mb-25">
                      <div className="w-[440px] h-[220px] bg-[#2E78E5] text-[#FDFDFD] px-5 col-start-2 z-10">
                         <div className="flex justify-between items-center">
                             <h2 className="text-[26px] font-semibold">Select Your Instructor</h2>
@@ -53,8 +53,6 @@ const HowToBook = () => {
                     </div>
                 </div>
             </div>
-            
-            
         </div>
     )
 }

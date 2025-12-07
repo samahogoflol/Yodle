@@ -1,5 +1,7 @@
 import type { BookingDetailsProps } from "../../types/BookingDetailsProps";
 
+import { Link } from "react-router-dom";
+
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
 
 import { calculateBookingPrice } from "../Features/calculateBookingPrice";
@@ -19,10 +21,11 @@ interface SummaryBlockProps {
     showParticipants : boolean;
     buttonText : string;
     totalPriceStyles : string;
+    linkButtonTo : string;
 }
 
 
-const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText, totalPriceStyles}) => {
+const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText, totalPriceStyles, linkButtonTo}) => {
 
     const {bookingDetails} = useBookingDetails()
 
@@ -72,13 +75,14 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
                     totalPriceStyles={totalPriceStyles}
                     />
                 </div>
-                <div className="flex justify-center">
-                    <ButtonSearchInstruktor
-                    name={buttonText}
-                    onClick={() => null}
-                    />
-                </div>
-               
+                <Link to={linkButtonTo}>
+                    <div className="flex justify-center">
+                        <ButtonSearchInstruktor
+                        name={buttonText}
+                        onClick={() => null}
+                        />
+                    </div>
+                </Link>
         </div>
     );
 }

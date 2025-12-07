@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import NextArrowIcon from '../UI/Icons/NextArrowIcon';
+import BigSnow from '../UI/Icons/BigSnow';
 
 
 const ReviewsSwiper = () => {
@@ -25,9 +26,90 @@ const ReviewsSwiper = () => {
     }
 
  return (
-    <div className="w-3/4 p-10 relative"> 
-        <div className={`swiper-button-prev-custom absolute bottom-[2.8vw] left-[67vw] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>
-        <div className="swiper-button-next-custom absolute bottom-[2.8vw] left-[76vw] z-10">{<NextArrowIcon/>}</div>
+    <div className="w-3/4 pl-10 pt-30 pb-25 relative">
+        <div className="absolute left-[92vw] top-[45vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-1.2vw] left-[7vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-2.1vw] left-[11vw]" >
+            <BigSnow
+             witdh='80'
+             height='80'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-1.2vw] left-[18vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+       <div className="absolute bottom-[-1vw] left-[32vw]" >
+            <BigSnow
+             witdh='50'
+             height='50'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-1.5vw] left-[46vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-2vw] left-[52vw]">
+            <BigSnow
+             witdh='60'
+             height='60'
+             viewBox='0 0 630 590'
+            />
+        </div>
+         <div className="absolute bottom-[-1.5vw] left-[70vw]">
+            <BigSnow
+             witdh='60'
+             height='60'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-0.5vw] left-[77vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div className="absolute bottom-[-1vw] left-[86vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+      <div className="absolute bottom-[-1.5vw] left-[96vw]" >
+            <BigSnow
+             witdh='40'
+             height='40'
+             viewBox='0 0 630 590'
+            />
+        </div>
+        <div id='reviews'>
+            <h2 className='text-[56px] leading-[100%] font-semibold pb-15'>The skiers who were with us <br />— they liked it too</h2>
+            <p className='text-[20px] leading-[130%] pb-10'>Don't just take our word for it—hear from skiers who've experienced the difference our <br />instructors make. </p>
+        </div> 
+        <div className={`swiper-button-prev-custom absolute bottom-[6.8vw] left-[69vw] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>
+        <div className="swiper-button-next-custom absolute bottom-[6.8vw] left-[78vw] z-10">{<NextArrowIcon/>}</div>
         <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={0}

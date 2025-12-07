@@ -28,8 +28,8 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         photoMain : semBoulPhoto,
         name : "Sem Boul",
         aboutInstructor : "Former competitive skier helping beginners discover their passion for the slopes with modern teaching methods.",
-        experience : 2,
-        rating : 5,
+        experience : 6,
+        rating : 4.9,
          mainPageReview : true,
     },
     {
@@ -37,8 +37,8 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         photoMain : charlesPiastri,
         name : "Charles Piastri",
         aboutInstructor : "8+ years teaching in the Alps, specializing in technique refinement for intermediate to advanced skiers.",
-        experience : 6,
-        rating : 4.9,
+        experience : 9,
+        rating : 4.8,
         mainPageReview : true,
     },
     {

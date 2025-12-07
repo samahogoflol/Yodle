@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import DataAndTimeSummaryCard from "../../components/DataAndTimeSummaryCard/DataAndTimeSummaryCard";
 import InstructorsSummaryBlock from "../../components/InstructorsSummaryBlock/InstructorsSummaryBlock";
 import LocationSummaryCard from "../../components/LocationSummaryCard/LocationSummaryCard";
@@ -9,6 +11,7 @@ import type { BookingDetailsProps } from "../../types/BookingDetailsProps";
 import BigSnow from "../../components/UI/Icons/BigSnow";
 import TotalPriceSummaryBlock from "../../components/TotalPriceSummaryBlock/TotalPriceSummaryBlock";
 import ButtonSearchInstruktor from "../../components/UI/ButtonSearchInstructor";
+
 
 const BookingConfirmed = () => {
 
@@ -47,13 +50,14 @@ const BookingConfirmed = () => {
                     totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4 text-white mt-6"
                     finalPrice={finalPrice.toFixed(2)}
                 />
-                <div className="flex justify-center">
-                    <ButtonSearchInstruktor
-                    name="Back to Home"
-                    onClick={() => null}
-                    />
-                </div>
-               
+                    <Link to="/">
+                        <div className="flex justify-center">
+                            <ButtonSearchInstruktor
+                            name="Back to Home"
+                            onClick={() => null}
+                            />
+                        </div>
+                    </Link>
             </div>
          </div>
 

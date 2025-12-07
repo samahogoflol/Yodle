@@ -10,7 +10,7 @@ const TypeSummeryCard:React.FC<TypeSummeryCardProps> = ({typeOfSport}) => {
             <h2>Type</h2>
             <div className="text-[#EA4300] flex items-center pt-3">
                 <SkiingIcon/>
-                <p className="text-black pl-2 text-[20px]">{typeOfSport}</p>
+                <p className="text-black pl-2 text-[20px]">{typeOfSport ? (<>{typeOfSport}</>) : "Not selected"}</p>
             </div>
         </div>
     )

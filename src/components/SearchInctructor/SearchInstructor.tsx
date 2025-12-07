@@ -1,4 +1,5 @@
 import { useState} from "react";
+import { Link } from "react-router-dom";
 import { RESORTS_BY_STATE } from "../../data/resortsList";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
 import type { BookingDetailsState } from "../../store/BookingDetailsContext";
@@ -158,10 +159,13 @@ const SearchInstructor = () => {
            </div>
            </div>
            <div className="flex justify-end">
-            <ButtonSearchInstruktor 
+            <Link to="findYourInstructor">
+             <ButtonSearchInstruktor 
                 name={"Search instructor"}
                 onClick={handleSubmit}
             />
+            </Link>
+           
            </div>
 
         </div>

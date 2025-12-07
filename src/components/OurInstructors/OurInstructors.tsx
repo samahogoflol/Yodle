@@ -16,7 +16,7 @@ const OurInstructors = () => {
 
     return (
         <div id="our-instructors" className="container mt-30 leading-[130%] relative">
-            <h2 className="text-[56px] font-semibold">Our Featured Ski Instructors</h2>
+            <h2 className="text-[56px] font-semibold">Our Featured Instructors</h2>
             <p className="w-[567px] h-[78pxv] text-[20px] mt-[172px]">Every instructor on our platform is fully vetted and covered by comprehensive liability insurance, so you can focus on learning and enjoying the mountain. </p>
 
         
