@@ -14,7 +14,7 @@ const Checkbox:React.FC<CheckboxProps> = ({label, checked, onChange}) => {
     return (
         <div>
             <label 
-                className="flex items-center cursor-pointer gap-1 text-[#D3DCF8]"
+                className="flex items-center cursor-pointer gap-1 text-white"
             >
                 <input 
                     type="checkbox" 

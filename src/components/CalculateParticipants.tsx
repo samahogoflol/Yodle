@@ -35,15 +35,15 @@ const CalculateParticipants = () => {
                 className="py-3" 
                 onClick={handleMinus}>
                 <Minus
-                className={currentParticipants <= 1? unActiveClass : "cursor-pointer" }
+                className={currentParticipants <= 1? unActiveClass : "cursor-pointer " }
                 />
             </div>
-            <div className="px-3 border-1 text-[20px]">{currentParticipants}</div>
+            <div className="px-3 text-[20px] bg-primary-selected">{currentParticipants}</div>
             <div 
             className="py-3" 
             onClick={handlePlus}>
                 <Plus
-                className={currentParticipants >= 4 ? unActiveClass : "cursor-pointer "}
+                className={currentParticipants === 4 ? unActiveClass : "cursor-pointer "}
                 />
             </div>
             <p className="text-[20px]">Participants (4 max)</p>

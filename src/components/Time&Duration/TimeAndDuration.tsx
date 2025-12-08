@@ -2,6 +2,7 @@ import Dropdown from "../UI/Dropdown";
 import TimerIcon from "../UI/Icons/LessonClock";
 import ClockIcon from "../UI/Icons/Clock"
 import DurationButton from "../UI/DurationButton";
+import clsx from "clsx";
 import { parse, addHours, format } from 'date-fns';
 import { useState , useMemo} from "react";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
@@ -12,7 +13,6 @@ const TimeAndDuration = () => {
 
     const [availableTime, setAvailableTime] = useState("9:00 AM");
     const [isTimeSelected, setIsTimeSelected] = useState(false);
-    // const [lessonDuration, setLessonDuration] = useState<string | null>(null);
     const timeOptions = ["9:00 AM", "10:00 AM", "11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
     const durationOptions = ["2 hours", "4 hours", "6 hours"];
 
@@ -108,23 +108,25 @@ const TimeAndDuration = () => {
                 <h3 className="text-[26px] font-semibold mb-6">Time & Duration</h3>
                 <div className="grid grid-cols-2 text-[20pxh] gap-16">
                     <div>
-                        <div className="flex items-center gap-2 text-[#EA4300] ">
+                        <div className="flex items-center gap-2">
                             <ClockIcon/>
-                            <h3 className="text-black">Start Time</h3>
+                            <h3 className="text-[#3A3636] text-[20px] leading-[130%]">Start Time</h3>
                         </div>
                             <Dropdown
                                 options={timeOptions}
                                 value={availableTime}
                                 onChange={handleChangeTime}
-                                className={`text-black border-black w-full mt-3 hover:bg-blue-600 
-                                    ${isTimeSelected? "border-blue-400 bg-blue-600 " : null}
-                                    `}
+                                className={clsx(
+                                    "w-full text-white border-1 border-white mt-3 transition-colors",
+                                    !isTimeSelected && "hover:bg-[#D3DCF8] hover:text-black hover:border-none",
+                                    isTimeSelected && "bg-primary-selected border-none"
+                                )}
                             />
                     </div>
                         <div>
-                            <div className="flex items-center gap-3 text-[#EA4300] mb-3">
+                            <div className="flex items-center gap-3 mb-3">
                                 <TimerIcon/>
-                                <h3 className="text-black">Lesson Duration</h3>
+                                <h3 className="text-[#3A3636] text-[20px] leading-[130%]">Lesson Duration</h3>
                             </div>
                             <div className="flex justify-between">
                               {durationOptions.map((duration) => (
@@ -133,7 +135,7 @@ const TimeAndDuration = () => {
                                 duration={duration}
                                 isActive={duration === bookingDetails.lessonTime}
                                 onClick={() => handleSelectLessonTime(duration)}
-                                
+                                className=""
                                 />
                               ))}
                             </div>
@@ -141,7 +143,7 @@ const TimeAndDuration = () => {
                             
                 </div>
                     <div className="relative flex bg-white mt-6 pr-3 pt-3">
-                        <div className="w-[74px] h-full text-[#EA4300] flex justify-center ">
+                        <div className="w-[74px] h-full  flex justify-center ">
                             <ClockIcon
                             className="absolute top-[2vw] w-[33.33px] h-[33.33px]"/>
                         </div>

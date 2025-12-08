@@ -1,4 +1,4 @@
-import { INSTRUCTORS_MOCK_DATA } from '../../data/instructorsMock';
+import { REVIEWS_MOCK_DATA } from '../../data/reviewsMock';
 
 import star from "../../assets/icons/star.png"
 
@@ -21,8 +21,13 @@ import BigSnow from '../UI/Icons/BigSnow';
 const ReviewsSwiper = () => {
 
     const [openCardId, setOpenCardId] = useState<number | null>(null);
-    const handleCardClick = (id: number) => {
-        setOpenCardId(prevId => (prevId === id ? null : id));
+
+    const hoverOpen = (id: number) => {
+        setOpenCardId(id);
+    };
+
+    const hoverClose = () => {
+        setOpenCardId(null);
     }
 
  return (
@@ -130,40 +135,40 @@ const ReviewsSwiper = () => {
             }}
             loop={false}
         >
-     {INSTRUCTORS_MOCK_DATA.map((instructor) => {
+     {REVIEWS_MOCK_DATA.map((review) => {
 
-        const isOpen = instructor.id === openCardId;
+        const isOpen = review.id === openCardId;
 
             return (
-                instructor.mainPageReviewSlider && ( 
-                    <SwiperSlide key={instructor.id}>
+                REVIEWS_MOCK_DATA && ( 
+                    <SwiperSlide key={review.id}>
                     <div 
-                        className="w-[325px] h-full relative overflow-hidden cursor-pointer bg-white leading-[130%]" // Використовуємо фіксовану висоту для абсолютної позиції
-                        onClick={() => handleCardClick(instructor.id)} // Обробник кліку
+                        className="w-[325px] h-full relative overflow-hidden cursor-pointer bg-white leading-[130%]"
+                        onMouseEnter={() => hoverOpen(review.id)}
+                        onMouseLeave={hoverClose}
                     >
                         <article className="h-full">
 
                             <img 
                                  className="w-[325px] h-[346px] object-cover"
-                                 src={instructor.photoInAWork} 
+                                 src={review.photoInALesson} 
                                  alt="Instructor's Work Photo" 
                      />
 
                             <div className="text-[20px] font-semibold flex items-center gap-3 pt-5 pl-5 pb-2.5 w-full ">
                                 <img 
-                                     className={`w-15 h-15 rounded-[50%] object-cover ${instructor.id === 10 ? "object-cover" : "object-top"}`} 
-                                     src={instructor.photoMain} 
+                                     className={`w-15 h-15 rounded-[50%] object-cover ${review.id === 10 ? "object-cover" : "object-top"}`} 
+                                     src={review.photoMain} 
                                      alt="Instructor's Photo" 
                                  />
-                                <p>{instructor.name}</p>
+                                <p>{review.name}</p>
                             </div>
 
                             <div className='flex items-center pl-5 pb-5 gap-2.5 text-[20px]'>
                                 <img src={star} alt="rating" />
-                                <p>{instructor.rating.toFixed(1)}</p>
+                                <p>{review.grade.toFixed(1)}</p>
                             </div>
 
-                               {/* 4. Ковзний оверлей (Absolute) */}
                                 <div 
                                  className={`absolute bottom-0 left-0 w-full text-black bg-white transition-transform duration-500`}
                                  style={{ 
@@ -173,17 +178,17 @@ const ReviewsSwiper = () => {
                                 <div className="p-5 text-black">
                                     <div className="text-[20px] font-semibold flex items-center gap-3 pt-5  pb-2.5 w-full ">
                                 <img 
-                                     className={`w-15 h-15 rounded-[50%] object-cover ${instructor.id === 10 ? "object-cover" : "object-top"}`} 
-                                     src={instructor.photoMain} 
+                                     className={`w-15 h-15 rounded-[50%] object-cover ${review.id === 10 ? "object-cover" : "object-top"}`} 
+                                     src={review.photoMain} 
                                      alt="Instructor's Photo" 
                                  />
-                                <p>{instructor.name}</p>
+                                <p>{review.name}</p>
                                     </div>
                                     <div className="flex items-center gap-3 pt-[11px]">
                                         <img src={star} alt="rating" />
-                                        <p className="text-[20px]">{instructor.rating.toFixed(1)}</p>
+                                        <p className="text-[20px]">{review.grade.toFixed(1)}</p>
                                     </div> 
-                                    <p className="mt-2.5 text-[20px] mb-5">{instructor.aboutInstructor}</p> 
+                                    <p className="mt-2.5 text-[20px] mb-5">{review.review}</p> 
                                  </div>
                             </div>
                         </article>

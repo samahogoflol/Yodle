@@ -35,7 +35,7 @@ const Dropdown:React.FC<DropdownProps> = ({options, value, onChange, placeholder
     ) {
         setIsOpen(false);
     }
-};
+    };
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside)
@@ -52,14 +52,14 @@ const Dropdown:React.FC<DropdownProps> = ({options, value, onChange, placeholder
             
             <button 
                 type="button"
-                className={`${className}  border-1 border-[#D3DCF8] w-[278px] h-[45px] text-left p-3 flex justify-between items-center text-[#D3DCF8] cursor-pointer`}
+                className={`${className} w-[278px] h-[45px] text-left p-3 flex justify-between items-center cursor-pointer `}
                 onClick={handleToggle} 
             >
                 <div className="flex items-center gap-2 ">
                     {icon? icon : null }
                     <span>{displayValue}</span> 
                 </div>
-                <div className={`${isOpen ? 'rotate-180' : null}`}>
+                <div className={`${isOpen ? 'rotate-180' : ""}`}>
                     <ArrowDownIcon/>
                 </div>
             </button>

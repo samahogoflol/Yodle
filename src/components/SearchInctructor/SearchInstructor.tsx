@@ -121,7 +121,7 @@ const SearchInstructor = () => {
            </div>
            <div className="flex gap-5">
             <div>
-              <div className="text-[#D3DCF8] flex items-center mt-6 gap-2 mb-3">
+              <div className="text-white flex items-center mt-6 gap-2 mb-3">
                 <Location/>
                 <p>State</p>
               </div>
@@ -131,11 +131,12 @@ const SearchInstructor = () => {
                     value={searchData.state}
                     placeholder="Choose the State"
                     onChange={(newValue) => handleChange("state", newValue)}
+                    className="border-1 border-white text-white hover:bg-background-light hover:text-black hover:border-none"
                />
                
            </div>
            <div>
-              <div className="text-[#D3DCF8] flex items-center mt-6 gap-2 mb-3">
+              <div className="text-white flex items-center mt-6 gap-2 mb-3">
                 <img src={resortIcon} alt="Choose the Resort" />
                 <p>Resort</p>
               </div>
@@ -145,7 +146,7 @@ const SearchInstructor = () => {
                     value={searchData.resort}
                     placeholder="Choose the Resort"
                     onChange={(newValue) => handleChange("resort", newValue)}
-                    className="w-[398px]"
+                    className={"w-[398px] border-1 border-white text-white hover:bg-background-light hover:text-black hover:border-none"}
                />
                
            </div>

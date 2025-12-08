@@ -36,7 +36,7 @@ export const Plus:React.FC<Props> = ({className}) => {
     >
         <path 
             d="M0.75 7.25H13.75M7.25 0.75V13.75" 
-            stroke="#3A3636" 
+            stroke="currentColor" 
             strokeWidth="1.5"
             strokeLinecap="round" 
             strokeLinejoin="round" 

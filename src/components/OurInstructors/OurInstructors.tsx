@@ -10,17 +10,22 @@ const OurInstructors = () => {
 
     const [openCardId, setOpenCardId] = useState<number | null>(null);
 
-    const handleCardClick = (id: number) => {
-    setOpenCardId(prevId => (prevId === id ? null : id));
-};
+    const hoverOpen = (id:number) => {
+        setOpenCardId(id)
+    }
+
+    const hoverClose = () => {
+        setOpenCardId(null)
+    }
+
 
     return (
         <div id="our-instructors" className="container mt-30 leading-[130%] relative">
             <h2 className="text-[56px] font-semibold">Our Featured Instructors</h2>
-            <p className="w-[567px] h-[78pxv] text-[20px] mt-[172px]">Every instructor on our platform is fully vetted and covered by comprehensive liability insurance, so you can focus on learning and enjoying the mountain. </p>
+            <p className="w-[567px] h-[78pxv] text-[20px] mt-15">Every instructor on our platform is fully vetted and covered by comprehensive liability insurance, so you can focus on learning and enjoying the mountain. </p>
 
         
-          <div className="grid grid-cols-4 mt-10 gap-40 mb-10">
+          <div className="grid grid-cols-4 mt-10 gap-40 mb-25">
             {INSTRUCTORS_MOCK_DATA.filter((item) => item.mainPageReview).map((instructor) => {
 
                 const isOpen = instructor.id === openCardId;
@@ -29,7 +34,8 @@ const OurInstructors = () => {
         <div 
             key={instructor.id} 
             className="w-[325px] h-[420px] relative overflow-hidden cursor-pointer" 
-            onClick={() => handleCardClick(instructor.id)}
+            onMouseEnter={() => hoverOpen(instructor.id)}
+            onMouseLeave={hoverClose}
         >
             <article className="h-full">
                 <img 
@@ -68,7 +74,7 @@ const OurInstructors = () => {
             </div>
           </div>  
 
-            <div className="absolute top-[11vw] right-[22vw]">
+            <div className="absolute top-[7vw] right-[22vw]">
                 <BigSnow
                     witdh="64px"
                     height="64px"

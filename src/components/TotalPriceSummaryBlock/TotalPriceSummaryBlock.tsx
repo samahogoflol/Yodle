@@ -8,7 +8,7 @@ const TotalPriceSummaryBlock:React.FC<TotalPriceSummaryBlockProps> = ({totalPric
         <div>
             <div className={totalPriceStyles}>
                 <p>Total</p>
-                <p>{finalPrice}</p>
+                <p>{finalPrice} $</p>
             </div>
         </div>
     )
