@@ -1,4 +1,3 @@
-import companyLogo from "../../assets/icons/yolde-logo.png"
 import { Link } from "react-router-dom"
 import "../../styles/index.css"
 import { HeaderCompanyLogo } from "../UI/Icons/HeaderCompanyLogo"

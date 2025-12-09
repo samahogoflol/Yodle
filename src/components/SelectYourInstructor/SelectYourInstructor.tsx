@@ -34,7 +34,7 @@ const SelectYourInstructor:React.FC<SelectYourInstructorProps> = () => {
     return (
         <div className="bg-[#80AAEF] rounded w-full mt-16 px-7  flex  justify-between items-center">
             <div>
-                 <h2 className="text-[26px] font-semibold leading-[130%]">Your Instructor</h2>
+                 <h2 className="text-[26px] font-semibold leading-[130%] pt-7">Your Instructor</h2>
             </div>
 
             {/* <div className="pb-12">
