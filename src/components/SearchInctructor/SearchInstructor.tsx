@@ -8,8 +8,9 @@ import Checkbox from "../UI/Checkbox";
 import Location from "../UI/Icons/Location";
 import DateField from "../Features/DateField";
 import Dropdown from "../UI/Dropdown";
-import resortIcon from "../../assets/icons/Mountain.png"
 import ButtonSearchInstruktor from "../UI/ButtonSearchInstructor";
+import { ResortIcon } from "../UI/Icons/ResortIcon";
+
 
 
 type SportType = 'Skiing' | 'Snowboarding' | 'Skiing & Snowboarding' | null;
@@ -100,6 +101,8 @@ const SearchInstructor = () => {
         )
     }
 
+    console.log(searchData.sport)
+
     return (
         <div className="p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%]">
            <div className="flex gap-8">
@@ -107,21 +110,24 @@ const SearchInstructor = () => {
                 label={"Skiing"}
                 checked = {searchData.sport === 'Skiing'}
                 onChange={() => handleSportChange("Skiing")}
+                className={`${searchData.sport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black `}
             />
             <Checkbox 
                 label={"Snowboarding"}
                 checked = {searchData.sport === 'Snowboarding'}
-                onChange={() => handleSportChange("Snowboarding")} 
+                onChange={() => handleSportChange("Snowboarding")}
+                className={`${searchData.sport === "Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
             />
             <Checkbox 
                 label={"Skiing & Snowboarding"}
                 checked = {searchData.sport === "Skiing & Snowboarding"}
-                onChange={() => handleSportChange("Skiing & Snowboarding")} 
+                onChange={() => handleSportChange("Skiing & Snowboarding")}
+                className={`${searchData.sport === "Skiing & Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
             />
            </div>
            <div className="flex gap-5">
-            <div>
-              <div className="text-white flex items-center mt-6 gap-2 mb-3">
+            <div className="group">
+              <div className={`${searchData.state? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black `}>
                 <Location/>
                 <p>State</p>
               </div>
@@ -131,13 +137,13 @@ const SearchInstructor = () => {
                     value={searchData.state}
                     placeholder="Choose the State"
                     onChange={(newValue) => handleChange("state", newValue)}
-                    className="border-1 border-white text-white hover:bg-background-light hover:text-black hover:border-none"
+                    className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} border-1 border-white text-white group-hover:text-black group-hover:border-black `}
                />
                
            </div>
-           <div>
-              <div className="text-white flex items-center mt-6 gap-2 mb-3">
-                <img src={resortIcon} alt="Choose the Resort" />
+           <div className="group">
+              <div className={` ${searchData.resort? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black`}>
+                <ResortIcon/>
                 <p>Resort</p>
               </div>
                
@@ -146,7 +152,7 @@ const SearchInstructor = () => {
                     value={searchData.resort}
                     placeholder="Choose the Resort"
                     onChange={(newValue) => handleChange("resort", newValue)}
-                    className={"w-[398px] border-1 border-white text-white hover:bg-background-light hover:text-black hover:border-none"}
+                    className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""} w-[398px] border-1 border-white text-white group-hover:text-black group-hover:border-black`}
                />
                
            </div>

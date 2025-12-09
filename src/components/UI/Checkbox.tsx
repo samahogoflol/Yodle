@@ -7,14 +7,14 @@ interface CheckboxProps {
     className? : string;
 }
 
-const Checkbox:React.FC<CheckboxProps> = ({label, checked, onChange}) => {
+const Checkbox:React.FC<CheckboxProps> = ({label, checked, onChange, className}) => {
 
-    const checkBoxStyles = "my-custom-checkbox-styles" // Вже спростили до одного класу
+    const checkBoxStyles = "my-custom-checkbox-styles"
 
     return (
         <div>
             <label 
-                className="flex items-center cursor-pointer gap-1 text-white"
+                className={` ${className} flex items-center cursor-pointer gap-1 text-white `}
             >
                 <input 
                     type="checkbox" 
