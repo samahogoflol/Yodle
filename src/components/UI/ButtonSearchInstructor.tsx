@@ -1,4 +1,7 @@
-import arrowToRight from "../../assets/icons/arrow-to-right.png"
+import { ArrowRight } from "./Icons/ArrowRight";
+import { SnowChangeBtn } from "./Icons/SnowChangeBtn";
+import { useState } from "react";
+
 
 interface ButtonProps {
     onClick : () => void;
@@ -6,6 +9,11 @@ interface ButtonProps {
 }
 
 const ButtonSearchInstruktor:React.FC<ButtonProps> = ({onClick, name}) => {
+
+    const [changeBtnArrow , setChangeBtnArrow] = useState(false)
+
+
+
     return (
         <>
             <button
@@ -14,7 +22,12 @@ const ButtonSearchInstruktor:React.FC<ButtonProps> = ({onClick, name}) => {
             type="button"
             >
             <span className="pr-7">{name}</span>
-            <img src={arrowToRight} alt="Search instructor" />
+                <div
+                onMouseEnter={()=> setChangeBtnArrow(true)}
+                onMouseLeave={()=> setChangeBtnArrow(false)}
+                >
+                    {changeBtnArrow? <SnowChangeBtn/> : <ArrowRight/> }
+                </div>
             </button>
         </>
     )

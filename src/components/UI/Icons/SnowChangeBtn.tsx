@@ -1,0 +1,15 @@
+export const SnowChangeBtn: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg 
+        width="39" 
+        height="39" 
+        viewBox="0 0 39 39" 
+        xmlns="http://www.w3.org/2000/svg"
+        {...props} 
+    >
+        <path d="M18.375 10.5H20.625V28.5H18.375V10.5Z" fill="currentColor"/>
+        <path d="M10.5 20.625V18.375H28.5V20.625H10.5Z" fill="currentColor"/>
+        <path d="M12.3398 13.9315L13.9307 12.3406L26.6587 25.0685L25.0677 26.6595L12.3398 13.9315Z" fill="currentColor"/>
+        <path d="M25.0678 12.3405L26.6588 13.9315L13.9308 26.6595L12.3398 25.0685L25.0678 12.3405Z" fill="currentColor"/>
+    </svg>
+);
+
