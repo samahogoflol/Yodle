@@ -79,7 +79,6 @@ const SearchInstructor = () => {
             ...update,
         };
 })
-
     }
 
     const handleSportChange = (sport: SportType) => {
@@ -101,10 +100,8 @@ const SearchInstructor = () => {
         )
     }
 
-    console.log(searchData.sport)
-
     return (
-        <div className="p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%]">
+        <div className="p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%] ">
            <div className="flex gap-8">
             <Checkbox 
                 label={"Skiing"}

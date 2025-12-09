@@ -32,7 +32,7 @@ const HeroSection = () => {
                 <img  className="absolute right-[33vw] top-[21vw]" src={snow64} alt="snowImg" />
                 <img className="absolute right-[7vw] top-[45vw]" src={snow116} alt="snowImg" />
 
-                <div className="absolute top-[39.7vw] left-[12.8vw] z-50" >
+                <div className="absolute top-[40.3vw] left-[12.8vw] z-50" >
                     <SearchInstructor/>
                 </div>
             </section>

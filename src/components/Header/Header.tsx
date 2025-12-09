@@ -1,14 +1,15 @@
 import companyLogo from "../../assets/icons/yolde-logo.png"
 import { Link } from "react-router-dom"
 import "../../styles/index.css"
+import { HeaderCompanyLogo } from "../UI/Icons/HeaderCompanyLogo"
 
 const Header = () => {
     return (
         <>
             <header id="header" className="flex items-center justify-between px-10 leading-[130%] bg-white w-full">
-                <div >
+                <div className="text-[#2E78E5]">
                     <Link to="/">
-                        <img src={companyLogo} alt="Our Company logotype" />
+                       <HeaderCompanyLogo/>
                     </Link>
                 </div>
                 <nav >

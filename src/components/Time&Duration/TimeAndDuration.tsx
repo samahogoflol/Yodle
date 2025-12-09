@@ -135,7 +135,7 @@ const TimeAndDuration = () => {
                                 duration={duration}
                                 isActive={duration === bookingDetails.lessonTime}
                                 onClick={() => handleSelectLessonTime(duration)}
-                                className=""
+                                className="cursor-pointer"
                                 />
                               ))}
                             </div>

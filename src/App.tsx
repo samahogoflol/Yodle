@@ -1,9 +1,10 @@
 import './App.css'
 
 import { BookingProvider } from './store/BookingDetailsContext'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 import ScrollToHashElement from './components/Features/scrollToHashElement'
+import { ScrollToTop } from './components/Features/scrollToTop'
 
 import HomePage from './pages/HomePage/HomePage'
 import Footer from './components/Footer/Footer'
@@ -14,14 +15,16 @@ import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
 import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
 
 
-
 function App() {
+
+  const location = useLocation()
 
   return (
     <>
     <div className='App'>
         <BookingProvider>
           <ScrollToHashElement/>
+          <ScrollToTop/>
           <Routes>
            <Route path='/' element={<HomePage/>}/>
            <Route path='publicOffer' element={<PublicOffer/>}/>
@@ -30,8 +33,12 @@ function App() {
            <Route path='secureCheckout' element={<SecureCheckout/>}/>
            <Route path='findYourInstructor' element={<FindYourInstructor/>}/>
           </Routes>
+          {location.pathname !== "/bookingConfirmed" && (
+            <>
+              <Footer/>
+            </>
+          )}
         </BookingProvider>
-      <Footer/>
     </div>
     </>
   )

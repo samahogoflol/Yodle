@@ -38,7 +38,7 @@ const CalculateParticipants = () => {
                 className={currentParticipants <= 1? unActiveClass : "cursor-pointer " }
                 />
             </div>
-            <div className="px-3 text-[20px] bg-primary-selected">{currentParticipants}</div>
+            <div className="px-3 text-[20px] bg-primary-selected text-white">{currentParticipants}</div>
             <div 
             className="py-3" 
             onClick={handlePlus}>

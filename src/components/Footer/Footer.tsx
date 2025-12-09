@@ -1,12 +1,12 @@
-import footerLogo from "../../assets/icons/logo_footer.png"
 import { Link } from "react-router-dom";
+import { FooterCompanyLogo } from "../UI/Icons/FooterCompanyLogo";
 
 const Footer = () => {
 return (
     <div className="bg-white grid grid-cols-3 w-full leading-[130%]" >
-        <div id="header" className= "mt-[150px] mb-[150px] container">
+        <div id="header" className= "mt-[150px] mb-[150px] container text-[#2E78E5]">
             <Link to="/#header">
-                <img width={168} src={footerLogo} alt="Yodle logo" />
+               <FooterCompanyLogo/>
             </Link>
         </div>
         <div className="mt-30">

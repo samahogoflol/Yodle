@@ -44,14 +44,17 @@ const Payment = () => {
                         {...register('age', { pattern: /\d+/ })} /> 
                     </div>
 
-                    <div>
+
+                        {/* Поки тут видалив кнопку, можливо потім буде додана */}
+                        
+                    {/* <div>
                         <button
                         className='px-5 py-1.5 bg-[#EA4300] text-white'
                         type='button'
                         >
                             Add
                         </button>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </div>
