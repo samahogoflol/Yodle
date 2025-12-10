@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState, useMemo } from "react"; // Додано useMemo
 import { Link } from "react-router-dom";
 import { RESORTS_BY_STATE } from "../../data/resortsList";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
@@ -11,8 +11,6 @@ import Dropdown from "../UI/Dropdown";
 import ButtonSearchInstruktor from "../UI/ButtonSearchInstructor";
 import { ResortIcon } from "../UI/Icons/ResortIcon";
 
-
-
 type SportType = 'Skiing' | 'Snowboarding' | 'Skiing & Snowboarding' | null;
 
 interface SearchData {
@@ -21,6 +19,15 @@ interface SearchData {
     resort: string | null;
     date: Date | null; 
 }
+
+// 1. Створення зворотного мапінгу (Resort -> State)
+const ALL_RESORTS_TO_STATE = Object.entries(RESORTS_BY_STATE).reduce((acc, [stateKey, resorts]) => {
+    const StateName = stateKey.charAt(0).toUpperCase() + stateKey.slice(1); 
+    resorts.forEach(resort => {
+        acc[resort] = StateName;
+    });
+    return acc;
+}, {} as Record<string, string>);
 
 const SearchInstructor = () => {
 
@@ -34,51 +41,76 @@ const SearchInstructor = () => {
     });
 
     const currentStateKey = searchData.state?.toLowerCase();
-    const resortOptions = currentStateKey ? RESORTS_BY_STATE[currentStateKey as keyof typeof RESORTS_BY_STATE] || [] : [];
+    
+    const allResortNames = useMemo(() => {
+        return Object.values(RESORTS_BY_STATE).flat();
+    }, []);
 
-   const handleChange = (key: keyof SearchData, value: string | Date | null) => {
-    setSearchData(prevData => {
-        const newState = {
-            ...prevData,
-            [key]: value, 
-        };
-        
-        if (key === 'state') {
-            newState.resort = null; 
-        }
+    const resortOptions = currentStateKey
+        ? RESORTS_BY_STATE[currentStateKey as keyof typeof RESORTS_BY_STATE] || []
+        : allResortNames; 
 
-        return newState;
-    });
-
-    setBookingDetails(prevDetails => {
-        let update: Partial<BookingDetailsState> = {};
-
-        if (key === 'state') {
-            
-            update = {
-                location: (value as string) || '', 
-            }; 
-        }else if (key === 'resort') {
-
-            update = {
-                resort: (value as string) || '', 
+    const handleChange = (key: keyof SearchData, value: string | Date | null) => {
+        setSearchData(prevData => {
+            let newState = {
+                ...prevData,
+                [key]: value, 
             };
-        } else if (key === 'date') {
             
-            update = {
-                date: value as Date | null, 
-            };
-        } else if (key === "sport") {
-            update = {
-                typeOfSport : value as string || "",
+            if (key === 'state') {
+                newState.resort = null; 
             }
-        }
+            if (key === 'resort' && value) {
+                const selectedResort = value as string;
+                const correspondingState = ALL_RESORTS_TO_STATE[selectedResort];
+                if (correspondingState) {
+                    newState.state = correspondingState;
+                }
+            }
 
-        return {
-            ...prevDetails,
-            ...update,
-        };
-})
+            return newState;
+        });
+
+        setBookingDetails(prevDetails => {
+            let update: Partial<BookingDetailsState> = {};
+            const currentValue = value as string | Date | null;
+            
+            if (key === 'state' || (key === 'resort' && currentValue)) {
+                
+                let resortName = prevDetails.resort;
+                let stateName = prevDetails.location;
+
+                if (key === 'resort') {
+                    resortName = (currentValue as string) || '';
+                    stateName = ALL_RESORTS_TO_STATE[resortName] || prevDetails.location;
+                } else if (key === 'state') {
+                    stateName = (currentValue as string) || '';
+                    if (!stateName) {
+                         resortName = '';
+                    }
+                }
+                
+                update = {
+                    location: stateName,
+                    resort: resortName
+                };
+
+            } else if (key === 'date') {
+                
+                update = {
+                    date: currentValue as Date | null, 
+                };
+            } else if (key === "sport") {
+                update = {
+                    typeOfSport : currentValue as string || "",
+                }
+            }
+
+            return {
+                ...prevDetails,
+                ...update,
+            };
+    })
     }
 
     const handleSportChange = (sport: SportType) => {
@@ -102,7 +134,7 @@ const SearchInstructor = () => {
 
     return (
         <div className="p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%] ">
-           <div className="flex gap-8">
+            <div className="flex gap-8">
             <Checkbox 
                 label={"Skiing"}
                 checked = {searchData.sport === 'Skiing'}
@@ -121,15 +153,15 @@ const SearchInstructor = () => {
                 onChange={() => handleSportChange("Skiing & Snowboarding")}
                 className={`${searchData.sport === "Skiing & Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
             />
-           </div>
-           <div className="flex gap-5">
+            </div>
+            <div className="flex gap-5">
             <div className="group">
               <div className={`${searchData.state? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black `}>
                 <Location/>
                 <p>State</p>
               </div>
-               
-               <Dropdown
+                
+                <Dropdown
                     options={["California", "Oregon", "Washington" ]}
                     value={searchData.state}
                     placeholder="Choose the State"
@@ -137,43 +169,41 @@ const SearchInstructor = () => {
                     className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} border-1 border-white text-white group-hover:text-black group-hover:border-black `}
                     isFilterBtn={false}
                />
-               
-           </div>
-           <div className="group">
+                
+            </div>
+            <div className="group">
               <div className={` ${searchData.resort? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black`}>
                 <ResortIcon/>
                 <p>Resort</p>
               </div>
-               
-               <Dropdown
+                
+                <Dropdown
                     options={resortOptions}
                     value={searchData.resort}
                     placeholder="Choose the Resort"
                     onChange={(newValue) => handleChange("resort", newValue)}
                     className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""} w-[398px] border-1 border-white text-white group-hover:text-black group-hover:border-black`}
                     isFilterBtn={false}
-
                />
-               
-           </div>
-           <div>
+                
+            </div>
+            <div>
               <div className="mt-6">
                     <DateField
-                    data={searchData.date}
-                    onSelect={(newValue) => handleChange("date", newValue)}
+                        data={searchData.date}
+                        onSelect={(newValue) => handleChange("date", newValue)}
                 />
               </div>
-           </div>
-           </div>
-           <div className="flex justify-end">
-            <Link to="findYourInstructor">
-             <ButtonSearchInstruktor 
-                name={"Search instructor"}
-                onClick={handleSubmit}
-            />
-            </Link>
-           
-           </div>
+            </div>
+            </div>
+            <div className="flex justify-end">
+                <Link to="findYourInstructor">
+                    <ButtonSearchInstruktor 
+                        name={"Search instructor"}
+                        onClick={handleSubmit}
+                    />
+                </Link>
+            </div>
 
         </div>
     )

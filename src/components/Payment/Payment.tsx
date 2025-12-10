@@ -1,12 +1,20 @@
 import { useForm } from 'react-hook-form';
+import { paymentInfoSchema } from '../validation/schmas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller } from 'react-hook-form';
+import { PatternFormat } from 'react-number-format';
 
 const Payment = () => {
 
     const {
     register,
     handleSubmit,
-    // formState: { errors },
-  } = useForm();
+    formState: { errors },
+    control,
+  } = useForm({
+    resolver : zodResolver(paymentInfoSchema),
+    mode : "onBlur"
+  });
 
     return (
         <div className="bg-[#80AAEF] rounded p-7">
@@ -20,31 +28,55 @@ const Payment = () => {
                     <div className='gap-3 flex flex-col'>
                         <div>
                             <input 
-                            className='bg-white px-3 py-4 border-[0.5px] border-[#727272] w-full' 
+                            {...register("nameACard")} 
+                            className='bg-white pl-3 pr-21 py-5 border-[0.5px] border-[#727272]' 
                             placeholder='Name a card'
-                            {...register('firstName')} 
                             />
+                            {errors.nameACard && (
+                                <p className='text-red-600'>{errors.nameACard.message}</p>
+                            )}
                         </div>
                         <div>
                             <input 
-                            className='bg-white px-3 py-4 border-[0.5px] border-[#727272] w-full' 
+                            className='bg-white pl-3 pr-21 py-5 border-[0.5px] border-[#727272]'
                             placeholder='Card number'
-                            {...register('lastName', { required: true })} />
+                            {...register("cardNumber")} 
+                            />
+                            {errors.cardNumber && (
+                                <p className='text-red-600'>{errors.cardNumber.message}</p>
+                            )}
+                        </div>
+                        <div className='flex'>
+                            <div>
+                                <Controller
+                                    name="expirationDate"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <PatternFormat
+                                            {...field}
+                                            format="##/##" 
+                                            className='bg-white pl-3 py-5 border-[0.5px] border-[#727272] w-4/5' 
+                                            placeholder='MM / YY' 
+                                        />
+                                    )}
+                                />
+                                {errors.expirationDate && (
+                                    <p className='text-red-600 mt-1 text-sm'>{errors.expirationDate.message}</p>
+                                )}
+                            </div>
+                            <div>
+                                <input
+                                className='bg-white pl-3 py-5 border-[0.5px] border-[#727272] w-4/10' 
+                                placeholder='CVV' 
+                                {...register("cvv")} 
+                                /> 
+                                {errors.cvv && (
+                                    <p className='text-red-600'>{errors.cvv.message}</p>
+                                )}
+                            </div> 
                         </div>
                     </div>
                     
-                    <div className='flex gap-12 py-3'>
-                        <input
-                        className='bg-white px-3 py-4 border-[0.5px] border-[#727272] w-full' 
-                        placeholder='MM / YY' 
-                        {...register('age', { pattern: /\d+/ })} /> 
-                        <input
-                        className='bg-white px-3 py-4 border-[0.5px] border-[#727272] w-full' 
-                        placeholder='CVV' 
-                        {...register('age', { pattern: /\d+/ })} /> 
-                    </div>
-
-
                         {/* Поки тут видалив кнопку, можливо потім буде додана */}
                         
                     {/* <div>
