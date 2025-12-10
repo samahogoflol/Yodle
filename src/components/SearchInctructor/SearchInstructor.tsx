@@ -135,6 +135,7 @@ const SearchInstructor = () => {
                     placeholder="Choose the State"
                     onChange={(newValue) => handleChange("state", newValue)}
                     className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} border-1 border-white text-white group-hover:text-black group-hover:border-black `}
+                    isFilterBtn={false}
                />
                
            </div>
@@ -150,6 +151,8 @@ const SearchInstructor = () => {
                     placeholder="Choose the Resort"
                     onChange={(newValue) => handleChange("resort", newValue)}
                     className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""} w-[398px] border-1 border-white text-white group-hover:text-black group-hover:border-black`}
+                    isFilterBtn={false}
+
                />
                
            </div>

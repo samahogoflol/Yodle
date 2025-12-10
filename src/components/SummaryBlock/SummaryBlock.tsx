@@ -67,6 +67,7 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
                 instructorName={bookingDetails.instructor?.name}
                 instructorRating={bookingDetails.instructor?.rating}
                 instructorExperience={bookingDetails.instructor?.experience}
+                instructorTotalReviews={bookingDetails.instructor?.howManyFeedback}
             />
             )}
                 <div className="pt-6">

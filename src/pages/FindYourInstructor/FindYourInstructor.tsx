@@ -1,3 +1,4 @@
+import Header from "../../components/Header/Header";
 import CalculateParticipants from "../../components/CalculateParticipants";
 import InstructorCard from "../../components/InstructorList/InstructorList";
 import SelectYourInstructor from "../../components/SelectYourInstructor/SelectYourInstructor";
@@ -11,38 +12,37 @@ import type { InstructorsProps } from "../../types/instructors";
 
 import { useState } from "react";
 
-import Header from "../../components/Header/Header";
+import { type SortCriteria} from "../../components/constants/sort";
 
-interface FilterValues {
-    price: string;
-    experience: string;
-    rating: string;
-}
-
-const initialFilters: FilterValues = {
-    price: "Any Price",
-    experience: "Any Experience",
-    rating: "Any Rating",
-};
 
 const sortInstructors = (
     data: InstructorsProps[], 
-    criteria: FilterValues
+    criteria: SortCriteria 
 ): InstructorsProps[] => {
     let sortedData = [...data]; 
 
     let sortKey: keyof InstructorsProps | null = null;
     let direction: 'asc' | 'desc' = 'asc';
 
-    if (criteria.rating !== "Any Rating") {
-        sortKey = 'rating';
-        direction = criteria.rating === "Highest Rating" ? 'desc' : 'asc';
-    } else if (criteria.experience !== "Any Experience") {
-        sortKey = 'experience';
-        direction = criteria.experience === "Highest Experience" ? 'desc' : 'asc';
-    } else if (criteria.price !== "Any Price") {
-        sortKey = 'price'; 
-        direction = criteria.price === "Highest Price" ? 'desc' : 'asc';
+    switch (criteria) {
+        case "RATING_DESC":
+            sortKey = 'rating';
+            direction = 'desc'; 
+            break;
+        case "EXPERIENCE_DESC":
+            sortKey = 'experience';
+            direction = 'desc'; 
+            break;
+        case "PRICE_INC":
+            sortKey = 'price';
+            direction = 'asc'; 
+            break;
+        case "PRICE_DESC":
+            sortKey = 'price';
+            direction = 'desc'; 
+            break;
+        default:
+            return sortedData;
     }
 
     if (sortKey) {
@@ -63,9 +63,9 @@ const sortInstructors = (
 
 const FindYourInstructor = () => {
 
-    const [filterCriteria, setFilterCriteria] = useState<FilterValues>(initialFilters);
+    const [filterCriteria, setFilterCriteria] = useState<SortCriteria>("RATING_DESC");
 
-    const handleFilterUpdate = (newCriteria : FilterValues) => {
+    const handleFilterUpdate = (newCriteria : SortCriteria) => {
         setFilterCriteria(newCriteria)
     }
 
@@ -87,6 +87,7 @@ const FindYourInstructor = () => {
                     <TimeAndDuration/>
                     <CalculateParticipants/>
                     <SelectYourInstructor
+                    sortCriteria={filterCriteria}
                     onFilterChange={handleFilterUpdate}
                     />
                     <div>
@@ -105,6 +106,7 @@ const FindYourInstructor = () => {
                     buttonText="Proceed to Checkout"
                     totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"
                     linkButtonTo="/secureCheckout"
+                    
                     />
                 </div>
             </div>

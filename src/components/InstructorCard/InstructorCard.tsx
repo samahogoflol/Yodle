@@ -27,7 +27,7 @@ const InstructorCard:React.FC<InstructorCardProps> = ({instructor}) => {
     return (
         <div 
         onClick={handleSelectInstructor} 
-        className={`${isSelected ? selectedStyle : hoverStyle} grid grid-cols-10 p-6 gap-5 bg-white cursor-pointer `}
+        className={`${isSelected ? selectedStyle : hoverStyle} grid grid-cols-10 p-6 gap-5 bg-[#D3DCF8] cursor-pointer `}
         > 
             <div className="col-span-1.5">
                 <img 
@@ -53,7 +53,7 @@ const InstructorCard:React.FC<InstructorCardProps> = ({instructor}) => {
                         {instructor.lessons.map((lessonObject) => {
                             const [[lessonType, lessonName]] = Object.entries(lessonObject);
                             return (
-                                <div key={lessonType} className="p-2 flex items-center gap-3 w-fit bg-[#D3DCF8]"> 
+                                <div key={lessonType} className="p-2 flex items-center gap-3 w-fit bg-white"> 
                                     {lessonName === "Skiing" ? (
                                         <div className="flex items-center gap-3 text-black hover:text-black">
                                             <SkiingIcon/>
@@ -75,7 +75,7 @@ const InstructorCard:React.FC<InstructorCardProps> = ({instructor}) => {
                         {instructor.time.map((lessonObject) => {
                             const [[lessonType, lessonName]] = Object.entries(lessonObject);
                             return (
-                                <div key={lessonType} className="p-2 flex items-center gap-3 w-fit bg-[#D3DCF8] text-black hover:text-black">
+                                <div key={lessonType} className="p-2 flex items-center gap-3 w-fit bg-white text-black hover:text-black">
                                     <CheckmarkIcon/>
                                     {lessonName}
                                 </div>

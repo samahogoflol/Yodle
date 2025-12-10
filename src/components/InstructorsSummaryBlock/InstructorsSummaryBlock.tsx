@@ -6,9 +6,10 @@ interface InstructorsSummaryBlockProps {
     instructorName? : string;
     instructorRating?: number;
     instructorExperience? : number;
+    instructorTotalReviews? : number;
 }
 
-const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instructorExperience,instructorId,instructorName,instructorPhoto,instructorRating}) => {
+const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instructorExperience,instructorId,instructorName,instructorPhoto,instructorRating,instructorTotalReviews}) => {
     return (
         <div className="bg-white p-4 leading-[130%] mt-6">
             <h2>Instructor</h2>
@@ -25,7 +26,7 @@ const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instruc
             {instructorPhoto? (<>{(
             <div className="flex items-center">
                 <StarIcon/> 
-                <p className="pl-2 pr-5 ">{instructorRating}</p>
+                <p className="pl-2 pr-5 ">{instructorRating} ({instructorTotalReviews})</p>
                 <p>{instructorExperience} years exp</p>
             </div>
             )}</>): null}

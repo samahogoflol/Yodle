@@ -121,6 +121,7 @@ const TimeAndDuration = () => {
                                     !isTimeSelected && "hover:bg-[#D3DCF8] hover:text-black hover:border-none",
                                     isTimeSelected && "bg-primary-selected border-none"
                                 )}
+                                isFilterBtn={false}
                             />
                     </div>
                         <div>

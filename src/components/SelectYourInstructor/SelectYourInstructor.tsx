@@ -1,51 +1,29 @@
-// import Dropdown from "../UI/Dropdown";
-// import { useState } from "react";
-// import { PriceBug } from "../UI/Icons/PriceBug";
+import Dropdown from "../UI/Dropdown";
 
-interface FilterValues {
-    price : string;
-    experience : string;
-    rating : string;
-}
+import { filtersOptions, type SortCriteria } from "../constants/sort";
 
 interface SelectYourInstructorProps {
-    onFilterChange : (criteria: FilterValues) => void;
+    onFilterChange : (criteria: SortCriteria) => void;
+    sortCriteria : string;
 }
 
-const SelectYourInstructor:React.FC<SelectYourInstructorProps> = () => {
-
-    // const [price, setPrice] = useState("Any Price")
-    // const [experience, setExperience] = useState("Any Experience")
-    // const [rating, setRating] = useState("Any Rating")
-
-    // const priceOptions = ["Highest Price", "Lowest Price", "Any Price"];
-
-    // const handlePriceChange = (newPriceValue : string) => {
-    //     setPrice(newPriceValue);
-
-    //     onFilterChange({
-    //         price: newPriceValue, 
-    //         experience: experience, 
-    //         rating: rating,
-    // });
-    // }
- 
+const SelectYourInstructor:React.FC<SelectYourInstructorProps> = ({onFilterChange, sortCriteria}) => {
 
     return (
-        <div className="bg-[#80AAEF] rounded w-full mt-16 px-7  flex  justify-between items-center">
-            <div>
-                 <h2 className="text-[26px] font-semibold leading-[130%] pt-7">Your Instructor</h2>
+        <div className="bg-[#80AAEF] rounded w-full mt-16 px-7 flex justify-between">
+            <div className="text-[26px] font-semibold leading-[130%] pt-7 pb-[35px]">
+                 <h2 >Your Instructor</h2>
             </div>
 
-            {/* <div className="pb-12">
+            <div className="pt-7 pb-6">
                 <Dropdown
-                icon={<PriceBug/>}
-                options={priceOptions}
-                value={price}
-                onChange={handlePriceChange}
-                className=" text-black border-black w-full"
+                options={filtersOptions}
+                value={sortCriteria}
+                onChange={(newCriteria) => onFilterChange(newCriteria)}
+                className="justify-start w-full gap-6 px-3 bg-primary-selected text-white"
+                isFilterBtn={true}       
                 />
-            </div> */}
+            </div>
         </div>
     )
 }

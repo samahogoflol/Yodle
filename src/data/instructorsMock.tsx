@@ -13,6 +13,7 @@ import piereBortoleto from "../assets/instructorsPhoto/Piere Bortoleto.jpg"
 import rachelOcon from "../assets/instructorsPhoto/Rachel Ocon.jpg"
 import carlosGellar from "../assets/instructorsPhoto/Carlos Gellar.jpg"
 import fernandoStroll from "../assets/instructorsPhoto/Fernando Stroll.jpg"
+import aleksandrLawson from "../assets/instructorsPhoto/Alexander Lawson.jpg"
 
 import type { InstructorsProps } from "../types/instructors"
 
@@ -210,7 +211,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
     },
      {
         id : 12,
-        photoMain : "",
+        photoMain : aleksandrLawson,
         name : "Alexander Lawson",
         aboutInstructor : "Multi-sport instructor specializing in helping skiers transition to snowboarding (and boarders curious about skiing).",
         lessons : [
