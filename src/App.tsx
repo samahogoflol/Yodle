@@ -14,13 +14,10 @@ import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
 import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
 import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
 import Page404 from './pages/Page404/Page404'
+import Layout from './components/Layout/Layout'
 
 
 function App() {
-
-  const location = useLocation();
-
-  const is404Page = useMatch('*');
 
   return (
     <>
@@ -29,15 +26,16 @@ function App() {
           <ScrollToHashElement/>
           <ScrollToTop/>
           <Routes>
-           <Route path='/' element={<HomePage/>}/>
-           <Route path='publicOffer' element={<PublicOffer/>}/>
-           <Route path='privacyPolicy' element={<PrivacyPolicy/>}/>
-           <Route path='bookingConfirmed' element={<BookingConfirmed/>}/>
-           <Route path='secureCheckout' element={<SecureCheckout/>}/>
-           <Route path='findYourInstructor' element={<FindYourInstructor/>}/>
+           <Route element={<Layout/>}> 
+            <Route path='/' element={<HomePage/>}/>
+            <Route path='publicOffer' element={<PublicOffer/>}/>
+            <Route path='privacyPolicy' element={<PrivacyPolicy/>}/>
+            <Route path='secureCheckout' element={<SecureCheckout/>}/>
+            <Route path='findYourInstructor' element={<FindYourInstructor/>}/>
+           </Route>
            <Route path='*' element={<Page404/>}/>
+           <Route path='bookingConfirmed' element={<BookingConfirmed/>}/>
           </Routes>
-          {!is404Page && location.pathname !== '/bookingConfirmed' && <Footer />}
         </BookingProvider>
     </div>
     </>
