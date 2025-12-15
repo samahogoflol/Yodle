@@ -55,6 +55,7 @@ const BookingConfirmed = () => {
                             <ButtonSearchInstruktor
                             name="Back to Home"
                             onClick={() => null}
+                            className="mt-6"
                             />
                         </div>
                     </Link>

@@ -81,6 +81,7 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
                         <ButtonSearchInstruktor
                         name={buttonText}
                         onClick={() => null}
+                        className="mt-6"
                         />
                     </div>
                 </Link>

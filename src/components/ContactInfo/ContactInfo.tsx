@@ -23,21 +23,45 @@ const ContactInfo = () => {
                     >
                         <div className='grid grid-cols-2 gap-7 pb-7 leading-[130%]'>
                             <div>
+                                <div className='relative'>
                                 <input 
                                 {...register('firstName')} 
-                                className='bg-white px-3 py-4 w-full'
-                                placeholder='First Name'
+                                className='peer bg-white px-3 py-4 w-full'
+                                placeholder=' '
                                 />
+                                <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                peer-placeholder-shown:top-4
+                                peer-placeholder-shown:text-base
+                                peer-focus:top-2
+                                peer-focus:text-sm
+                                peer-focus:opacity-100
+                                peer-not-placeholder-shown:opacity-0
+                                ">
+                                First Name
+                                </label>
+                                </div>
                                 {errors.firstName && (
                                     <p className='text-red-600'>{errors.firstName.message}</p>
                                 )}
                             </div>
                            <div>
+                            <div className='relative'>
                                 <input
                                 {...register('lastName')}
-                                className='bg-white px-3 py-4 w-full'
-                                placeholder='Last Name'
+                                className='peer bg-white px-3 py-4 w-full'
+                                placeholder=' '
                                 />
+                                <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                peer-placeholder-shown:top-4
+                                peer-placeholder-shown:text-base
+                                peer-focus:top-2
+                                peer-focus:text-sm
+                                peer-focus:opacity-100
+                                peer-not-placeholder-shown:opacity-0
+                                ">
+                                Last Name
+                                </label>
+                            </div>
                                 {errors.lastName && (
                                     <p className='text-red-600 mt-1'>{errors.lastName.message}</p>
                                 )}
@@ -45,22 +69,47 @@ const ContactInfo = () => {
                         </div>
 
                         <div className=' flex flex-col gap-7'>
+                            <div className='relative'>
                             <input 
                             {...register('phoneNumber')} 
-                            className='bg-white px-3 py-4'
-                            placeholder='Phone Number'
+                            className='peer bg-white px-3 py-4 w-full'
+                            placeholder=' '
                             />
+                            <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                peer-placeholder-shown:top-4
+                                peer-placeholder-shown:text-base
+                                peer-focus:top-2
+                                peer-focus:text-sm
+                                peer-focus:opacity-100
+                                peer-not-placeholder-shown:opacity-0
+                                ">
+                                Phone Number
+                                </label>
+                            </div>
                             {errors.phoneNumber && (
                                 <p className='text-red-600 mt-1'>{errors.phoneNumber.message}</p>
                             )}
-                            <input 
-                            {...register('email')} 
-                            className='bg-white px-3 py-4'
-                            placeholder='Email'
-                            />
-                             {errors.email && (
-                                <p className='text-red-600 mt-1'>{errors.email.message}</p>
-                            )}
+                            <div className='relative'>
+                                <input 
+                                {...register('email')} 
+                                className='peer bg-white px-3 py-4 w-full'
+                                placeholder=' '
+                                />
+                                <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                peer-placeholder-shown:top-4
+                                peer-placeholder-shown:text-base
+                                peer-focus:top-2
+                                peer-focus:text-sm
+                                peer-focus:opacity-100
+                                peer-not-placeholder-shown:opacity-0
+                                ">
+                                Email
+                                </label>
+                                {errors.email && (
+                                    <p className='text-red-600 mt-1'>{errors.email.message}</p>
+                                )}
+                            </div>
+                           
                         </div>
                     </form>       
                 </div>

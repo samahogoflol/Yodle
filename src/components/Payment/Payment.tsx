@@ -18,78 +18,133 @@ const Payment = () => {
 
     return (
         <div className="bg-[#80AAEF] rounded p-7">
-            <h2 className="text-[26px] font-semibold pb-6">Payment</h2>
-            <div className="bg-white flex flex-col p-4">
-                <h2>Add new card</h2>
+            <h2 className="text-[26px] font-semibold pb-6 leading-[130%]">Payment Details</h2>
+            <div className=" flex flex-col">
+                <h2>Please enter your credit card information to complete the booking</h2>
                 <form 
                 onSubmit={handleSubmit((data) => console.log(data))}
-                className='p-4'
+                className=''
                 >
-                    <div className='gap-3 flex flex-col'>
-                        <div>
-                            <input 
-                            {...register("nameACard")} 
-                            className='bg-white pl-3 pr-21 py-5 border-[0.5px] border-[#727272]' 
-                            placeholder='Name a card'
-                            />
-                            {errors.nameACard && (
-                                <p className='text-red-600'>{errors.nameACard.message}</p>
-                            )}
-                        </div>
-                        <div>
-                            <input 
-                            className='bg-white pl-3 pr-21 py-5 border-[0.5px] border-[#727272]'
-                            placeholder='Card number'
-                            {...register("cardNumber")} 
-                            />
-                            {errors.cardNumber && (
-                                <p className='text-red-600'>{errors.cardNumber.message}</p>
-                            )}
-                        </div>
-                        <div className='flex'>
-                            <div>
-                                <Controller
-                                    name="expirationDate"
-                                    control={control}
-                                    render={({ field }) => (
-                                        <PatternFormat
-                                            {...field}
-                                            format="##/##" 
-                                            className='bg-white pl-3 py-5 border-[0.5px] border-[#727272] w-4/5' 
-                                            placeholder='MM / YY' 
-                                        />
-                                    )}
-                                />
-                                {errors.expirationDate && (
-                                    <p className='text-red-600 mt-1 text-sm'>{errors.expirationDate.message}</p>
-                                )}
-                            </div>
-                            <div>
-                                <input
-                                className='bg-white pl-3 py-5 border-[0.5px] border-[#727272] w-4/10' 
-                                placeholder='CVV' 
-                                {...register("cvv")} 
-                                /> 
-                                {errors.cvv && (
-                                    <p className='text-red-600'>{errors.cvv.message}</p>
-                                )}
-                            </div> 
+            <div className='gap-6 flex flex-col pt-6'>
+                <div>
+                    <div className="relative">
+                        <input
+                        {...register("nameACard")}
+                        placeholder=" "
+                        className=" peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none"
+                        />
+                        <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                        peer-placeholder-shown:top-5
+                        peer-placeholder-shown:text-base
+                        peer-focus:top-2
+                        peer-focus:text-sm
+                        peer-focus:opacity-100
+                        peer-not-placeholder-shown:opacity-0
+                        ">
+                        Name on card
+                        </label>
+                    </div>
+
+                    {errors.nameACard && (
+                        <p className="text-red-600 text-sm mt-1">
+                        {errors.nameACard.message}
+                        </p>
+                    )}
+                </div>
+                    <div>
+                        <div className='relative'>
+                        <input 
+                        className=' peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none'
+                        placeholder=' '
+                        {...register("cardNumber")} 
+                        />
+                        <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                        peer-placeholder-shown:top-5
+                        peer-placeholder-shown:text-base
+                        peer-focus:top-2
+                        peer-focus:text-sm
+                        peer-focus:opacity-100
+                        peer-not-placeholder-shown:opacity-0
+                        ">
+                        Card number
+                        </label>
+                        {errors.cardNumber && (
+                            <p className='text-red-600'>{errors.cardNumber.message}</p>
+                        )}
                         </div>
                     </div>
-                    
-                        {/* Поки тут видалив кнопку, можливо потім буде додана */}
-                        
-                    {/* <div>
-                        <button
-                        className='px-5 py-1.5 bg-[#EA4300] text-white'
-                        type='button'
+                <div className="flex">
+                    <div className="relative">
+                        <Controller
+                        name="expirationDate"
+                        control={control}
+                        render={({ field }) => (
+                            <PatternFormat
+                            {...field}
+                            format="##/##"
+                            placeholder=" "
+                            className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-4/5"
+                            />
+                        )}
+                        />
+
+                        <label
+                        className="
+                            absolute left-3 top-1/2 -translate-y-1/2
+                            text-gray-400 pointer-events-none
+                            transition-all
+                            peer-placeholder-shown:top-1/3
+                            peer-placeholder-shown:text-base
+                            peer-focus:top-2
+                            peer-focus:text-sm
+                            peer-focus:opacity-100
+                            peer-not-placeholder-shown:opacity-0
+                        "
                         >
-                            Add
-                        </button>
-                    </div> */}
-                </form>
+                        MM / YY
+                        </label>
+
+                        {errors.expirationDate && (
+                        <p className="text-red-600 mt-1 max-w-[200px]">
+                            {errors.expirationDate.message}
+                        </p>
+                        )}
+                    </div>
+
+                    <div className="relative">
+                        <input
+                        {...register("cvv")}
+                        placeholder=" "
+                        className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-4/10"
+                        maxLength={4}
+                        />
+                        <label
+                        className="
+                            absolute left-3 top-1/2 -translate-y-1/2
+                            text-gray-400 pointer-events-none
+                            transition-all
+                            peer-placeholder-shown:top-1/3
+                            peer-placeholder-shown:text-base
+                            peer-focus:top-2
+                            peer-focus:text-sm
+                            peer-focus:opacity-100
+                            peer-not-placeholder-shown:opacity-0
+                        "
+                        >
+                        CVV
+                        </label>
+
+                        {errors.cvv && (
+                        <p className="text-red-600 max-w-[100px] mt-1">
+                            {errors.cvv.message}
+                        </p>
+                        )}
+                    </div>
+                </div>
             </div>
+        </form>
         </div>
+    </div>
     )
 }
 
