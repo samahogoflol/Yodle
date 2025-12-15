@@ -1,6 +1,6 @@
 
 import { useForm } from 'react-hook-form';
-import { contactInfoSchema } from '../validation/schmas';
+import { contactInfoSchema } from '../validation/secureChekoutSchmas';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const ContactInfo = () => {

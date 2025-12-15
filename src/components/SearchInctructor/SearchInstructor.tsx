@@ -1,5 +1,6 @@
-import { useState, useMemo } from "react"; // Додано useMemo
-import { Link } from "react-router-dom";
+import { useState, useMemo } from "react"; 
+import { useNavigate } from "react-router-dom";
+import { searchInstructorSchema } from "../validation/searchInstructorSchema";
 import { RESORTS_BY_STATE } from "../../data/resortsList";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
 import type { BookingDetailsState } from "../../store/BookingDetailsContext";
@@ -11,6 +12,8 @@ import Dropdown from "../UI/Dropdown";
 import ButtonSearchInstruktor from "../UI/ButtonSearchInstructor";
 import { ResortIcon } from "../UI/Icons/ResortIcon";
 
+import "../../styles/index.css"
+
 type SportType = 'Skiing' | 'Snowboarding' | 'Skiing & Snowboarding' | null;
 
 interface SearchData {
@@ -20,7 +23,6 @@ interface SearchData {
     date: Date | null; 
 }
 
-// 1. Створення зворотного мапінгу (Resort -> State)
 const ALL_RESORTS_TO_STATE = Object.entries(RESORTS_BY_STATE).reduce((acc, [stateKey, resorts]) => {
     const StateName = stateKey.charAt(0).toUpperCase() + stateKey.slice(1); 
     resorts.forEach(resort => {
@@ -31,7 +33,11 @@ const ALL_RESORTS_TO_STATE = Object.entries(RESORTS_BY_STATE).reduce((acc, [stat
 
 const SearchInstructor = () => {
 
-    const {setBookingDetails} = useBookingDetails()
+    const {setBookingDetails} = useBookingDetails();
+
+    const [errors, setErrors] = useState<Record<string,string>>({});
+
+    const navigate = useNavigate();
 
     const [searchData, setSearchData] = useState<SearchData>({
         sport: null,
@@ -51,6 +57,15 @@ const SearchInstructor = () => {
         : allResortNames; 
 
     const handleChange = (key: keyof SearchData, value: string | Date | null) => {
+
+        setErrors(prev => {
+        if (!prev[key]) return prev;
+
+        const updated = { ...prev };
+        delete updated[key];
+        return updated;
+        });
+
         setSearchData(prevData => {
             let newState = {
                 ...prevData,
@@ -122,19 +137,33 @@ const SearchInstructor = () => {
     };
 
     const handleSubmit = () => {
-        setSearchData(
-            {
-                sport: null,
-                state: null,
-                resort: null,
-                date: null,
-            }
-        )
+    const result = searchInstructorSchema.safeParse(searchData);
+
+    if (!result.success) {
+    const fieldErrors: Record<string, string> = {};
+
+    result.error.issues.forEach(err => {
+      const field = err.path[0] as string;
+      fieldErrors[field] = err.message;
+    });
+
+    setErrors(fieldErrors);
+    return; 
     }
 
+    setErrors({});
+
+    navigate("findYourInstructor");
+    };
+
+
     return (
-        <div className="p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%] ">
-            <div className="flex gap-8">
+        <div className={` p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%]
+                       ${errors.sport ? "pt-1 pl-5" : ""}`}>
+            {errors.sport && (
+                <p className="text-red-500 text-sm">{errors.sport}</p>
+            )}
+            <div className={`flex gap-8 ${errors.sport ? "animate-shake" : ""}`}>
             <Checkbox 
                 label={"Skiing"}
                 checked = {searchData.sport === 'Skiing'}
@@ -153,9 +182,10 @@ const SearchInstructor = () => {
                 onChange={() => handleSportChange("Skiing & Snowboarding")}
                 className={`${searchData.sport === "Skiing & Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
             />
+           
             </div>
             <div className="flex gap-5">
-            <div className="group">
+            <div className={`group`}>
               <div className={`${searchData.state? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black `}>
                 <Location/>
                 <p>State</p>
@@ -166,12 +196,17 @@ const SearchInstructor = () => {
                     value={searchData.state}
                     placeholder="Choose the State"
                     onChange={(newValue) => handleChange("state", newValue)}
-                    className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} border-1 border-white text-white group-hover:text-black group-hover:border-black `}
+                    className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} 
+                    border-1 border-white text-white group-hover:text-black group-hover:border-black 
+                    ${ errors.state ? "border-red-500 text-red-600" : "border-white text-white" }`}
                     isFilterBtn={false}
                />
+                {errors.state && (
+                    <p className="text-red-500 text-sm mt-1">{errors.state}</p>
+                )}
                 
             </div>
-            <div className="group">
+            <div className={`group`}>
               <div className={` ${searchData.resort? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black`}>
                 <ResortIcon/>
                 <p>Resort</p>
@@ -185,6 +220,9 @@ const SearchInstructor = () => {
                     className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""} w-[398px] border-1 border-white text-white group-hover:text-black group-hover:border-black`}
                     isFilterBtn={false}
                />
+               {errors.resort && (
+                    <p className="text-red-500 text-sm mt-1">{errors.resort}</p>
+                )}
                 
             </div>
             <div>
@@ -193,18 +231,19 @@ const SearchInstructor = () => {
                         data={searchData.date}
                         onSelect={(newValue) => handleChange("date", newValue)}
                 />
+                {errors.date && (
+                    <p className="text-red-500 text-sm mt-1">{errors.date}</p>
+                )}
               </div>
             </div>
             </div>
-            <div className="flex justify-end">
-                <Link to="findYourInstructor">
+            <div className={` flex justify-end`}>
                     <ButtonSearchInstruktor 
                         name={"Search instructor"}
                         onClick={handleSubmit}
+                        className={`${errors.state || errors.resort || errors.date ? "mt-0" : "mt-5"}`}
                     />
-                </Link>
             </div>
-
         </div>
     )
 }

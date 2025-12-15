@@ -6,9 +6,10 @@ import { useState } from "react";
 interface ButtonProps {
     onClick : () => void;
     name : string;
+    className? : string;
 }
 
-const ButtonSearchInstruktor:React.FC<ButtonProps> = ({onClick, name}) => {
+const ButtonSearchInstruktor:React.FC<ButtonProps> = ({onClick, name, className}) => {
 
     const [changeBtnArrow , setChangeBtnArrow] = useState(false)
 
@@ -16,7 +17,7 @@ const ButtonSearchInstruktor:React.FC<ButtonProps> = ({onClick, name}) => {
         <>
             <button
             onClick={onClick}
-            className="h-[51px] bg-[#EA4300] flex items-center justify-between pl-5 pr-1 text-white font-semibold cursor-pointer mt-5"
+            className={` ${className} h-[51px] bg-[#EA4300] flex items-center justify-between pl-5 pr-1 text-white font-semibold cursor-pointer`}
             type="button"
             onMouseEnter={()=> setChangeBtnArrow(true)}
             onMouseLeave={()=> setChangeBtnArrow(false)}

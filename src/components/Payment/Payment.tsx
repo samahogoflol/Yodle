@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { paymentInfoSchema } from '../validation/schmas';
+import { paymentInfoSchema } from '../validation/secureChekoutSchmas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
