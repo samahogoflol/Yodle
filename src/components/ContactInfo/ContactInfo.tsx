@@ -24,15 +24,18 @@ const ContactInfo = () => {
                         <div className='grid grid-cols-2 gap-7 pb-7 leading-[130%]'>
                             <div>
                                 <div className='relative'>
-                                <input 
+                                <input
+                                id='firstName'
                                 {...register('firstName')} 
                                 className='peer bg-white px-3 py-4 w-full'
                                 placeholder=' '
                                 />
-                                <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                <label 
+                                htmlFor='firstName'
+                                className="absolute left-3 top-2.5 text-gray-400 transition-all
                                 peer-placeholder-shown:top-4
                                 peer-placeholder-shown:text-base
-                                peer-focus:top-4
+                                peer-focus:top-0
                                 peer-focus:text-sm
                                 peer-focus:opacity-100
                                 peer-not-placeholder-shown:opacity-0
@@ -47,14 +50,17 @@ const ContactInfo = () => {
                            <div>
                             <div className='relative'>
                                 <input
+                                id='lastName'
                                 {...register('lastName')}
                                 className='peer bg-white px-3 py-4 w-full'
                                 placeholder=' '
                                 />
-                                <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                <label 
+                                htmlFor='lastName'
+                                className="absolute left-3 top-2.5 text-gray-400 transition-all
                                 peer-placeholder-shown:top-4
                                 peer-placeholder-shown:text-base
-                                peer-focus:top-2
+                                peer-focus:top-0
                                 peer-focus:text-sm
                                 peer-focus:opacity-100
                                 peer-not-placeholder-shown:opacity-0
@@ -70,15 +76,18 @@ const ContactInfo = () => {
 
                         <div className=' flex flex-col gap-7'>
                             <div className='relative'>
-                            <input 
+                            <input
+                            id='phoneNumber'
                             {...register('phoneNumber')} 
                             className='peer bg-white px-3 py-4 w-full'
                             placeholder=' '
                             />
-                            <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                            <label 
+                                htmlFor='phoneNumber'
+                                className="absolute left-3 top-2.5 text-gray-400 transition-all
                                 peer-placeholder-shown:top-4
                                 peer-placeholder-shown:text-base
-                                peer-focus:top-2
+                                peer-focus:top-0
                                 peer-focus:text-sm
                                 peer-focus:opacity-100
                                 peer-not-placeholder-shown:opacity-0
@@ -90,15 +99,18 @@ const ContactInfo = () => {
                                 <p className='text-red-600 mt-1'>{errors.phoneNumber.message}</p>
                             )}
                             <div className='relative'>
-                                <input 
+                                <input
+                                id='email' 
                                 {...register('email')} 
                                 className='peer bg-white px-3 py-4 w-full'
                                 placeholder=' '
                                 />
-                                <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                                <label 
+                                htmlFor='email'
+                                className="absolute left-3 top-2.5 text-gray-400 transition-all
                                 peer-placeholder-shown:top-4
                                 peer-placeholder-shown:text-base
-                                peer-focus:top-2
+                                peer-focus:top-0
                                 peer-focus:text-sm
                                 peer-focus:opacity-100
                                 peer-not-placeholder-shown:opacity-0

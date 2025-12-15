@@ -45,6 +45,7 @@ const BookingConfirmed = () => {
                     instructorName={bookingDetails.instructor?.name}
                     instructorPhoto={bookingDetails.instructor?.photoMain}
                     instructorRating={bookingDetails.instructor?.rating}
+                    instructorTotalReviews={bookingDetails.instructor?.howManyFeedback}
                 />
                 <TotalPriceSummaryBlock
                     totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4 text-white mt-6"

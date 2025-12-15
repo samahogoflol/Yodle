@@ -29,14 +29,17 @@ const Payment = () => {
                 <div>
                     <div className="relative">
                         <input
+                        id='cardName'
                         {...register("nameACard")}
                         placeholder=" "
                         className=" peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none"
                         />
-                        <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                        <label 
+                        htmlFor='cardName'
+                        className="absolute left-3 top-2.5 text-gray-400 transition-all
                         peer-placeholder-shown:top-5
                         peer-placeholder-shown:text-base
-                        peer-focus:top-2
+                        peer-focus:top-0
                         peer-focus:text-sm
                         peer-focus:opacity-100
                         peer-not-placeholder-shown:opacity-0
@@ -54,14 +57,17 @@ const Payment = () => {
                     <div>
                         <div className='relative'>
                         <input 
+                        id='cardNumber'
                         className=' peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none'
                         placeholder=' '
                         {...register("cardNumber")} 
                         />
-                        <label className="absolute left-3 top-2.5 text-gray-400 transition-all
+                        <label 
+                        htmlFor='cardNumber'
+                        className="absolute left-3 top-2.5 text-gray-400 transition-all
                         peer-placeholder-shown:top-5
                         peer-placeholder-shown:text-base
-                        peer-focus:top-2
+                        peer-focus:top-0
                         peer-focus:text-sm
                         peer-focus:opacity-100
                         peer-not-placeholder-shown:opacity-0
@@ -81,6 +87,7 @@ const Payment = () => {
                         render={({ field }) => (
                             <PatternFormat
                             {...field}
+                            id='date'
                             format="##/##"
                             placeholder=" "
                             className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-4/5"
@@ -89,6 +96,7 @@ const Payment = () => {
                         />
 
                         <label
+                        htmlFor='date'
                         className="
                             absolute left-3 top-1/2 -translate-y-1/2
                             text-gray-400 pointer-events-none
@@ -113,12 +121,14 @@ const Payment = () => {
 
                     <div className="relative">
                         <input
+                        id='cvv'
                         {...register("cvv")}
                         placeholder=" "
                         className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-4/10"
                         maxLength={4}
                         />
                         <label
+                        htmlFor='cvv'
                         className="
                             absolute left-3 top-1/2 -translate-y-1/2
                             text-gray-400 pointer-events-none
