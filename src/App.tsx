@@ -1,7 +1,7 @@
 import './App.css'
 
 import { BookingProvider } from './store/BookingDetailsContext'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useMatch } from 'react-router-dom'
 
 import ScrollToHashElement from './components/Features/scrollToHashElement'
 import { ScrollToTop } from './components/Features/scrollToTop'
@@ -13,11 +13,14 @@ import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
 import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
 import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
+import Page404 from './pages/Page404/Page404'
 
 
 function App() {
 
-  const location = useLocation()
+  const location = useLocation();
+
+  const is404Page = useMatch('*');
 
   return (
     <>
@@ -32,12 +35,9 @@ function App() {
            <Route path='bookingConfirmed' element={<BookingConfirmed/>}/>
            <Route path='secureCheckout' element={<SecureCheckout/>}/>
            <Route path='findYourInstructor' element={<FindYourInstructor/>}/>
+           <Route path='*' element={<Page404/>}/>
           </Routes>
-          {location.pathname !== "/bookingConfirmed" && (
-            <>
-              <Footer/>
-            </>
-          )}
+          {!is404Page && location.pathname !== '/bookingConfirmed' && <Footer />}
         </BookingProvider>
     </div>
     </>

@@ -32,7 +32,7 @@ const ContactInfo = () => {
                                 <label className="absolute left-3 top-2.5 text-gray-400 transition-all
                                 peer-placeholder-shown:top-4
                                 peer-placeholder-shown:text-base
-                                peer-focus:top-2
+                                peer-focus:top-4
                                 peer-focus:text-sm
                                 peer-focus:opacity-100
                                 peer-not-placeholder-shown:opacity-0
