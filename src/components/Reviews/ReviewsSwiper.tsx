@@ -7,8 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // @ts-ignore
 import { Navigation, Pagination } from 'swiper/modules';
 
-import { useState } from 'react';
-
 import "../../styles/index.css"
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -19,16 +17,6 @@ import BigSnow from '../UI/Icons/BigSnow';
 
 
 const ReviewsSwiper = () => {
-
-    const [openCardId, setOpenCardId] = useState<number | null>(null);
-
-    const hoverOpen = (id: number) => {
-        setOpenCardId(id);
-    };
-
-    const hoverClose = () => {
-        setOpenCardId(null);
-    }
 
  return (
     <div className="w-3/4 pl-10 pt-30 pb-25 relative">
@@ -113,8 +101,8 @@ const ReviewsSwiper = () => {
             <h2 className='text-[56px] leading-[100%] font-semibold pb-15'>The skiers who were with us <br />— they liked it too</h2>
             <p className='text-[20px] leading-[130%] pb-10'>Don't just take our word for it—hear from skiers who've experienced the difference our <br />instructors make. </p>
         </div> 
-        <div className={`swiper-button-prev-custom absolute bottom-[6.8vw] left-[69vw] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>
-        <div className="swiper-button-next-custom absolute bottom-[6.8vw] left-[78vw] z-10">{<NextArrowIcon/>}</div>
+        <div className={` cursor-pointer swiper-button-prev-custom absolute bottom-[6.8vw] left-[69vw] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>
+        <div className=" cursor-pointer swiper-button-next-custom absolute bottom-[6.8vw] left-[78vw] z-10">{<NextArrowIcon/>}</div>
         <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={0}
@@ -137,60 +125,28 @@ const ReviewsSwiper = () => {
         >
      {REVIEWS_MOCK_DATA.map((review) => {
 
-        const isOpen = review.id === openCardId;
-
             return (
                 REVIEWS_MOCK_DATA && ( 
                     <SwiperSlide key={review.id}>
                     <div 
                         className="w-[325px] h-full relative overflow-hidden cursor-pointer bg-white leading-[130%]"
-                        onMouseEnter={() => hoverOpen(review.id)}
-                        onMouseLeave={hoverClose}
                     >
-                        <article className="h-full">
-
-                            <img 
-                                 className="w-[325px] h-[346px] object-cover"
-                                 src={review.photoInALesson} 
-                                 alt="Instructor's Work Photo" 
-                     />
-
-                            <div className="text-[20px] font-semibold flex items-center gap-3 pt-5 pl-5 pb-2.5 w-full ">
-                                <img 
-                                     className={`w-15 h-15 rounded-[50%] object-cover ${review.id === 10 ? "object-cover" : "object-top"}`} 
-                                     src={review.photoMain} 
-                                     alt="Instructor's Photo" 
-                                 />
-                                <p>{review.name}</p>
-                            </div>
-
-                            <div className='flex items-center pl-5 pb-5 gap-2.5 text-[20px]'>
-                                <img src={star} alt="rating" />
-                                <p>{review.grade.toFixed(1)}</p>
-                            </div>
-
-                                <div 
-                                 className={`absolute bottom-0 left-0 w-full text-black bg-white transition-transform duration-500`}
-                                 style={{ 
-                                 transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
-                                }}
-                            >
+                        <article className="h-102 leading-[130%]">
                                 <div className="p-5 text-black">
-                                    <div className="text-[20px] font-semibold flex items-center gap-3 pt-5  pb-2.5 w-full ">
-                                <img 
-                                     className={`w-15 h-15 rounded-[50%] object-cover ${review.id === 10 ? "object-cover" : "object-top"}`} 
-                                     src={review.photoMain} 
-                                     alt="Instructor's Photo" 
-                                 />
-                                <p>{review.name}</p>
+                                    <div className="text-[20px] font-semibold flex items-center gap-3 pt-2.5 pb-2.5 w-full ">
+                                        <img 
+                                            className={`w-15 h-15 rounded-[50%] object-cover ${review.id === 10 ? "object-cover" : "object-top"}`} 
+                                            src={review.photoMain} 
+                                            alt="Customer's photo" 
+                                        />
+                                        <p>{review.name}</p>
                                     </div>
-                                    <div className="flex items-center gap-3 pt-[11px]">
+                                    <div className="flex items-center gap-3">
                                         <img src={star} alt="rating" />
                                         <p className="text-[20px]">{review.grade.toFixed(1)}</p>
                                     </div> 
                                     <p className="mt-2.5 text-[20px] mb-5">{review.review}</p> 
                                  </div>
-                            </div>
                         </article>
                     </div>
                 </SwiperSlide>

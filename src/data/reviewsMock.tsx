@@ -20,7 +20,7 @@ export const REVIEWS_MOCK_DATA:Reviews[] = [
     {
         id : 2,
         name : "Philip Moris",
-        review : "Professional, friendly, and really knows how to teach. My whole family progressed so much faster than we expected!",
+        review : "Professional, friendly, and truly knows how to teach. From the very first lesson, everything was clear and well-structured. My whole family felt supported and confident, and we all progressed much faster than we expected. Highly recommended for learners of any age.",
         grade : 5.0,
         photoMain : philipMorisMainPhoto,
         photoInALesson : philipMorisLessonPhoto
@@ -28,7 +28,7 @@ export const REVIEWS_MOCK_DATA:Reviews[] = [
     {
         id : 3,
         name : "Samanta Josef",
-        review : "Our instructor was amazing with our 6-year-old — by day three, she was skiing blue runs with a huge smile!",
+        review : "Our instructor was amazing with our 6-year-old — patient, encouraging, and incredibly attentive. By day three, she was confidently skiing blue runs with a huge smile. The lessons felt safe, fun, and perfectly adapted to her age and pace.",
         grade : 5.0,
         photoMain : samantaJosefMainPhoto,
         photoInALesson : samantaJosefLessonPhoto
