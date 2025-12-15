@@ -1,13 +1,12 @@
 import './App.css'
 
 import { BookingProvider } from './store/BookingDetailsContext'
-import { Routes, Route, useLocation, useMatch } from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 
 import ScrollToHashElement from './components/Features/scrollToHashElement'
 import { ScrollToTop } from './components/Features/scrollToTop'
 
 import HomePage from './pages/HomePage/HomePage'
-import Footer from './components/Footer/Footer'
 import PublicOffer from './pages/PublicOffer/PublicOffer'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import BookingConfirmed from './pages/BookingConfirmed/BookingConfirmed'
