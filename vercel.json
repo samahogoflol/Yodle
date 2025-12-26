@@ -1,8 +1,9 @@
 {
-  // "rewrites": [
-  //   { "source": "/(.*)", "destination": "/index.html" }
-  // ],
-  "routes": [
-    { "src": "/(.*)", "status": 403 }
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "/403",
+      "statusCode": 403
+    }
   ]
 }
