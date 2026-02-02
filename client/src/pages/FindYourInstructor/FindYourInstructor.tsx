@@ -19,7 +19,7 @@ const sortInstructors = (
     data: InstructorsProps[], 
     criteria: SortCriteria 
 ): InstructorsProps[] => {
-    let sortedData = [...data]; 
+    const sortedData = [...data]; 
 
     let sortKey: keyof InstructorsProps | null = null;
     let direction: 'asc' | 'desc' = 'asc';
@@ -47,8 +47,8 @@ const sortInstructors = (
 
     if (sortKey) {
         sortedData.sort((a, b) => {
-            const valA = a[sortKey!] ?? 0; 
-            const valB = b[sortKey!] ?? 0;
+            const valA = a[sortKey] ?? 0; 
+            const valB = b[sortKey] ?? 0;
 
             if (direction === 'asc') {
                 return valA - valB;
@@ -72,7 +72,7 @@ const FindYourInstructor = () => {
     const workingInstructors = INSTRUCTORS_MOCK_DATA.filter(item => item.isWorking);
 
     const instructorsToDisplay = sortInstructors(
-        workingInstructors as InstructorsProps[], 
+        workingInstructors, 
         filterCriteria
     );
 
