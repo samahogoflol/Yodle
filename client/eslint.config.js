@@ -10,7 +10,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { 
+    ignores: ["**/global.d.ts", "dist/**", "node_modules/**"],
+  },
   {
     extends: [
       js.configs.recommended,
