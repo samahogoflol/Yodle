@@ -27,36 +27,34 @@ const DateField: React.FC<DataFieldProps> = ({ data, onSelect}) => {
     const formattedDate = data ? format(data, 'MM/dd/yyyy') : '';
 
    const CustomInput = React.forwardRef<HTMLDivElement, CustomInputProps>(({ value, onClick, className, ...props }, ref) => (
-        <div 
+    <div 
         onClick={onClick}   
         ref={ref}           
         {...props}          
-        className={`w-[278px] h-[45px] p-3 border border-white text-white outline-none cursor-pointer 
-         group-hover:border-black 
-        ${value? "bg-primary-selected border-0 " : ""}
-        ${!value ? "group-hover:border-black" : ""}
-        ""`}
-        >
-            <div className={` ${!formattedDate ? "" : "group-hover:text-white"} flex items-center group-hover:text-black`}> 
+        className={`${className} w-full p-3 border border-white text-white outline-none cursor-pointer 
+        group-hover:border-black 
+        ${value ? "bg-primary-selected border-0" : ""}
+        ${!value ? "group-hover:border-black" : ""}`}
+    >
+        <div className="flex items-center justify-between w-full"> 
             <input
                 value={value}
                 placeholder="Select a Date"
-                className={`${!formattedDate ? "" : "group-hover:text-white"} bg-transparent outline-none w-[230px] placeholder-white cursor-pointer group-hover:placeholder-black  `}
+                className="w-full bg-transparent outline-none placeholder-white cursor-pointer group-hover:placeholder-black group-hover:text-white"
                 readOnly 
             />
-             <CalendarIcon/>
-            </div>
+            <CalendarIcon/>
         </div>
-    ));
+    </div>
+));
 
     return (
-        <div className="w-[278px] group ">
+        <div className="w-full group ">
             
             <div className={`${!formattedDate ? " group-hover:text-black " :""} group flex items-center text-white gap-2 mb-3 group `}>
                 <CalendarIcon/>
                 <p>Date</p>
             </div>
-            
             <DatePicker
                 selected={data}
                 onChange={(date: Date | null) => onSelect(date)} 
@@ -64,7 +62,10 @@ const DateField: React.FC<DataFieldProps> = ({ data, onSelect}) => {
                 placeholderText="Select a Date"
                 dateFormat="MM/dd/yyyy"
                 calendarClassName="custom-calendar-popup"
-                customInput={<CustomInput value={formattedDate}/>}
+                customInput={
+                    <CustomInput 
+                        value={formattedDate}
+                    />}
             />
         </div>
     );

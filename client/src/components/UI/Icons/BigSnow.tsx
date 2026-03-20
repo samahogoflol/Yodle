@@ -1,14 +1,14 @@
 interface BigSnowProps {
-    witdh : string;
+    width : string;
     height : string;
-    viewBox : string;
+    viewBox? : string;
 }
 
-const BigSnow:React.FC<BigSnowProps> = ({witdh, height, viewBox}) => {
+const BigSnow:React.FC<BigSnowProps> = ({width, height, viewBox}) => {
 
   return (
     <svg 
-    width={witdh} 
+    width={width} 
     height={height} 
     viewBox={viewBox}
     fill="none" 

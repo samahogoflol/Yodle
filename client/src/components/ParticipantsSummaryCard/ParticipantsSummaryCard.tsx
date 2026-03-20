@@ -9,7 +9,11 @@ const ParticipantsSummaryCard:React.FC<ParticipantsSummaryCardProps> = ({numberO
         <div className="bg-white p-4 leading-[130%] mt-6">
             <h2>Number of participants</h2>
             <div className="text-[#EA4300] flex items-center pt-3">
-                <PersonIcon/>
+                <PersonIcon
+                    height="25px"
+                    width="25px"
+                    viewBox="0 0 20 20"
+                />
                 <p className="text-black pl-2 text-[20px]">{numberOfParticipants}</p>
             </div>
         </div>

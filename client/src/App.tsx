@@ -14,19 +14,22 @@ import FindYourInstructor from './pages/FindYourInstructor/FindYourInstructor'
 import SecureCheckout from './pages/SecureCheckout/SecureCheckout'
 import Page404 from './pages/Page404/Page404'
 import Layout from './components/Layout/Layout'
+import RegisterPage from './pages/Auth/RegisterPage'
+import LoginPage from './pages/Auth/LoginPage'
 
 
 function App() {
-
   return (
-    <>
     <div className='App'>
         <BookingProvider>
           <ScrollToHashElement/>
           <ScrollToTop/>
           <Routes>
            <Route element={<Layout/>}> 
+           
             <Route path='/' element={<HomePage/>}/>
+            <Route path='register' element={<RegisterPage/>}/>
+            <Route path='login' element={<LoginPage/>}/>
             <Route path='publicOffer' element={<PublicOffer/>}/>
             <Route path='privacyPolicy' element={<PrivacyPolicy/>}/>
             <Route path='secureCheckout' element={<SecureCheckout/>}/>
@@ -37,7 +40,6 @@ function App() {
           </Routes>
         </BookingProvider>
     </div>
-    </>
   )
 }
 

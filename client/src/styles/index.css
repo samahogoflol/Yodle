@@ -28,10 +28,6 @@
     padding-right: 40px;
 }
 
-.hidden {
-    display: none;
-}
-
 .swiper-button-disabled {
   pointer-events: none; 
   color : black;
@@ -67,4 +63,8 @@
 
 .animate-shake {
   animation: shake 0.35s ease-in-out;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
 }

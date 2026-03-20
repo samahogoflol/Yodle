@@ -1,13 +1,9 @@
-import Header from "../../components/Header/Header";
 import BigSnow from "../../components/UI/Icons/BigSnow";
 
 const PrivacyPolicy = () => {
     return (
         <div className="relative">
             <div className="text-center leading-[130%] pt-5 ">
-                <div className="mb-[190px]">
-                    <Header/>
-                </div>
                 <h2 className="text-[56px] leading-[100%]  font-semibold">Privacy Policy</h2>
                 <p className="py-6.5">Last updated: 12.05.2025.</p>
             </div>
@@ -139,19 +135,19 @@ const PrivacyPolicy = () => {
 
                     <div className="absolute right-[13vw] top-[51.5%]">
                         <BigSnow
-                         witdh="50"
+                         width="50"
                          height="50"
                          viewBox="0 0 620 570"/>
                     </div>
                     <div className="absolute left-[7vw] top-[50vw]">
                         <BigSnow
-                        witdh="50"
+                        width="50"
                         height="50"
                         viewBox="0 0 620 570"/>
                     </div>
                     {/* <div className="absolute right-0 bottom-0">
                         <BigSnow
-                         witdh="340"
+                         width="340"
                          height="340"
                          viewBox="0 0 620 570"/>
                     </div> */}

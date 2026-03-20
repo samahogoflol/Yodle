@@ -1,4 +1,3 @@
-import Header from "../../components/Header/Header";
 import CalculateParticipants from "../../components/CalculateParticipants";
 import InstructorCard from "../../components/InstructorList/InstructorList";
 import SelectYourInstructor from "../../components/SelectYourInstructor/SelectYourInstructor";
@@ -78,9 +77,6 @@ const FindYourInstructor = () => {
 
     return (
         <div className="mb-16 relative z-10 ">
-            <div className="mt-5">
-                <Header/>
-            </div>
             <h2 className="text-center text-[56px] font-semibold mt-40 mb-[85px]">Find Your Instructor</h2>
             <div className="grid grid-cols-3 px-[85px] gap-7 z-10">
                 <div className="col-span-2 z-10">
@@ -116,14 +112,14 @@ const FindYourInstructor = () => {
             </div>
             <div className="absolute top-[22vw] right-[7vw] rotate-60">
                 <BigSnow
-                    witdh="64px"
+                    width="64px"
                     height="64px"
                     viewBox="0 0 574 640"
                 />
             </div>
             <div className="absolute top-[10vw] left-[10vw] rotate-60">
                 <BigSnow
-                    witdh="64px"
+                    width="64px"
                     height="64px"
                     viewBox="0 0 574 640"
                 />

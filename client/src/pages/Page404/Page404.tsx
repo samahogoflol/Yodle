@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import page404BG from "../../assets/images/404BG.png"
 import { Digit4 } from "../../components/UI/Icons/Digit4";
 import { Snow404 } from "../../components/UI/Icons/Snow404";
-import Header from "../../components/Header/Header";
 import ButtonSearchInstruktor from "../../components/UI/ButtonSearchInstructor";
 
 
 const Page404 = () => {
     return (
         <>  
-            <div className="mt-4.5">
-                <Header/>
-            </div>
             <div className="relative flex justify-center text-center leading-[130%]">
                 <div className="pt-4">
                 </div>

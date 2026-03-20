@@ -3,13 +3,18 @@ import { FooterCompanyLogo } from "../UI/Icons/FooterCompanyLogo";
 
 const Footer = () => {
 return (
-    <div className="bg-white grid grid-cols-4 w-full leading-[130%]" >
-        <div id="header" className= "mt-[150px] mb-[150px] container text-[#2E78E5]">
+    <div className="pb-15 md:pb-0 text-center md:text-left bg-white flex flex-col md:grid md:grid-cols-4 w-full leading-[130%]" >
+        <div id="header" className= "flex justify-center md:justify-start mt-15.5 md:mt-[150px] mb-5 md:mb-[150px] md:pl-12 text-[#2E78E5]">
             <Link to="/#header">
                <FooterCompanyLogo/>
             </Link>
         </div>
-        <div className="mt-30">
+        <div className="md:hidden">
+            <a href="tel:+4408762122213" className="block mb-5 hover:text-[#2E78E5]">
+                +44 (0) 876 2122213
+            </a>
+        </div>  
+        <div className="md:mt-30">
             <nav>
                 <ul className="flex flex-col gap-2">
                    <Link to="/#our-instructors">
@@ -27,8 +32,8 @@ return (
                 </ul>
             </nav>
         </div>
-        <div className="mt-30">
-            <nav className="grid grid-cols-2">
+        <div className="mt-5 md:mt-30 flex justify-center md:justify-start">
+            <nav className="">
                 <ul>
                      <Link to="privacyPolicy">
                         <li className="hover:text-[#2E78E5]">Privacy Policy</li>
@@ -36,11 +41,10 @@ return (
                     <Link to="publicOffer">
                         <li className="hover:text-[#2E78E5] mt-2">Public Offer </li>
                     </Link>
-                    
                 </ul>
             </nav>
         </div>
-        <div className="mt-30">
+        <div className="hidden md:block mt-30">
             <nav>
                 <ul>
                     <a href="tel:+4408762122213">

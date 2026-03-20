@@ -65,21 +65,21 @@ const BookingConfirmed = () => {
 
             <div className="absolute top-[17vw] right-0">
                 <BigSnow
-                    witdh="477px"
+                    width="477px"
                     height="594px"
                     viewBox="0 0 477 594"
                 />
             </div>
             <div className="absolute top-[4vw] right-[7vw] rotate-60">
                 <BigSnow
-                    witdh="64px"
+                    width="64px"
                     height="64px"
                     viewBox="0 0 574 640"
                 />
             </div>
             <div className="absolute top-[50%] left-[5vw] rotate-60">
                 <BigSnow
-                    witdh="64px"
+                    width="64px"
                     height="64px"
                     viewBox="0 0 574 640"
                 />

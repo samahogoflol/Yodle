@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const searchInstructorSchema = z.object({
   sport: z
-    .enum(["Skiing", "Snowboarding", "Skiing & Snowboarding"])
+    .enum(["Skiing", "Snowboarding", "Guiding"])
     .nullable()
     .refine(val => val !== null, {
       message: "Please select an activity type",

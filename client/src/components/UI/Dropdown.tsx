@@ -70,10 +70,9 @@ const Dropdown:React.FC<DropdownProps> = ({options, value, onChange, placeholder
         <div 
         ref={dropdownRef}
         className="relative">
-            
             <button 
                 type="button"
-                className={`${className} w-[278px] h-[45px] text-left p-3 flex justify-between items-center cursor-pointer `}
+                className={`${className} w-full text-left p-3 flex justify-between items-center cursor-pointer `}
                 onClick={handleToggle} 
             >
                 {isFilterBtn? (

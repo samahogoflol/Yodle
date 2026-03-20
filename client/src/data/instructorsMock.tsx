@@ -1,5 +1,6 @@
 import mariiaVovchenkoPhoto from "../assets/instructorsPhoto/mariiaVovchenko.jpg"
-import semBoulPhoto from "../assets/instructorsPhoto/semBoul.jpg"
+// import semBoulPhoto from "../assets/instructorsPhoto/semBoul.jpg"
+import semBoulPhotoNew from "../assets/instructorsPhoto/semBoulPhoto.png"
 import charlesPiastri from "../assets/instructorsPhoto/Charles Piastri.jpg"
 import saraJohnson from "../assets/instructorsPhoto/Sarah Johnson.jpg"
 import jakobHamilton from "../assets/instructorsPhoto/Jakob Hamilton.jpg"
@@ -21,7 +22,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
     {
         id : 1,
         photoMain : mariiaVovchenkoPhoto,
-        name : "Mariia Vovchenko ",
+        name : "Mariia Vovchenko",
         aboutInstructor : "Making skiing fun for kids aged 4-12 with patience, playfulness, and proven results over 5 years of teaching.",
         experience : 6,
         rating : 4.8,
@@ -29,12 +30,12 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
     },
     {
         id : 2,
-        photoMain : semBoulPhoto,
+        photoMain : semBoulPhotoNew,
         name : "Sem Boul",
-        aboutInstructor : "Former competitive skier helping beginners discover their passion for the slopes with modern teaching methods.",
+        aboutInstructor : "Former competitive skier helping beginners discover their passion for the slopes with modern teaching.",
         experience : 6,
         rating : 4.9,
-         mainPageReview : true,
+        mainPageReview : true,
     },
     {
         id : 3,

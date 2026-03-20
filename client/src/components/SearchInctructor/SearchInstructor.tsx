@@ -14,7 +14,7 @@ import { ResortIcon } from "../UI/Icons/ResortIcon";
 
 import "../../styles/index.css"
 
-type SportType = 'Skiing' | 'Snowboarding' | 'Skiing & Snowboarding' | null;
+type SportType = 'Skiing' | 'Snowboarding' | 'Guiding' | null;
 
 interface SearchData {
     sport: SportType; 
@@ -67,7 +67,7 @@ const SearchInstructor = () => {
         });
 
         setSearchData(prevData => {
-            let newState = {
+            const newState = {
                 ...prevData,
                 [key]: value, 
             };
@@ -88,7 +88,7 @@ const SearchInstructor = () => {
 
         setBookingDetails(prevDetails => {
             let update: Partial<BookingDetailsState> = {};
-            const currentValue = value as string | Date | null;
+            const currentValue = value;
             
             if (key === 'state' || (key === 'resort' && currentValue)) {
                 
@@ -147,77 +147,70 @@ const SearchInstructor = () => {
       fieldErrors[field] = err.message;
     });
 
-    setErrors(fieldErrors);
-    return; 
+        setErrors(fieldErrors);
+        return; 
     }
-
-    setErrors({});
-
-    navigate("findYourInstructor");
+        setErrors({});
+        void navigate("findYourInstructor");
     };
 
 
     return (
-        <div className={` p-5 w-[1034px] h-[234px] bg-[#80AAEF] leading-[130%]
-                       ${errors.sport ? "pt-1 pl-5" : ""}`}>
+        <div className={`z-50 p-5 w-full bg-[#80AAEF] leading-[130%] ${errors.sport ? "pt-1 pl-5" : ""}`}>
             {errors.sport && (
                 <p className="text-red-500 text-sm">{errors.sport}</p>
             )}
-            <div className={`flex gap-8 ${errors.sport ? "animate-shake" : ""}`}>
-            <Checkbox 
-                label={"Skiing"}
-                checked = {searchData.sport === 'Skiing'}
-                onChange={() => handleSportChange("Skiing")}
-                className={`${searchData.sport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black `}
-            />
-            <Checkbox 
-                label={"Snowboarding"}
-                checked = {searchData.sport === 'Snowboarding'}
-                onChange={() => handleSportChange("Snowboarding")}
-                className={`${searchData.sport === "Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
-            />
-            <Checkbox 
-                label={"Skiing & Snowboarding"}
-                checked = {searchData.sport === "Skiing & Snowboarding"}
-                onChange={() => handleSportChange("Skiing & Snowboarding")}
-                className={`${searchData.sport === "Skiing & Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
-            />
-           
+            <div className={`flex gap-6 md:gap-8 ${errors.sport ? "animate-shake" : ""}`}>
+                <Checkbox 
+                    label={"Skiing"}
+                    checked = {searchData.sport === 'Skiing'}
+                    onChange={() => handleSportChange("Skiing")}
+                    className={`${searchData.sport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black  `}
+                />
+                <Checkbox 
+                    label={"Snowboarding"}
+                    checked = {searchData.sport === 'Snowboarding'}
+                    onChange={() => handleSportChange("Snowboarding")}
+                    className={`${searchData.sport === "Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
+                />
+                <Checkbox 
+                    label={"Guiding"}
+                    checked = {searchData.sport === "Guiding"}
+                    onChange={() => handleSportChange("Guiding")}
+                    className={`${searchData.sport === "Guiding" ? "text-white hover:text-white" :  "" } hover:text-black `}
+                />
             </div>
-            <div className="flex gap-5">
+            <div className="flex flex-col md:grid md:grid-cols-[1.32fr_2fr_1.1fr] px-5 md:px-0 gap-6 md:gap-5">
+                <div className={`group`}>
+                    <div className={`${searchData.state? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-2.5 md:mb-3 group-hover:text-black `}>
+                        <Location/>
+                        <p>State</p>
+                    </div>
+                    <Dropdown
+                        options={["California", "Oregon", "Washington" ]}
+                        value={searchData.state}
+                        placeholder="Choose the State"
+                        onChange={(newValue) => handleChange("state", newValue)}
+                        className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} 
+                        border-1 border-white text-white group-hover:text-black group-hover:border-black w-full 
+                        ${ errors.state ? "border-red-500 text-red-600" : "border-white text-white w-full" }`}
+                        isFilterBtn={false}
+                    />
+                    {errors.state && (
+                        <p className="text-red-500 text-sm mt-1">{errors.state}</p>
+                    )}
+                </div>
             <div className={`group`}>
-              <div className={`${searchData.state? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black `}>
-                <Location/>
-                <p>State</p>
-              </div>
-                
-                <Dropdown
-                    options={["California", "Oregon", "Washington" ]}
-                    value={searchData.state}
-                    placeholder="Choose the State"
-                    onChange={(newValue) => handleChange("state", newValue)}
-                    className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} 
-                    border-1 border-white text-white group-hover:text-black group-hover:border-black 
-                    ${ errors.state ? "border-red-500 text-red-600" : "border-white text-white" }`}
-                    isFilterBtn={false}
-               />
-                {errors.state && (
-                    <p className="text-red-500 text-sm mt-1">{errors.state}</p>
-                )}
-                
-            </div>
-            <div className={`group`}>
-              <div className={` ${searchData.resort? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-3 group-hover:text-black`}>
+              <div className={` ${searchData.resort? "group-hover:text-white" : ""} text-white flex items-center md:mt-6 gap-2 mb-2.5 md:mb-3 group-hover:text-black`}>
                 <ResortIcon/>
                 <p>Resort</p>
               </div>
-                
                 <Dropdown
                     options={resortOptions}
                     value={searchData.resort}
                     placeholder="Choose the Resort"
                     onChange={(newValue) => handleChange("resort", newValue)}
-                    className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""} w-[398px] border-1 border-white text-white group-hover:text-black group-hover:border-black`}
+                    className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""}  border-1 border-white text-white group-hover:text-black group-hover:border-black`}
                     isFilterBtn={false}
                />
                {errors.resort && (
@@ -225,23 +218,23 @@ const SearchInstructor = () => {
                 )}
                 
             </div>
-            <div>
-              <div className="mt-6">
+            <div className={`group`}>
+                <div className="md:mt-6">
                     <DateField
                         data={searchData.date}
                         onSelect={(newValue) => handleChange("date", newValue)}
-                />
-                {errors.date && (
-                    <p className="text-red-500 text-sm mt-1">{errors.date}</p>
-                )}
-              </div>
+                    />
+                    {errors.date && (
+                        <p className="text-red-500 text-sm mt-1 mb-3">{errors.date}</p>
+                    )}
+                </div>
             </div>
             </div>
-            <div className={` flex justify-end`}>
-                    <ButtonSearchInstruktor 
+            <div className={`flex md:justify-end px-5 md:px-0`}>
+                    <ButtonSearchInstruktor
                         name={"Search instructor"}
                         onClick={handleSubmit}
-                        className={`${errors.state || errors.resort || errors.date ? "mt-0" : "mt-5"}`}
+                        className={`${errors.state || errors.resort || errors.date ? "mt-0" : "mt-6 md:mt-5"} w-full md:w-2/9` }
                     />
             </div>
         </div>
