@@ -13,18 +13,17 @@ const Header = () => {
     return (
         <header id="header" className="flex items-center justify-between px-4 md:px-10 leading-[130%] bg-white w-full">
             <div className="block md:hidden">
-                <div
-                    onClick={() =>setIsOpen(true)}
-                    
-                >
-                    <BurgerMenu
-                        isOpen={isOpen}
-                        onClose={() => setIsOpen(false)}
-                    />
-                    <div className={`${isOpen ? "text-blue-400" : "text-black"}`}>
-                        <BurgerMenuIcon/>
-                    </div>
+                <div className="block md:hidden">
+                    <button 
+                        className={`${isOpen ? "text-[#2E78E5]" : ""}`}
+                        onClick={() => setIsOpen(!isOpen)}>
+                        <BurgerMenuIcon />
+                    </button>
                 </div>
+                <BurgerMenu
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                />
             </div>
             <div className="text-[#2E78E5]">
                 <Link to="/">
@@ -41,16 +40,16 @@ const Header = () => {
             <nav className="hidden md:flex" >
                 <ul className="flex gap-6">
                     <Link to="/#our-instructors">
-                        <li className="cursor-pointer hover:text-blue-400">Our instructors</li>    
+                        <li className="cursor-pointer active:text-[#2E78E5]">Our instructors</li>    
                     </Link>
                     <Link to="/#how-to-book">
-                        <li className="cursor-pointer hover:text-blue-400">How to book</li>
+                        <li className="cursor-pointer active:text-[#2E78E5]">How to book</li>
                     </Link>
                     <Link to="/#partners">
-                        <li className="cursor-pointer hover:text-blue-400">Partners</li>
+                        <li className="cursor-pointer active:text-[#2E78E5]">Partners</li>
                     </Link>
                     <Link to="/#reviews">
-                        <li className="cursor-pointer hover:text-blue-400">Reviews</li>
+                        <li className="cursor-pointer active:text-[#2E78E5]">Reviews</li>
                     </Link>
                     {/* <Link to="/login">
                         <li>Log In</li>
