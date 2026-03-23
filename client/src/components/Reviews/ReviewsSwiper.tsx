@@ -17,7 +17,7 @@ import BigSnow from '../UI/Icons/BigSnow';
 const ReviewsSwiper = () => {
 
  return (
-    <div className="w-full md:w-3/4 pl-4 md:pl-10 pt-15 md:pt-30 pb-25 relative">
+    <div className="w-full md:w-3/4 pl-4 md:pl-10 pt-15 md:pt-30 pb-25 relative overflow-x-hidden md:overflow-visible">
         <div className="absolute md:left-[92vw] right-[5vw] top-[25vw] md:top-[65vw]" >
             <BigSnow
              width='40'
