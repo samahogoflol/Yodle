@@ -118,7 +118,7 @@ const ReviewsSwiper = () => {
         </div>
         <div id='reviews'>
             <h2 className='block md:hidden text-[38px] md:text-[56px] leading-[100%] pb-8'>The skiers who <br/> were with us — <br/> they liked it too</h2>
-            <h2 className='hidden md:block text-[56px] leading-[100%] pr-60 font-semibold pb-15'>The skiers who were with us —  they liked it too</h2>
+            <h2 className='hidden md:block text-[56px] leading-[100%] pr-60 font-semibold pb-15'>The skiers who were with <br/> us —  they liked it too</h2>
             <p className='md:hidden text-[18px] leading-[130%] pb-10'>Don't just take our word for it—hear from <br/> skiers who've experienced the difference <br/> our instructors make. </p>
             <p className='hidden md:block text-[18px] md:text-[20px] leading-[130%] pb-10'>Don't just take our word for it—hear from skiers who've <br/> experienced the difference our instructors make. </p>
         </div>      
@@ -166,7 +166,7 @@ const ReviewsSwiper = () => {
                                         <img src={star} alt="rating" />
                                         <p className="text-[18px] md:text-[20px]">{review.grade.toFixed(1)}</p>
                                     </div> 
-                                    <p className="mt-2.5 text-[16px] md:text-[20px] mb-5">{review.review}</p> 
+                                    <p className="mt-2.5 text-[16px] leading-[120%] md:leading-[130%] md:text-[20px] mb-5">{review.review}</p> 
                                  </div>
                         </article>
                     </div>
