@@ -17,146 +17,147 @@ const TimeAndDuration = () => {
     const durationOptions = ["2 hours", "4 hours", "6 hours"];
 
     const handleChangeTime = (newTime: string) => { 
-    const newBookingTime = newTime ? (newTime) : "";
-    
-    setBookingDetails(prevState => {
-        const currentDuration = prevState.lessonTime;
+        const newBookingTime = newTime ? (newTime) : "";
         
-        if (!currentDuration || !newBookingTime) {
-             return {
-                 ...prevState,
-                 bookingStartTime: newBookingTime,
-                 bookingEndTime: "", 
-             };
-        }
-        
-        const durationString = currentDuration.split(' ')[0];
-        const durationInHours = Number(durationString);
-        const startTime = parse(newBookingTime, 'h:mm a', new Date());
-        const endTime = addHours(startTime, durationInHours);
-        const newBookingEndTime = format(endTime, 'h:mm a');
-        
-        return {
-            ...prevState,
-            bookingStartTime: newBookingTime, 
-            bookingEndTime: newBookingEndTime, 
-        };
-    });
+        setBookingDetails(prevState => {
+            const currentDuration = prevState.lessonTime;
+            
+            if (!currentDuration || !newBookingTime) {
+                 return {
+                     ...prevState,
+                     bookingStartTime: newBookingTime,
+                     bookingEndTime: "", 
+                 };
+            }
+            
+            const durationString = currentDuration.split(' ')[0];
+            const durationInHours = Number(durationString);
+            const startTime = parse(newBookingTime, 'h:mm a', new Date());
+            const endTime = addHours(startTime, durationInHours);
+            const newBookingEndTime = format(endTime, 'h:mm a');
+            
+            return {
+                ...prevState,
+                bookingStartTime: newBookingTime, 
+                bookingEndTime: newBookingEndTime, 
+            };
+        });
 
-    setAvailableTime(newTime)
-    setIsTimeSelected(true)
-}
-
-    const handleSelectLessonTime = (duration : null | string) => {
-    const newLessonTime = duration ? (duration) : "";
-
-    setBookingDetails(prevState => {
-        const currentStartTime = prevState.bookingStartTime;
-
-        if (!currentStartTime || !newLessonTime) {
-             return {
-                 ...prevState,
-                 lessonTime: newLessonTime,
-                 bookingEndTime: "", 
-             };
-        }
-        
-        const durationString = newLessonTime.split(' ')[0];
-        const durationInHours = Number(durationString);
-        const startTime = parse(currentStartTime, 'h:mm a', new Date());
-        const endTime = addHours(startTime, durationInHours);
-        const newBookingEndTime = format(endTime, 'h:mm a');
-    
-        return {
-            ...prevState,
-            lessonTime: newLessonTime,
-            bookingEndTime: newBookingEndTime,
-        };
-    });
-}
-
-    const {startTimeDisplay, endTimeDisplay, durationDisplay} = useMemo(() => {
-    const currentDuration = bookingDetails.lessonTime; 
-
-    if(!bookingDetails.bookingStartTime || !currentDuration) { 
-        return {
-            startTimeDisplay : "Select the time",
-            endTimeDisplay : "Select the duration",
-            durationDispaly : ""
-        }
+        setAvailableTime(newTime)
+        setIsTimeSelected(true)
     }
 
-    const durationString = currentDuration.split(' ')[0];
-    const durationInHours = Number(durationString);
-    const startTime = parse(bookingDetails.bookingStartTime, 'h:mm a', new Date());
-    const endTime = addHours(startTime, durationInHours);
-    const lessonStartTime = format(startTime, 'h:mm a');
-    const lessonEndTime = format(endTime, 'h:mm a');
+    const handleSelectLessonTime = (duration : null | string) => {
+        const newLessonTime = duration ? (duration) : "";
 
-    return {
+        setBookingDetails(prevState => {
+            const currentStartTime = prevState.bookingStartTime;
+
+            if (!currentStartTime || !newLessonTime) {
+                 return {
+                     ...prevState,
+                     lessonTime: newLessonTime,
+                     bookingEndTime: "", 
+                 };
+            }
+            
+            const durationString = newLessonTime.split(' ')[0];
+            const durationInHours = Number(durationString);
+            const startTime = parse(currentStartTime, 'h:mm a', new Date());
+            const endTime = addHours(startTime, durationInHours);
+            const newBookingEndTime = format(endTime, 'h:mm a');
         
-        startTimeDisplay: `${lessonStartTime} - ${lessonEndTime}`, 
-        endTimeDisplay: lessonEndTime,
-        durationDisplay: currentDuration,
-    };
+            return {
+                ...prevState,
+                lessonTime: newLessonTime,
+                bookingEndTime: newBookingEndTime,
+            };
+        });
+    }
+
+    const {startTimeDisplay, endTimeDisplay, durationDisplay} = useMemo(() => {
+        const currentDuration = bookingDetails.lessonTime; 
+
+        if(!bookingDetails.bookingStartTime || !currentDuration) { 
+            return {
+                startTimeDisplay : "Select the time",
+                endTimeDisplay : "Select the duration",
+                durationDisplay : ""
+            }
+        }
+
+        const durationString = currentDuration.split(' ')[0];
+        const durationInHours = Number(durationString);
+        const startTime = parse(bookingDetails.bookingStartTime, 'h:mm a', new Date());
+        const endTime = addHours(startTime, durationInHours);
+        const lessonStartTime = format(startTime, 'h:mm a');
+        const lessonEndTime = format(endTime, 'h:mm a');
+
+        return {
+            startTimeDisplay: `${lessonStartTime} - ${lessonEndTime}`, 
+            endTimeDisplay: lessonEndTime,
+            durationDisplay: currentDuration,
+        };
 
     },[bookingDetails.bookingStartTime, bookingDetails.lessonTime])
 
     return (
         <div>
-            <div className="bg-[#80AAEF] py-7 px-6 rounded">
-                <h3 className="text-[26px] font-semibold mb-6">Time & Duration</h3>
-                <div className="grid grid-cols-2 text-[20pxh] gap-16">
+            <div className="bg-[#80AAEF] py-6 px-4 md:py-7 md:px-6 rounded">
+                <h2 className="text-[22px] md:text-[26px] md:font-semibold mb-6">Time & Duration</h2>
+                <div className="flex flex-col md:grid md:grid-cols-2 text-[20px] gap-4 md:gap-16">
                     <div>
                         <div className="flex items-center gap-2">
                             <ClockIcon/>
-                            <h3 className="text-[#3A3636] text-[20px] leading-[130%]">Start Time</h3>
+                            <h3 className="text-[#3A3636] text-[18px] md:text-[20px] leading-[130%]">Start Time</h3>
                         </div>
-                            <Dropdown
-                                options={timeOptions}
-                                value={availableTime}
-                                onChange={handleChangeTime}
-                                className={clsx(
-                                    "w-full text-white border-1 border-white mt-3 transition-colors",
-                                    !isTimeSelected && "hover:bg-[#D3DCF8] hover:text-black hover:border-none",
-                                    isTimeSelected && "bg-primary-selected border-none"
-                                )}
-                                isFilterBtn={false}
-                            />
+                        <Dropdown
+                            options={timeOptions}
+                            value={availableTime}
+                            onChange={handleChangeTime}
+                            className={clsx(
+                                "w-full text-white border-1 border-white mt-3 transition-colors",
+                                !isTimeSelected && "hover:bg-[#D3DCF8] hover:text-black hover:border-none",
+                                isTimeSelected && "bg-primary-selected border-none"
+                            )}
+                            isFilterBtn={false}
+                        />
                     </div>
-                        <div>
-                            <div className="flex items-center gap-3 mb-3">
-                                <TimerIcon/>
-                                <h3 className="text-[#3A3636] text-[20px] leading-[130%]">Lesson Duration</h3>
-                            </div>
-                            <div className="flex justify-between">
-                              {durationOptions.map((duration) => (
-                                <DurationButton
+                    <div className="w-full">
+                        <div className="flex items-center gap-3 mb-3">
+                            <TimerIcon/>
+                            <h3 className="text-[#3A3636] text-[18px] md:text-[20px] leading-[130%]">Lesson Duration</h3>
+                        </div>
+                        <div className="flex justify-between gap-4">
+                            {durationOptions.map((duration) => (
+                            <DurationButton
                                 key={duration}
                                 duration={duration}
                                 isActive={duration === bookingDetails.lessonTime}
                                 onClick={() => handleSelectLessonTime(duration)}
                                 className="cursor-pointer"
-                                />
-                              ))}
-                            </div>
+                            />
+                            ))}
                         </div>
-                            
+                    </div>
                 </div>
-                    <div className="relative flex bg-white mt-6 pr-3 pt-3">
-                        <div className="w-[74px] h-full  flex justify-center ">
-                            <ClockIcon
-                            className="absolute top-[2vw] w-[33.33px] h-[33.33px]"/>
-                        </div>
-                        <div className="flex justify-between w-full leading-[130%]">
+                <div className="bg-white mt-4 p-4 md:p-5 rounded flex items-start md:items-center gap-4">
+                    <div className="shrink-0 mt-1 md:mt-0 hidden md:block">
+                        <ClockIcon className="w-8 h-8"/>
+                    </div>
+                    
+                    <div className="w-full flex flex-col gap-1">
+                        <div className="flex justify-between w-full text-[14px] md:text-[16px] text-gray-600 leading-[130%]">
                             <p>Your Lesson Time</p>
                             <p>Duration</p>
                         </div>
-                    </div>
-                        <div className="flex bg-white py-3 pr-3 justify-between pl-[70px] leading-[130%] text-[26px] font-semibold">
+                        <div className="flex justify-between w-full leading-[130%] text-[18px] md:text-[26px] font-medium">
                             <p>{startTimeDisplay}</p>
-                            <p>{bookingDetails.lessonTime? durationDisplay : endTimeDisplay}</p>
+                            <p>{bookingDetails.lessonTime ? durationDisplay : endTimeDisplay}</p>
                         </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     )

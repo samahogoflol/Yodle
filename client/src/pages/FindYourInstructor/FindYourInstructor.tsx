@@ -5,13 +5,14 @@ import SummaryBlock from "../../components/SummaryBlock/SummaryBlock";
 import TimeAndDuration from "../../components/Time&Duration/TimeAndDuration";
 import { BigSnowFull } from "../../components/UI/Icons/BigFullSnow";
 import BigSnow from "../../components/UI/Icons/BigSnow";
-
 import { INSTRUCTORS_MOCK_DATA } from "../../data/instructorsMock";
 import type { InstructorsProps } from "../../types/instructors";
-
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
 
 import { type SortCriteria} from "../../components/constants/sort";
+import ButtonSearchInstruktor from "../../components/UI/ButtonSearchInstructor";
 
 
 const sortInstructors = (
@@ -62,7 +63,13 @@ const sortInstructors = (
 
 const FindYourInstructor = () => {
 
+    const {isMobile}= useWindowWidth();
     const [filterCriteria, setFilterCriteria] = useState<SortCriteria>("RATING_DESC");
+    const [currentStep, setCurrentStep] = useState(1);
+
+    const handleNext = () => setCurrentStep((prev) => prev + 1);
+    // const handlePrev = () => setCurrentStep((prev) => prev - 1);
+
 
     const handleFilterUpdate = (newCriteria : SortCriteria) => {
         setFilterCriteria(newCriteria)
@@ -76,55 +83,129 @@ const FindYourInstructor = () => {
     );
 
     return (
-        <div className="mb-16 relative z-10 ">
-            <h2 className="text-center text-[56px] font-semibold mt-40 mb-[85px]">Find Your Instructor</h2>
-            <div className="grid grid-cols-3 px-[85px] gap-7 z-10">
-                <div className="col-span-2 z-10">
-                    <TimeAndDuration/>
-                    <CalculateParticipants/>
-                    <SelectYourInstructor
-                    sortCriteria={filterCriteria}
-                    onFilterChange={handleFilterUpdate}
-                    />
-                    <div>
-                        <InstructorCard
-                        instructors={instructorsToDisplay}
+        <div className="mb-16 relative z-10">
+            <h1 className="text-center text-[38px] md:text-[56px] font-medium md:font-semibold mt-20 md:mt-40 mb-[30px] md:mb-[85px] ">Find Your Instructor</h1>
+            {!isMobile  && (
+                <div>
+                    <div className="grid grid-cols-3 px-[85px] gap-7 z-10">
+                        <div className="col-span-2 z-10">
+                            <TimeAndDuration/>
+                            <CalculateParticipants/>
+                            <SelectYourInstructor
+                                sortCriteria={filterCriteria}
+                                onFilterChange={handleFilterUpdate}
+                            />
+                            <InstructorCard
+                                instructors={instructorsToDisplay}
+                            />
+                        </div>
+                        <div className="z-10">
+                            <SummaryBlock 
+                                showDataAndTime={true}
+                                showInstructor={true}
+                                showLocation={true}
+                                showParticipants={true}
+                                showType={true}
+                                buttonText="Proceed to Checkout"
+                                totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"
+                                linkButtonTo="/secureCheckout"
+                            />
+                        </div>
+                    </div>
+                    <div className="absolute top-[88vw] right-0">
+                        <BigSnowFull/>
+                    </div>
+                    <div className="absolute top-[22vw] right-[7vw] rotate-60">
+                        <BigSnow
+                            width="64px"
+                            height="64px"
+                            viewBox="0 0 574 640"
+                        />
+                    </div>
+                    <div className="absolute top-[10vw] left-[9vw] rotate-60">
+                        <BigSnow
+                            width="64px"
+                            height="64px"
+                            viewBox="0 0 574 640"
                         />
                     </div>
                 </div>
-                <div className="z-10">
-                    <SummaryBlock 
-                    showDataAndTime={true}
-                    showInstructor={true}
-                    showLocation={true}
-                    showParticipants={true}
-                    showType={true}
-                    buttonText="Proceed to Checkout"
-                    totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"
-                    linkButtonTo="/secureCheckout"
-                    
-                    />
+            )}
+            {isMobile && (
+                <div className="px-4 z-10 ">
+                    <div className="absolute top-10 right-1">
+                         <BigSnow
+                            width="44px"
+                            height="44px"
+                            viewBox="0 0 574 640"
+                        />
+                    </div>
+                    {currentStep === 1 && (
+                        <div className="animate-fade-in relative">
+                            <TimeAndDuration />
+                            <CalculateParticipants />
+                            <ButtonSearchInstruktor 
+                                onClick={handleNext}
+                                name="Search Instructor"
+                                className="w-full mt-5 flex items-center justify-center"  
+                            />
+                            <div className="absolute ">
+                                <BigSnow
+                                    width="90px"
+                                    height="90px"
+                                    viewBox="0 0 640 640"
+                                />
+                            </div>
+                        </div>
+                    )}
+                    {currentStep === 2 && (
+                        <div className="">
+                            {/* <button onClick={handlePrev} className="text-blue-500 mb-4">
+                                ← Back
+                            </button> */}
+                            <SelectYourInstructor 
+                                sortCriteria={filterCriteria}
+                                onFilterChange={handleFilterUpdate}
+                            />
+                            <InstructorCard instructors={instructorsToDisplay} />
+                            <ButtonSearchInstruktor 
+                                onClick={handleNext}
+                                name="Book lesson"
+                                className="w-full mt-5 flex items-center justify-center"  
+                            />
+                        </div>
+                    )}
+                    {currentStep === 3 && (
+                        <div className="animate-fade-in">
+                            {/* <button onClick={handlePrev} className="text-blue-500 mb-4">
+                                ← Back to Instructors
+                            </button> */}
+                            <SummaryBlock 
+                                showDataAndTime={true}
+                                showInstructor={true}
+                                showLocation={true}
+                                showParticipants={true}
+                                showType={true}
+                                buttonText="Proceed to Checkout"
+                                totalPriceStyles="flex text-[22px] md:text-[26px] font-medium md:font-semibold justify-between w-full md:p-4 opacity-70 md:opacity-100"
+                                linkButtonTo="/secureCheckout"
+                            />
+
+                        <div className="flex justify-center">
+                            <Link to="/secureCheckout">
+                                
+                                <ButtonSearchInstruktor
+                                    name="Proceed to Checkout"
+                                    className="mt-5 w-full flex justify-center"
+                                    />
+                            </Link>
+                        </div>
+
+                        </div>
+                    )}
+
                 </div>
-            </div>
-
-            <div className="absolute top-[88vw] right-0">
-                <BigSnowFull/>
-            </div>
-            <div className="absolute top-[22vw] right-[7vw] rotate-60">
-                <BigSnow
-                    width="64px"
-                    height="64px"
-                    viewBox="0 0 574 640"
-                />
-            </div>
-            <div className="absolute top-[10vw] left-[10vw] rotate-60">
-                <BigSnow
-                    width="64px"
-                    height="64px"
-                    viewBox="0 0 574 640"
-                />
-        </div>
-
+            )}
         </div>
     )
 }

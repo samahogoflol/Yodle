@@ -28,9 +28,9 @@ const CalculateParticipants = () => {
     const unActiveClass = "text-[#696969] cursor-default"
 
     return (
-        <div className="w-full bg-[#80AAEF] mt-16 p-7 rounded">
-           <h2 className="text-[26px] font-semibold mb-6">Number of Participants</h2>
-           <div className="flex items-center gap-2">
+        <div className="w-full bg-[#80AAEF] mt-5 md:mt-16 p-7 rounded">
+           <h2 className="text-[22px] mb-4 md:text-[26px] md:font-semibold md:mb-6">Number of Participants</h2>
+           <div className="flex items-center gap-1 md:gap-2 p-4 md:py-5 md:px-4 bg-white">
             <div 
                 className="py-3" 
                 onClick={handleMinus}>
@@ -38,7 +38,7 @@ const CalculateParticipants = () => {
                 className={currentParticipants <= 1? unActiveClass : "cursor-pointer " }
                 />
             </div>
-            <div className="px-3 text-[20px] bg-primary-selected text-white">{currentParticipants}</div>
+            <div className="px-3 text-[20px] md:bg-primary-selected md:text-white">{currentParticipants}</div>
             <div 
             className="py-3" 
             onClick={handlePlus}>
@@ -46,7 +46,7 @@ const CalculateParticipants = () => {
                 className={currentParticipants === 4 ? unActiveClass : "cursor-pointer "}
                 />
             </div>
-            <p className="text-[20px]">Participants (4 max)</p>
+            <p className="text-[18px] md:text-[20px] ml-2 md:ml-0">participants (4 max)</p>
            </div>
         </div>
     )

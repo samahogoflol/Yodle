@@ -3,6 +3,7 @@ import type { BookingDetailsProps } from "../../types/BookingDetailsProps";
 import { Link } from "react-router-dom";
 
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
+import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
 
 import { calculateBookingPrice } from "../Features/calculateBookingPrice";
 import ButtonSearchInstruktor from "../UI/ButtonSearchInstructor";
@@ -27,15 +28,21 @@ interface SummaryBlockProps {
 
 const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText, totalPriceStyles, linkButtonTo}) => {
 
-    const {bookingDetails} = useBookingDetails()
+    const {bookingDetails} = useBookingDetails();
+    const {isMobile} = useWindowWidth();
 
     const finalPrice = bookingDetails.instructor 
     ? calculateBookingPrice(bookingDetails as BookingDetailsProps)
     : 0;
 
     return (
-        <div className="bg-[#80AAEF] rounded p-7">
+        <div className="bg-[#80AAEF] rounded p-7 flex flex-col gap-4">
             <h2 className="text-[26px] font-semibold mb-6">Summary</h2>
+            {showType && (
+                <TypeSummeryCard
+                    typeOfSport={bookingDetails.typeOfSport}
+                />
+           )}
             {showLocation && (
                <LocationSummaryCard
                resort={bookingDetails.resort}
@@ -50,11 +57,7 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
                 bookingDetails={bookingDetails.lessonTime}
             />
             )}
-           {showType && (
-           <TypeSummeryCard
-                typeOfSport={bookingDetails.typeOfSport}
-           />
-           )}
+          
             {showParticipants && (
             <ParticipantsSummaryCard
                 numberOfParticipants={bookingDetails.numberOfParticipants}
@@ -70,21 +73,23 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
                 instructorTotalReviews={bookingDetails.instructor?.howManyFeedback}
             />
             )}
-                <div className="pt-6">
+                <div className="pt-3 md:pt-6">
                    <TotalPriceSummaryBlock
                     finalPrice={finalPrice.toFixed(2)}
                     totalPriceStyles={totalPriceStyles}
                     />
                 </div>
-                <Link to={linkButtonTo}>
-                    <div className="flex justify-center">
-                        <ButtonSearchInstruktor
-                        name={buttonText}
-                        onClick={() => null}
-                        className="mt-6"
-                        />
-                    </div>
-                </Link>
+                {!isMobile && (
+                    <Link to={linkButtonTo}>
+                        <div className="flex justify-center">
+                            <ButtonSearchInstruktor
+                                name={buttonText}
+                                onClick={() => null}
+                                className="mt-6"
+                                />
+                        </div>
+                    </Link>
+                )}
         </div>
     );
 }

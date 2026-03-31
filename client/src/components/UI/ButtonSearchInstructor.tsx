@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 interface ButtonProps {
-    onClick : () => void;
+    onClick? : () => void;
     name : string;
     className? : string;
 }
