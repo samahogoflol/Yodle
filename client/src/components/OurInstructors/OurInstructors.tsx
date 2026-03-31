@@ -29,7 +29,7 @@ const OurInstructors = () => {
            <div className={`
                 ${isMobile 
                     ? "flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 no-scrollbar" 
-                    : "grid grid-cols-4 gap-10"} 
+                    : "flex gap-10"} 
                     mt-10 mb-12 md:mb-25`
             }>
                 {INSTRUCTORS_MOCK_DATA.filter((item) => item.mainPageReview).map((instructor) => {

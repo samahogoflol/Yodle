@@ -6,15 +6,11 @@ import test1 from "./MBSA_2х copy.png"
 import test2 from "./Graveyard_2x.png"
 import test3 from "./Sugar Bowl_2x.png"
 
-
-
-
-
 const OurPartners = () => {
     return (
         <div id="partners" className="bg-white text-center py-15 md:py-25">
             <h2 className="text-[38px] md:text-[56px] font-medium md:font-semibold leading-[100%]">Reliable ski lesson partners for</h2>
-            <div className="flex flex-col md:flex-row md:px-[146px] md:gap-[182px] mt-10 md:mt-20">
+            <div className="flex flex-col md:flex-row md:px-[146px] justify-between mt-10 md:mt-20">
                 <img className="hidden md:block" src={logo1} alt="MT. Hood Company" />
                 <img className="hidden md:block" src={logo2} alt="Sugar Bowl Company" />
                 <img className="hidden md:block" src={logo3} alt="China Peak Company" />

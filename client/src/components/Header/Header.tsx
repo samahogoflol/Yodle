@@ -40,23 +40,17 @@ const Header = () => {
             <nav className="hidden md:flex" >
                 <ul className="flex gap-6">
                     <Link to="/#our-instructors">
-                        <li className="cursor-pointer active:text-[#2E78E5]">Our instructors</li>    
+                        <li className="cursor-pointer hover:text-[#2E78E5]">Our instructors</li>    
                     </Link>
                     <Link to="/#how-to-book">
-                        <li className="cursor-pointer active:text-[#2E78E5]">How to book</li>
+                        <li className="cursor-pointer hover:text-[#2E78E5]">How to book</li>
                     </Link>
                     <Link to="/#partners">
-                        <li className="cursor-pointer active:text-[#2E78E5]">Partners</li>
+                        <li className="cursor-pointer hover:text-[#2E78E5]">Partners</li>
                     </Link>
                     <Link to="/#reviews">
-                        <li className="cursor-pointer active:text-[#2E78E5]">Reviews</li>
+                        <li className="cursor-pointer hover:text-[#2E78E5]">Reviews</li>
                     </Link>
-                    {/* <Link to="/login">
-                        <li>Log In</li>
-                    </Link>
-                    <Link to="/register">
-                        <li>Sign In</li>
-                    </Link> */}
                 </ul>
             </nav>
             <div className="hidden md:flex items-center justify-end gap-10">

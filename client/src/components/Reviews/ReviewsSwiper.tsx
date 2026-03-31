@@ -18,13 +18,6 @@ const ReviewsSwiper = () => {
 
  return (
     <div className="w-full md:w-3/4 pl-4 md:pl-10 pt-15 md:pt-30 pb-25 relative overflow-x-hidden md:overflow-visible">
-        <div className="absolute md:left-[92vw] right-[5vw] top-[25vw] md:top-[65vw]" >
-            <BigSnow
-             width='40'
-             height='40'
-             viewBox='0 0 630 590'
-            />
-        </div>
         <div className="absolute bottom-[-1.2vw] md:left-[7vw]" >
             <BigSnow
              width='40'
@@ -60,13 +53,7 @@ const ReviewsSwiper = () => {
              viewBox='0 0 630 590'
             />
         </div>
-        <div className="hidden md:block absolute bottom-[-1.5vw] left-[46vw]" >
-            <BigSnow
-             width='40'
-             height='40'
-             viewBox='0 0 630 590'
-            />
-        </div>
+       
         <div className="hidden md:block absolute bottom-[-2vw] left-[52vw]">
             <BigSnow
              width='60'
@@ -122,8 +109,10 @@ const ReviewsSwiper = () => {
             <p className='md:hidden text-[18px] leading-[130%] pb-10'>Don't just take our word for it—hear from <br/> skiers who've experienced the difference <br/> our instructors make. </p>
             <p className='hidden md:block text-[18px] md:text-[20px] leading-[130%] pb-10'>Don't just take our word for it—hear from skiers who've <br/> experienced the difference our instructors make. </p>
         </div>      
-        <div className={`hidden md:block cursor-pointer swiper-button-prev-custom absolute bottom-[6.8vw] left-[69vw] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>
-        <div className="hidden md:block cursor-pointer swiper-button-next-custom absolute bottom-[6.8vw] left-[78vw] z-10">{<NextArrowIcon/>}</div>
+        
+        <div className={`hidden md:block cursor-pointer swiper-button-prev-custom absolute bottom-[120px] right-[-40px] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>
+        <div className="hidden md:block cursor-pointer swiper-button-next-custom absolute bottom-[120px] right-[-100px] z-10">{<NextArrowIcon/>}</div>
+        
         <Swiper
             modules={[Navigation, Pagination]}
             slidesPerView={1.2} 
@@ -166,7 +155,7 @@ const ReviewsSwiper = () => {
                                         <img src={star} alt="rating" />
                                         <p className="text-[18px] md:text-[20px]">{review.grade.toFixed(1)}</p>
                                     </div> 
-                                    <p className="mt-2.5 text-[16px] leading-[120%] md:leading-[130%] md:text-[20px] mb-5">{review.review}</p> 
+                                    <p className="mt-2.5 text-[16px] leading-[120%] md:leading-[130%] md:text-[16px] mb-5">{review.review}</p> 
                                  </div>
                         </article>
                     </div>

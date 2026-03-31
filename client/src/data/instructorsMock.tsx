@@ -1,7 +1,6 @@
 import mariiaVovchenkoPhoto from "../assets/instructorsPhoto/mariiaVovchenko.jpg"
-// import semBoulPhoto from "../assets/instructorsPhoto/semBoul.jpg"
 import semBoulPhotoNew from "../assets/instructorsPhoto/semBoulPhoto.png"
-import charlesPiastri from "../assets/instructorsPhoto/Charles Piastri.jpg"
+import charlesPiastri from "../assets/instructorsPhoto/Charles Piastri.png"
 import saraJohnson from "../assets/instructorsPhoto/Sarah Johnson.jpg"
 import jakobHamilton from "../assets/instructorsPhoto/Jakob Hamilton.jpg"
 import davidRussell from "../assets/instructorsPhoto/David Russell.jpg"
