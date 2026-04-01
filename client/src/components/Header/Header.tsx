@@ -39,7 +39,10 @@ const Header = () => {
             {/* Мобільна іконка */}
             <div 
                 className="block md:hidden text-black cursor-pointer"
-                onClick={() => setModalType("register")}
+                onClick={() => {
+                    setModalType("register");
+                    setIsOpen(false)
+                }}
             >
                 <PersonIcon
                     height="25px"
