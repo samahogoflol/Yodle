@@ -20,7 +20,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="container mx-auto">
+        <div>
             {stage === 'FORM' && (
                 <RegisterForm 
                     onSuccess={handleRegisterSuccess} 

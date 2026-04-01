@@ -11,6 +11,7 @@ const BigSnow:React.FC<BigSnowProps> = ({width, height, viewBox}) => {
     width={width} 
     height={height} 
     viewBox={viewBox}
+    className="z-[-10]"
     fill="none" 
     xmlns="http://www.w3.org/2000/svg">
 

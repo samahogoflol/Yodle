@@ -5,13 +5,18 @@ import { BurgerMenuIcon } from "../UI/Icons/BurgerMenuIcon"
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu"
 import { PersonIcon } from "../UI/Icons/PersonIcon"
 import { useState } from "react"
+import RegisterForm from "../../pages/Auth/components/RegisterForm"
+import LoginForm from "../../pages/Auth/components/LogInForm"
 
 const Header = () => {
 
     const [isOpen, setIsOpen] = useState(false)
+    const [modalType, setModalType] = useState<"login" | "register" | null>(null)
+
+    const closeModal = () => setModalType(null)
 
     return (
-        <header id="header" className="flex items-center justify-between px-4 md:px-10 leading-[130%] bg-white w-full">
+        <header id="header" className="flex items-center justify-between px-4 md:px-10 leading-[130%] bg-white w-full relative">
             <div className="block md:hidden">
                 <div className="block md:hidden">
                     <button 
@@ -30,13 +35,19 @@ const Header = () => {
                     <HeaderCompanyLogo/>
                 </Link>
             </div>
-            <div className="block md:hidden text-black">
+            
+            {/* Мобільна іконка */}
+            <div 
+                className="block md:hidden text-black cursor-pointer"
+                onClick={() => setModalType("register")}
+            >
                 <PersonIcon
                     height="25px"
                     width="25px"
                     viewBox="0 0 20 20"
                 />
             </div>
+            
             <nav className="hidden md:flex" >
                 <ul className="flex gap-6">
                     <Link to="/#our-instructors">
@@ -53,16 +64,44 @@ const Header = () => {
                     </Link>
                 </ul>
             </nav>
+            
+            {/* Десктопна права частина */}
             <div className="hidden md:flex items-center justify-end gap-10">
                 <a className="hover:text-blue-400" href="tel:+4408762122213">+44 (0) 876 2122213</a>
-                <div className="hidden md:block text-black">
+                <button
+                    type="button" 
+                    onClick={() => setModalType("register")}
+                    className="hidden md:block text-black cursor-pointer">
                     <PersonIcon
-                    height="25px"
-                    width="25px"
-                    viewBox="0 0 20 20"
+                        height="25px"
+                        width="25px"
+                        viewBox="0 0 20 20"
                     />
-                </div>
+                </button>
             </div>
+
+            {/* ВИНЕСЛИ МОДАЛКИ СЮДИ — тепер вони не приховані класом hidden! */}
+            {modalType === "register" && (
+                <RegisterForm 
+                    onSuccess={(email) => {
+                        console.log("Registered:", email)
+                        closeModal()
+                    }}
+                    onClose={closeModal}
+                    onSwitchMode={() => setModalType("login")}
+                />
+            )}
+
+            {modalType === "login" && (
+                <LoginForm 
+                    onSuccess={(email) => {
+                        console.log("Logged in:", email)
+                        closeModal()
+                    }}
+                    onClose={closeModal}
+                    onSwitchMode={() => setModalType("register")}
+                />
+            )}
         </header>
     )
 }

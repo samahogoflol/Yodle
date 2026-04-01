@@ -1,11 +1,14 @@
-export const Snow404 = () => {
+interface Snow404Props {
+  className?: string;
+}
+
+export const Snow404: React.FC<Snow404Props> = ({ className }) => {
   return (
     <svg
-      width="228"
-      height="228"
       viewBox="0 0 228 228"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <g filter="url(#filter0_d_579_808)">
         <rect

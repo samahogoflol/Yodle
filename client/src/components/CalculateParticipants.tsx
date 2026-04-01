@@ -28,7 +28,7 @@ const CalculateParticipants = () => {
     const unActiveClass = "text-[#696969] cursor-default"
 
     return (
-        <div className="w-full bg-[#80AAEF] mt-5 md:mt-16 p-7 rounded">
+        <div className="w-full bg-[#80AAEF] mt-5 md:mt-16 p-4 md:p-7 rounded">
            <h2 className="text-[22px] mb-4 md:text-[26px] md:font-semibold md:mb-6">Number of Participants</h2>
            <div className="flex items-center gap-1 md:gap-2 p-4 md:py-5 md:px-4 bg-white">
             <div 

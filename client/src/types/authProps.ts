@@ -4,4 +4,5 @@ export interface IAuthForm {
     firstName? : string;
     lastName? : string;
     phoneNumber? : string;
+    confirmPassword : string;
 }

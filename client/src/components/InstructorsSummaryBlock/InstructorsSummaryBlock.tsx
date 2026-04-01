@@ -15,15 +15,19 @@ const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instruc
 
     return (
         <div className="bg-white py-2 md:py-4 px-4 ">
-            <h2 className="leading-[130%] text-[#696969]">Instructor</h2>
+            <h2 className="leading-[130%] md:text-[#696969]">Instructor</h2>
             <div className="flex items-center mt-3 mb-3">
-                {instructorPhoto? (<>
-                <img 
-                    className={`w-7 h-7 object-cover rounded-[50%] ${instructorId === 4 ? "object-top" : null}`} 
-                    src={instructorPhoto} 
-                    alt={`Instructor's ${instructorName} photo`} 
-                    /> 
-                </>): "Not Selected"}
+                {instructorPhoto? (
+                    <>
+                        <img 
+                            className={`w-7 h-7 object-cover rounded-[50%] ${instructorId === 4 ? "object-top" : null}`} 
+                            src={instructorPhoto} 
+                            alt={`Instructor's ${instructorName} photo`} 
+                            /> 
+                    </>
+                ) :
+                    "Not Selected"
+                }
                 <p className="pl-2 text-[18px] md:text-[20px]">{instructorName}</p>
             </div>
 

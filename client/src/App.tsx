@@ -37,6 +37,7 @@ function App() {
            </Route>
            <Route path='*' element={<Page404/>}/>
            <Route path='bookingConfirmed' element={<BookingConfirmed/>}/>
+           <Route path='registration' element={<RegisterPage/>}/>
           </Routes>
         </BookingProvider>
     </div>

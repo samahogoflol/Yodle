@@ -1,11 +1,14 @@
-export const Digit4 = () =>  {
+interface Digit4Props {
+  className?: string;
+}
+
+export const Digit4: React.FC<Digit4Props> = ({ className }) => {
   return (
     <svg
-      width="120"
-      height="170"
       viewBox="0 0 120 170"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <g filter="url(#filter0_d_579_806)">
         <path
@@ -49,4 +52,4 @@ export const Digit4 = () =>  {
       </defs>
     </svg>
   );
-}
+};

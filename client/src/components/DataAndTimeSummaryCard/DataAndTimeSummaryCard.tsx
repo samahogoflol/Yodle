@@ -16,7 +16,7 @@ const DataAndTimeSummaryCard:React.FC<DataAndTimeSummaryCardProps> = ({date, boo
     return (
         <div>
             <div className="bg-white px-4 py-2 md:py-4">
-                  <h2 className="leading-[130%] text-[#696969]">Date & Time</h2>
+                  <h2 className="leading-[130%] md:text-[#696969]">Date & Time</h2>
                   <div className="text-[#EA4300] flex align-center pt-3">
                     <CalendarIcon/>
                     <h5 className="text-black pl-2 text-[18px] md:text-[20px] leading-[120%]">

@@ -17,26 +17,26 @@ const Payment = () => {
   });
 
     return (
-        <div className="bg-[#80AAEF] rounded p-7">
-            <h2 className="text-[26px] font-semibold pb-6 leading-[130%]">Payment Details</h2>
-            <div className=" flex flex-col">
-                <h2>Please enter your credit card information to complete the booking</h2>
+        <div className="bg-[#80AAEF] rounded p-4 md:p-7">
+            <h2 className="text-[22px] md:text-[26px] md:font-semibold pb-4 md:pb-6 leading-[130%]">Payment Details</h2>
+            <div className="flex flex-col">
+                <h2 className='font-normal text-[18px] leading-[120%]'>Please enter your credit card information to complete the booking</h2>
                 <form 
                 onSubmit={handleSubmit((data) => console.log(data))}
                 className=''
                 >
-            <div className='gap-6 flex flex-col pt-6'>
+            <div className='gap-5 md:gap-6 flex flex-col pt-4 md:pt-6 '>
                 <div>
                     <div className="relative">
                         <input
                         id='cardName'
                         {...register("nameACard")}
                         placeholder=" "
-                        className=" peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none"
+                        className=" peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none w-full"
                         />
                         <label 
                         htmlFor='cardName'
-                        className="absolute left-3 top-2.5 text-gray-400 transition-all
+                        className="absolute left-3 top-2.5 md:text-gray-400 transition-all
                         peer-placeholder-shown:top-5
                         peer-placeholder-shown:text-base
                         peer-focus:top-0
@@ -58,20 +58,21 @@ const Payment = () => {
                         <div className='relative'>
                         <input 
                         id='cardNumber'
-                        className=' peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none'
+                        className=' peer bg-white pl-3 pr-21 py-5 border-[0.5px] border-none w-full'
                         placeholder=' '
                         {...register("cardNumber")} 
                         />
                         <label 
-                        htmlFor='cardNumber'
-                        className="absolute left-3 top-2.5 text-gray-400 transition-all
-                        peer-placeholder-shown:top-5
-                        peer-placeholder-shown:text-base
-                        peer-focus:top-0
-                        peer-focus:text-sm
-                        peer-focus:opacity-100
-                        peer-not-placeholder-shown:opacity-0
-                        ">
+                            htmlFor='cardNumber'
+                            className="absolute left-3 top-2.5 md:text-gray-400 transition-all
+                            peer-placeholder-shown:top-5
+                            peer-placeholder-shown:text-base
+                            peer-focus:top-0
+                            peer-focus:text-sm
+                            peer-focus:opacity-100
+                            peer-not-placeholder-shown:opacity-0
+                            "
+                        >
                         Card number
                         </label>
                         {errors.cardNumber && (
@@ -79,77 +80,68 @@ const Payment = () => {
                         )}
                         </div>
                     </div>
-                <div className="flex">
-                    <div className="relative">
-                        <Controller
-                        name="expirationDate"
-                        control={control}
-                        render={({ field }) => (
-                            <PatternFormat
-                            {...field}
-                            id='date'
-                            format="##/##"
-                            placeholder=" "
-                            className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-4/5"
+                    <div className="flex justify-between w-full">
+                        <div className="relative w-1/2">
+                            <Controller
+                            name="expirationDate"
+                            control={control}
+                            render={({ field }) => (
+                                <PatternFormat
+                                {...field}
+                                id='date'
+                                format="##/##"
+                                placeholder=" "
+                                className="peer bg-white px-3 py-5 w-full"
+                                />
+                            )}
                             />
-                        )}
-                        />
 
                         <label
-                        htmlFor='date'
-                        className="
-                            absolute left-3 top-1/2 -translate-y-1/2
-                            text-gray-400 pointer-events-none
-                            transition-all
-                            peer-placeholder-shown:top-1/3
-                            peer-placeholder-shown:text-base
-                            peer-focus:top-2
-                            peer-focus:text-sm
-                            peer-focus:opacity-100
-                            peer-not-placeholder-shown:opacity-0
-                        "
+                            htmlFor='date'
+                            className="absolute left-3 top-1/2 -translate-y-1/2 md:text-gray-400 pointer-events-none
+                                transition-all
+                                peer-placeholder-shown:top-1/3
+                                peer-placeholder-shown:text-base
+                                peer-focus:top-2
+                                peer-focus:text-sm
+                                peer-focus:opacity-100
+                                peer-not-placeholder-shown:opacity-0"
                         >
                         MM / YY
                         </label>
-
                         {errors.expirationDate && (
                         <p className="text-red-600 mt-1 max-w-[200px]">
                             {errors.expirationDate.message}
                         </p>
                         )}
-                    </div>
-
-                    <div className="relative">
-                        <input
-                        id='cvv'
-                        {...register("cvv")}
-                        placeholder=" "
-                        className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-4/10"
-                        maxLength={4}
-                        />
-                        <label
-                        htmlFor='cvv'
-                        className="
-                            absolute left-3 top-1/2 -translate-y-1/2
-                            text-gray-400 pointer-events-none
-                            transition-all
-                            peer-placeholder-shown:top-1/3
-                            peer-placeholder-shown:text-base
-                            peer-focus:top-2
-                            peer-focus:text-sm
-                            peer-focus:opacity-100
-                            peer-not-placeholder-shown:opacity-0
-                        "
-                        >
-                        CVV
-                        </label>
-
+                        </div>
+                        <div className="relative w-1/3">
+                            <input
+                            id='cvv'
+                            {...register("cvv")}
+                            placeholder=" "
+                            className="peer bg-white pl-3 py-5 border-[0.5px] border-none w-full"
+                            maxLength={4}
+                            />
+                            <label
+                                htmlFor='cvv'
+                                className="absolute left-3 top-1/2 -translate-y-1/2 md:text-gray-400 pointer-events-none
+                                transition-all
+                                peer-placeholder-shown:top-1/3
+                                peer-placeholder-shown:text-base
+                                peer-focus:top-2
+                                peer-focus:text-sm
+                                peer-focus:opacity-100
+                                peer-not-placeholder-shown:opacity-0"
+                            >
+                                CVV
+                            </label>
                         {errors.cvv && (
-                        <p className="text-red-600 max-w-[100px] mt-1">
-                            {errors.cvv.message}
-                        </p>
+                            <p className="text-red-600 max-w-[100px] mt-1">
+                                {errors.cvv.message}
+                            </p>
                         )}
-                    </div>
+                        </div>
                 </div>
             </div>
         </form>

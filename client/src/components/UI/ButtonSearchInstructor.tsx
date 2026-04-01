@@ -16,11 +16,11 @@ const ButtonSearchInstruktor:React.FC<ButtonProps> = ({onClick, name, className}
     return (
         <>
             <button
-            onClick={onClick}
-            className={` ${className} h-[51px] bg-[#EA4300] flex items-center justify-between pl-5 pr-1 text-white font-semibold cursor-pointer`}
-            type="button"
-            onMouseEnter={()=> setChangeBtnArrow(true)}
-            onMouseLeave={()=> setChangeBtnArrow(false)}
+                onClick={onClick}
+                className={` ${className} h-[51px] w-full md:w-fit justify-center bg-[#EA4300] flex items-center md:justify-between pl-5 pr-1 text-white font-semibold cursor-pointer`}
+                type="button"
+                onMouseEnter={()=> setChangeBtnArrow(true)}
+                onMouseLeave={()=> setChangeBtnArrow(false)}
             >
             <span className="pr-7">{name}</span>
                 {changeBtnArrow? <SnowChangeBtn/> : <ArrowRight/> }

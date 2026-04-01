@@ -4,6 +4,8 @@ import Header from "../Header/Header";
 
 const PATHS_WITHOUT_FOOTER = [
   '/bookingConfirmed',
+  '/privacyPolicy',
+  '/publicOffer'
 ];
 
 const Layout = () => {

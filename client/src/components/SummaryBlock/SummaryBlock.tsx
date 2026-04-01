@@ -3,8 +3,6 @@ import type { BookingDetailsProps } from "../../types/BookingDetailsProps";
 import { Link } from "react-router-dom";
 
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
-import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
-
 import { calculateBookingPrice } from "../Features/calculateBookingPrice";
 import ButtonSearchInstruktor from "../UI/ButtonSearchInstructor";
 import LocationSummaryCard from "../LocationSummaryCard/LocationSummaryCard";
@@ -29,67 +27,69 @@ interface SummaryBlockProps {
 const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText, totalPriceStyles, linkButtonTo}) => {
 
     const {bookingDetails} = useBookingDetails();
-    const {isMobile} = useWindowWidth();
 
     const finalPrice = bookingDetails.instructor 
     ? calculateBookingPrice(bookingDetails as BookingDetailsProps)
     : 0;
 
     return (
-        <div className="bg-[#80AAEF] rounded p-7 flex flex-col gap-4">
-            <h2 className="text-[26px] font-semibold mb-6">Summary</h2>
-            {showType && (
-                <TypeSummeryCard
-                    typeOfSport={bookingDetails.typeOfSport}
+        <div>
+             <div className="bg-[#80AAEF] rounded p-4 md:p-7 flex flex-col gap-4">
+                <h2 className="text-[22px] md:text-[26px] md:font-semibold md:mb-6 leading-[130%]">Summary</h2>
+                {showType && (
+                    <TypeSummeryCard
+                        typeOfSport={bookingDetails.typeOfSport}
+                    />
+            )}
+                {showLocation && (
+                <LocationSummaryCard
+                resort={bookingDetails.resort}
+                location={bookingDetails.location}
                 />
-           )}
-            {showLocation && (
-               <LocationSummaryCard
-               resort={bookingDetails.resort}
-               location={bookingDetails.location}
-               />
-            )}
-            {showDataAndTime && (
-            <DataAndTimeSummaryCard
-                date={bookingDetails.date}
-                bookingEndTime={bookingDetails.bookingEndTime}
-                bookingStartTime={bookingDetails.bookingStartTime}
-                bookingDetails={bookingDetails.lessonTime}
-            />
-            )}
-          
-            {showParticipants && (
-            <ParticipantsSummaryCard
-                numberOfParticipants={bookingDetails.numberOfParticipants}
-            />
-            )}
-            {showInstructor && (
-            <InstructorsSummaryBlock
-                instructorId={bookingDetails.instructor?.id}
-                instructorPhoto={bookingDetails.instructor?.photoMain}
-                instructorName={bookingDetails.instructor?.name}
-                instructorRating={bookingDetails.instructor?.rating}
-                instructorExperience={bookingDetails.instructor?.experience}
-                instructorTotalReviews={bookingDetails.instructor?.howManyFeedback}
-            />
-            )}
+                )}
+                {showDataAndTime && (
+                <DataAndTimeSummaryCard
+                    date={bookingDetails.date}
+                    bookingEndTime={bookingDetails.bookingEndTime}
+                    bookingStartTime={bookingDetails.bookingStartTime}
+                    bookingDetails={bookingDetails.lessonTime}
+                />
+                )}
+            
+                {showParticipants && (
+                <ParticipantsSummaryCard
+                    numberOfParticipants={bookingDetails.numberOfParticipants}
+                />
+                )}
+                {showInstructor && (
+                <InstructorsSummaryBlock
+                    instructorId={bookingDetails.instructor?.id}
+                    instructorPhoto={bookingDetails.instructor?.photoMain}
+                    instructorName={bookingDetails.instructor?.name}
+                    instructorRating={bookingDetails.instructor?.rating}
+                    instructorExperience={bookingDetails.instructor?.experience}
+                    instructorTotalReviews={bookingDetails.instructor?.howManyFeedback}
+                />
+                )}
                 <div className="pt-3 md:pt-6">
-                   <TotalPriceSummaryBlock
-                    finalPrice={finalPrice.toFixed(2)}
-                    totalPriceStyles={totalPriceStyles}
+                    <TotalPriceSummaryBlock
+                        finalPrice={finalPrice.toFixed(2)}
+                        totalPriceStyles={totalPriceStyles}
                     />
                 </div>
-                {!isMobile && (
-                    <Link to={linkButtonTo}>
-                        <div className="flex justify-center">
-                            <ButtonSearchInstruktor
-                                name={buttonText}
-                                onClick={() => null}
-                                className="mt-6"
-                                />
-                        </div>
-                    </Link>
-                )}
+            </div>
+
+            <div className="w-full">
+                <Link to={linkButtonTo}>
+                    <div className="flex justify-center">
+                        <ButtonSearchInstruktor
+                            name={buttonText}
+                            onClick={() => null}
+                            className="mt-6"
+                        />
+                    </div>
+                </Link>
+            </div>
         </div>
     );
 }

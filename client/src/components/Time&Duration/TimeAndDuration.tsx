@@ -103,8 +103,8 @@ const TimeAndDuration = () => {
 
     return (
         <div>
-            <div className="bg-[#80AAEF] py-6 px-4 md:py-7 md:px-6 rounded">
-                <h2 className="text-[22px] md:text-[26px] md:font-semibold mb-6">Time & Duration</h2>
+            <div className="bg-[#80AAEF] py-4 px-4 md:py-7 md:px-6 rounded">
+                <h2 className="text-[22px] md:text-[26px] md:font-semibold mb-4 md:mb-6">Time & Duration</h2>
                 <div className="flex flex-col md:grid md:grid-cols-2 text-[20px] gap-4 md:gap-16">
                     <div>
                         <div className="flex items-center gap-2">
@@ -141,7 +141,7 @@ const TimeAndDuration = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white mt-4 p-4 md:p-5 rounded flex items-start md:items-center gap-4">
+                <div className="bg-white mt-4 p-4 md:p-5 flex items-start md:items-center gap-4">
                     <div className="shrink-0 mt-1 md:mt-0 hidden md:block">
                         <ClockIcon className="w-8 h-8"/>
                     </div>
