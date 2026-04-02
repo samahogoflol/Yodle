@@ -45,7 +45,11 @@ const OurInstructors = () => {
                             >
                                 <article className="h-full">
                                     <img 
-                                        className="w-full md:w-[325px] md:h-[346px] object-cover" 
+                                        className={`w-full md:h-[346px] object-cover md:object-center ${
+                                            instructor.name === "Mariia Vovchenko"
+                                                ? "h-[346px] object-[50%_40%]" 
+                                                : "object-center"
+                                        }`} 
                                         src={instructor.photoMain} 
                                         alt={`Our Instructor - ${instructor.name}`} 
                                     />

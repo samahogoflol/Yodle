@@ -1,5 +1,5 @@
 import "../../styles/index.css"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom" // 👈 ДОДАЛИ ХУКИ
 import { HeaderCompanyLogo } from "../UI/Icons/HeaderCompanyLogo"
 import { BurgerMenuIcon } from "../UI/Icons/BurgerMenuIcon"
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu"
@@ -7,41 +7,59 @@ import { PersonIcon } from "../UI/Icons/PersonIcon"
 import { useState } from "react"
 import RegisterForm from "../../pages/Auth/components/RegisterForm"
 import LoginForm from "../../pages/Auth/components/LogInForm"
+import { ArrowBack } from "../UI/Icons/ArrowBack"
+
 
 const Header = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [modalType, setModalType] = useState<"login" | "register" | null>(null)
+    const location = useLocation()
+    const navigate = useNavigate()
+    
+    const isMainPage = location.pathname === "/"
 
     const closeModal = () => setModalType(null)
 
     return (
         <header id="header" className="flex items-center justify-between px-4 md:px-10 leading-[130%] bg-white w-full relative">
             <div className="block md:hidden">
-                <div className="block md:hidden">
+                {isMainPage ? (
+                    <>
+                        <button 
+                            className={`${isOpen ? "text-[#2E78E5]" : ""}`}
+                            onClick={() => setIsOpen(!isOpen)}>
+                            <BurgerMenuIcon />
+                        </button>
+                        <BurgerMenu
+                            isOpen={isOpen}
+                            onClose={() => setIsOpen(false)}
+                        />
+                    </>
+                ) : (
                     <button 
-                        className={`${isOpen ? "text-[#2E78E5]" : ""}`}
-                        onClick={() => setIsOpen(!isOpen)}>
-                        <BurgerMenuIcon />
+                        className="flex items-center justify-center p-1 cursor-pointer"
+                        onClick={() => void navigate(-1)} 
+                    >
+                        <ArrowBack 
+                            width="30" 
+                            height="30"
+                        />
                     </button>
-                </div>
-                <BurgerMenu
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
-                />
+                )}
             </div>
+
             <div className="text-[#2E78E5]">
                 <Link to="/">
                     <HeaderCompanyLogo/>
                 </Link>
             </div>
             
-            {/* Мобільна іконка */}
             <div 
                 className="block md:hidden text-black cursor-pointer"
                 onClick={() => {
                     setModalType("register");
-                    setIsOpen(false)
+                    setIsOpen(false);
                 }}
             >
                 <PersonIcon
@@ -68,7 +86,6 @@ const Header = () => {
                 </ul>
             </nav>
             
-            {/* Десктопна права частина */}
             <div className="hidden md:flex items-center justify-end gap-10">
                 <a className="hover:text-blue-400" href="tel:+4408762122213">+44 (0) 876 2122213</a>
                 <button
@@ -82,8 +99,6 @@ const Header = () => {
                     />
                 </button>
             </div>
-
-            {/* ВИНЕСЛИ МОДАЛКИ СЮДИ — тепер вони не приховані класом hidden! */}
             {modalType === "register" && (
                 <RegisterForm 
                     onSuccess={(email) => {

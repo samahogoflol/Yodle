@@ -37,7 +37,7 @@ const HeroSection = () => {
                     w-full md:w-[73%] 
                     order-2 
                     md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 
-                    z-30 mt-5 md:mt-0
+                    z-30
                 ">
                     <SearchInstructor/>
                 </div>

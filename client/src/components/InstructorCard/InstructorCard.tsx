@@ -21,7 +21,7 @@ const InstructorCard:React.FC<InstructorCardProps> = ({instructor}) => {
     };
 
     const isSelected = bookingDetails.instructor?.id === instructor.id;
-    const selectedStyle = "bg-[#2E78E5] !bg-[#2E78E5] text-black";
+    const selectedStyle = "bg-[#2E78E5] !bg-[#2E78E5] text-white";
     const hoverStyle = "hover:bg-[#2E78E5] hover:text-white";
 
     return (

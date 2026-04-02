@@ -7,13 +7,12 @@ import { BigSnowFull } from "../../components/UI/Icons/BigFullSnow";
 import BigSnow from "../../components/UI/Icons/BigSnow";
 import { INSTRUCTORS_MOCK_DATA } from "../../data/instructorsMock";
 import type { InstructorsProps } from "../../types/instructors";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
+import { useSearchParams } from "react-router-dom"; // 👈 ДОДАЛИ ЦЕЙ ХУК
 
 import { type SortCriteria} from "../../components/constants/sort";
 import ButtonSearchInstruktor from "../../components/UI/ButtonSearchInstructor";
-
 
 const sortInstructors = (
     data: InstructorsProps[], 
@@ -65,11 +64,19 @@ const FindYourInstructor = () => {
 
     const {isMobile}= useWindowWidth();
     const [filterCriteria, setFilterCriteria] = useState<SortCriteria>("RATING_DESC");
-    const [currentStep, setCurrentStep] = useState(1);
+    
+    // 👈 ЗМІНИЛИ useState НА useSearchParams
+    const [searchParams, setSearchParams] = useSearchParams();
+    
+    // Читаємо поточний крок з URL (якщо його немає, ставимо 1)
+    const currentStep = Number(searchParams.get("step")) || 1;
 
-    const handleNext = () => setCurrentStep((prev) => prev + 1);
-    // const handlePrev = () => setCurrentStep((prev) => prev - 1);
-
+    const handleNext = () => {
+        // Оновлюємо URL, додаючи наступний крок. Браузер це запам'ятає в історію!
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set("step", String(currentStep + 1));
+        setSearchParams(newParams);
+    };
 
     const handleFilterUpdate = (newCriteria : SortCriteria) => {
         setFilterCriteria(newCriteria)
@@ -160,9 +167,6 @@ const FindYourInstructor = () => {
                     )}
                     {currentStep === 2 && (
                         <div className="">
-                            {/* <button onClick={handlePrev} className="text-blue-500 mb-4">
-                                ← Back
-                            </button> */}
                             <SelectYourInstructor 
                                 sortCriteria={filterCriteria}
                                 onFilterChange={handleFilterUpdate}
@@ -177,9 +181,6 @@ const FindYourInstructor = () => {
                     )}
                     {currentStep === 3 && (
                         <div className="animate-fade-in">
-                            {/* <button onClick={handlePrev} className="text-blue-500 mb-4">
-                                ← Back to Instructors
-                            </button> */}
                             <SummaryBlock 
                                 showDataAndTime={true}
                                 showInstructor={true}
@@ -190,20 +191,8 @@ const FindYourInstructor = () => {
                                 totalPriceStyles="flex text-[22px] md:text-[26px] font-medium md:font-semibold justify-between w-full md:p-4 opacity-70 md:opacity-100"
                                 linkButtonTo="/secureCheckout"
                             />
-
-                        <div className="flex justify-center">
-                            <Link to="/secureCheckout">
-                                
-                                <ButtonSearchInstruktor
-                                    name="Proceed to Checkout"
-                                    className="mt-5 w-full flex justify-center"
-                                    />
-                            </Link>
-                        </div>
-
                         </div>
                     )}
-
                 </div>
             )}
         </div>
