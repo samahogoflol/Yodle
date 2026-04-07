@@ -24,7 +24,7 @@ const OurInstructors = () => {
 
     return (
         <div id="our-instructors" className="pl-4 md:px-10 mt-15 md:mt-30 leading-[130%] relative z-0">
-            <h2 className="hidden text-[38px] md:text-[56px] font-normal md:font-semibold leading-[130%] ">Our featured instructors</h2>
+            <h2 className="hidden md:block text-[38px] md:text-[56px] font-normal md:font-semibold leading-[130%] ">Our featured instructors</h2>
             <h2 className="md:hidden text-[38px] font-normal leading-[100%] ">Our featured <br/> instructors</h2>
             <p className="text-[18px] pr-20 md:pr-0 md:w-[567px] md:h-[78pxv] md:text-[20px] mt-8 md:mt-15 leading-[120%] md:leading-[130%]">Every instructor on our platform is fully vetted and covered by comprehensive liability insurance, so you can focus on learning and enjoying the mountain. </p>
            <div className={`
