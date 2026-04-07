@@ -103,11 +103,18 @@ const ReviewsSwiper = () => {
              viewBox='0 0 630 590'
             />
         </div>
-        <div id='reviews'>
+        <div className='relative' id='reviews'>
             <h2 className='block md:hidden text-[38px] md:text-[56px] leading-[100%] pb-8'>The skiers who <br/> were with us — <br/> they liked it too</h2>
             <h2 className='hidden md:block text-[56px] leading-[100%] pr-60 font-semibold pb-15'>The skiers who were with <br/> us —  they liked it too</h2>
             <p className='md:hidden text-[18px] leading-[130%] pb-10'>Don't just take our word for it—hear from <br/> skiers who've experienced the difference <br/> our instructors make. </p>
             <p className='hidden md:block text-[18px] md:text-[20px] leading-[130%] pb-10'>Don't just take our word for it—hear from skiers who've <br/> experienced the difference our instructors make. </p>
+            <div className="md:hidden absolute top-12 right-5">
+                <BigSnow
+                width='40'
+                height='40'
+                viewBox='0 0 630 590'
+                />
+            </div>
         </div>      
         
         <div className={`hidden md:block cursor-pointer swiper-button-prev-custom absolute bottom-[120px] right-[-40px] z-10 text-black w-30 h-30 rotate-180 `}>{<NextArrowIcon/>}</div>

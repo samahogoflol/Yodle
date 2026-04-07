@@ -24,14 +24,13 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
     return (
         <div className="fixed inset-0 z-[100] mt-13.5 flex flex-col">
             <div 
-                className="absolute inset-1 bg-black/30 backdrop-blur-md transition-opacity z-10"
+                className="absolute inset-0 bg-black/30 backdrop-blur-md transition-opacity z-10"
                 onClick={() => {
-                    console.log("Клік по фону!");
                     onClose();
                 }}
             />
             <nav 
-                className="relative z-20 w-full h-auto bg-white shadow-2xl flex flex-col animate-slide-in"
+                className="relative mt-[-1px] z-20 w-full h-auto bg-white shadow-2xl flex flex-col animate-slide-in"
                 onClick={(e) => e.stopPropagation()}
             >
                 <ul className="flex flex-col pl-4 w-fit mt-5 mb-10.5 gap-6">
