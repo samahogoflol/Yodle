@@ -143,7 +143,7 @@ const RegisterForm = ({ onSuccess, onClose, onSwitchMode }: RegisterFormProps) =
 
                         <button
                             type="button"
-                            className="flex items-center m-auto px-15 py-2.5 border rounded mt-5 mb-3 cursor-pointer bg-white hover:opacity-70"
+                            className="flex items-center m-auto w-full justify-center py-2.5 border rounded mt-5 mb-3 cursor-pointer bg-white hover:opacity-70"
                         >
                             <GoogleLogoIcon/>
                             <span className="ml-2">Google</span>

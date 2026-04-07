@@ -104,7 +104,7 @@ const LoginForm = ({ onSuccess, onClose, onSwitchMode }: LoginFormProps) => {
 
                         <button
                             type="button"
-                            className="flex items-center m-auto px-15 py-2.5 border rounded mt-5 cursor-pointer bg-white hover:opacity-70"
+                            className="flex items-center justify-center border py-2.5 rounded mt-5 cursor-pointer bg-white hover:opacity-70 w-full"
                         >
                             <GoogleLogoIcon/>
                             <span className="ml-2">Google</span>
@@ -130,7 +130,7 @@ const LoginForm = ({ onSuccess, onClose, onSwitchMode }: LoginFormProps) => {
                         <button 
                             type="button"
                             onClick={onSwitchMode}
-                            className="py-3 px-[106px] bg-[#2E78E5] cursor-pointer text-white hover:opacity-75"
+                            className="py-3 text-center bg-[#2E78E5] cursor-pointer text-white hover:opacity-75"
                         >
                             Create an account
                         </button>
