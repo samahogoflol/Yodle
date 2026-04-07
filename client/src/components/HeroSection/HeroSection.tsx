@@ -15,7 +15,7 @@ const HeroSection = () => {
                         <div className="z-10">
                             <h1 className="text-[38px] md:text-[56px] leading-tight font-normal">Snow skills start here</h1>
                             <p className="mt-4 md:mt-6 text-[22px] md:text-[26px] leading-[110%] md:leading-[130%] font-medium">
-                                Book your ski or snowboard <br className="hidden md:block"/> instructor online
+                                Book your ski or snowboard <br/> instructor online
                             </p>
                         </div>
                         <div className="hidden md:block absolute top-[11vw] left-0 z-0">
