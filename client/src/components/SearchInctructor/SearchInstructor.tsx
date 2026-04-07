@@ -165,7 +165,7 @@ const SearchInstructor = () => {
                     label={"Skiing"}
                     checked = {searchData.sport === 'Skiing'}
                     onChange={() => handleSportChange("Skiing")}
-                    className={`${searchData.sport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black  `}
+                    className={`${searchData.sport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black `}
                 />
                 <Checkbox 
                     label={"Snowboarding"}
