@@ -7,12 +7,17 @@ import { parse, addHours, format } from 'date-fns';
 import { useState , useMemo} from "react";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
 
-const TimeAndDuration = () => {
+interface TimeAndDurationProps {
+    timeError?: boolean;
+    durationError?: boolean;
+}
+
+const TimeAndDuration = ({ timeError, durationError }: TimeAndDurationProps) => {
 
     const {bookingDetails, setBookingDetails} = useBookingDetails();
 
-    const [availableTime, setAvailableTime] = useState("9:00 AM");
-    const [isTimeSelected, setIsTimeSelected] = useState(false);
+    const [availableTime, setAvailableTime] = useState(bookingDetails.bookingStartTime || "Select the time");
+    const [isTimeSelected, setIsTimeSelected] = useState(!!bookingDetails.bookingStartTime);
     const timeOptions = ["9:00 AM", "10:00 AM", "11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
     const durationOptions = ["2 hours", "4 hours", "6 hours"];
 
@@ -80,8 +85,8 @@ const TimeAndDuration = () => {
 
         if(!bookingDetails.bookingStartTime || !currentDuration) { 
             return {
-                startTimeDisplay : "Select the time",
-                endTimeDisplay : "Select the duration",
+                startTimeDisplay : "-",
+                endTimeDisplay : "-",
                 durationDisplay : ""
             }
         }
@@ -118,10 +123,12 @@ const TimeAndDuration = () => {
                             className={clsx(
                                 "w-full text-white border-1 border-white mt-3 transition-colors",
                                 !isTimeSelected && "hover:bg-[#D3DCF8] hover:text-black hover:border-none",
-                                isTimeSelected && "bg-primary-selected border-none"
+                                isTimeSelected && "bg-primary-selected border-none",
+                                timeError && "border-red-500"
                             )}
                             isFilterBtn={false}
                         />
+                        {timeError && <p className="text-red-600 text-[14px] mt-1 font-medium">Please, select the start time</p>}
                     </div>
                     <div className="w-full">
                         <div className="flex items-center gap-3 mb-3">
@@ -139,6 +146,7 @@ const TimeAndDuration = () => {
                             />
                             ))}
                         </div>
+                        {durationError && <p className="text-red-600 text-[14px] mt-2 font-medium">Please, select the lesson duration</p>}
                     </div>
                 </div>
                 <div className="bg-white mt-4 p-4 md:p-5 flex items-start md:items-center gap-4">
@@ -152,8 +160,8 @@ const TimeAndDuration = () => {
                             <p>Duration</p>
                         </div>
                         <div className="flex justify-between w-full leading-[130%] text-[18px] md:text-[26px] font-medium">
-                            <p>{startTimeDisplay}</p>
-                            <p>{bookingDetails.lessonTime ? durationDisplay : endTimeDisplay}</p>
+                            <span>{startTimeDisplay}</span>  
+                            <span>{bookingDetails.lessonTime ? durationDisplay : endTimeDisplay}</span>
                         </div>
                     </div>
                 </div>

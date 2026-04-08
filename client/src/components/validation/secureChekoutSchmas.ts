@@ -57,3 +57,5 @@ export const paymentInfoSchema = z.object({
     .trim()
     .regex(CVV_REGEX, { message: "CVV must be 3 or 4 digits." })
 });
+
+export const fullCheckoutSchema = contactInfoSchema.merge(paymentInfoSchema);

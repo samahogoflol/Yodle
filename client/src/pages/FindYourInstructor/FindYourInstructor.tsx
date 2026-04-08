@@ -9,7 +9,8 @@ import { INSTRUCTORS_MOCK_DATA } from "../../data/instructorsMock";
 import type { InstructorsProps } from "../../types/instructors";
 import { useState } from "react";
 import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
-import { useSearchParams } from "react-router-dom"; // 👈 ДОДАЛИ ЦЕЙ ХУК
+import { useSearchParams } from "react-router-dom";
+import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
 
 import { type SortCriteria} from "../../components/constants/sort";
 import ButtonSearchInstruktor from "../../components/UI/ButtonSearchInstructor";
@@ -63,19 +64,52 @@ const sortInstructors = (
 const FindYourInstructor = () => {
 
     const {isMobile}= useWindowWidth();
+    const { bookingDetails } = useBookingDetails();
+    
     const [filterCriteria, setFilterCriteria] = useState<SortCriteria>("RATING_DESC");
-    
-    // 👈 ЗМІНИЛИ useState НА useSearchParams
-    const [searchParams, setSearchParams] = useSearchParams();
-    
-    // Читаємо поточний крок з URL (якщо його немає, ставимо 1)
+    const [searchParams, setSearchParams] = useSearchParams()
     const currentStep = Number(searchParams.get("step")) || 1;
 
+    const [showErrors, setShowErrors] = useState(false);
+
     const handleNext = () => {
-        // Оновлюємо URL, додаючи наступний крок. Браузер це запам'ятає в історію!
+        if (currentStep === 1) {
+            const isTimeMissing = !bookingDetails.bookingStartTime;
+            const isDurationMissing = !bookingDetails.lessonTime;
+
+            if (isTimeMissing || isDurationMissing) {
+                setShowErrors(true);
+                return; 
+            }
+        }
+
+        if (currentStep === 2) {
+            const isInstructorMissing = !bookingDetails.instructor;
+
+            if (isInstructorMissing) {
+                setShowErrors(true)
+                return
+            }
+        }
+        setShowErrors(false);
+
         const newParams = new URLSearchParams(searchParams);
         newParams.set("step", String(currentStep + 1));
         setSearchParams(newParams);
+    };
+
+    const handleDesktopNext = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const isTimeMissing = !bookingDetails.bookingStartTime;
+        const isDurationMissing = !bookingDetails.lessonTime;
+        const isInstructorMissing = !bookingDetails.instructor;
+
+        if (isTimeMissing || isDurationMissing || isInstructorMissing) {
+            e.preventDefault(); 
+            setShowErrors(true);
+            return;
+        }
+
+        setShowErrors(false);
     };
 
     const handleFilterUpdate = (newCriteria : SortCriteria) => {
@@ -96,8 +130,18 @@ const FindYourInstructor = () => {
                 <div>
                     <div className="grid grid-cols-3 px-[85px] gap-7 z-10">
                         <div className="col-span-2 z-10">
-                            <TimeAndDuration/>
+                            <TimeAndDuration
+                                timeError={showErrors && !bookingDetails.bookingStartTime}
+                                durationError={showErrors && !bookingDetails.lessonTime}
+                            />
                             <CalculateParticipants/>
+
+                             {showErrors && !bookingDetails.instructor && (
+                                <p className="text-red-600  text-center mt-5">
+                                    Please, select an instructor
+                                </p>
+                            )}
+
                             <SelectYourInstructor
                                 sortCriteria={filterCriteria}
                                 onFilterChange={handleFilterUpdate}
@@ -116,6 +160,7 @@ const FindYourInstructor = () => {
                                 buttonText="Proceed to Checkout"
                                 totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"
                                 linkButtonTo="/secureCheckout"
+                                onClick={handleDesktopNext}
                             />
                         </div>
                     </div>
@@ -149,7 +194,10 @@ const FindYourInstructor = () => {
                     </div>
                     {currentStep === 1 && (
                         <div className="animate-fade-in relative">
-                            <TimeAndDuration />
+                            <TimeAndDuration 
+                                timeError={showErrors && !bookingDetails.bookingStartTime}
+                                durationError={showErrors && !bookingDetails.lessonTime}
+                            />
                             <CalculateParticipants />
                             <ButtonSearchInstruktor 
                                 onClick={handleNext}
@@ -172,6 +220,11 @@ const FindYourInstructor = () => {
                                 onFilterChange={handleFilterUpdate}
                             />
                             <InstructorCard instructors={instructorsToDisplay} />
+                            {showErrors && !bookingDetails.instructor && (
+                                <p className="text-red-500 text-center mt-4 text-[16px] font-medium">
+                                    Please, select an instructor
+                                </p>
+                            )}
                             <ButtonSearchInstruktor 
                                 onClick={handleNext}
                                 name="Book lesson"
