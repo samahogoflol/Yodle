@@ -58,7 +58,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.9,
         mainPageReview : false,
         howManyFeedback : 127,
-        price : 85,
+        price : 55,
         isWorking: true,
         time : [
             {nineAM: "9:00 AM"},
@@ -77,7 +77,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.7,
         mainPageReview : false,
         howManyFeedback : 76,
-        price : 70,
+        price : 35,
         isWorking: true,
         time : [
             {nineAM: "9:00 AM"},
@@ -97,7 +97,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.9,
         mainPageReview : false,
         howManyFeedback : 51,
-        price : 75,
+        price : 35,
         isWorking: true,
         time : [
             {nineAM: "9:00 AM"},
@@ -117,7 +117,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.7,
         mainPageReview : false,
         howManyFeedback : 21,
-        price : 70,
+        price : 40,
         isWorking: true,
         time : [
             {nineAM: "9:00 AM"},
@@ -138,7 +138,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.2,
         mainPageReview : false,
         howManyFeedback : 57,
-        price : 95,
+        price : 75,
         isWorking: true,
         time : [
             {nineAM: "11:00 AM"},
@@ -159,7 +159,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.6,
         mainPageReview : false,
         howManyFeedback : 17,
-        price : 55,
+        price : 40,
         isWorking: true,
         time : [
             {nineAM: "10:00 AM"},
@@ -180,7 +180,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.8,
         mainPageReview : false,
         howManyFeedback : 25,
-        price : 65,
+        price : 35,
         isWorking: true,
         time : [
             {nineAM: "10:00 AM"},
@@ -201,7 +201,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.4,
         mainPageReview : false,
         howManyFeedback : 36,
-        price : 70,
+        price : 45,
         isWorking: true,
         time : [
             {nineAM: "10:00 AM"},
@@ -222,7 +222,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.1,
         mainPageReview : false,
         howManyFeedback : 29,
-        price : 50,
+        price : 30,
         isWorking: true,
         time : [
             {nineAM: "8:00 AM"},
@@ -243,7 +243,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 3.9,
         mainPageReview : false,
         howManyFeedback : 35,
-        price : 50,
+        price : 45,
         isWorking: true,
         time : [
             {nineAM: "9:00 AM"},
@@ -264,7 +264,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.1,
         mainPageReview : false,
         howManyFeedback : 38,
-        price : 65,
+        price : 50,
         isWorking: true,
         time : [
             {nineAM: "10:00 AM"},
@@ -285,7 +285,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.2,
         mainPageReview : false,
         howManyFeedback : 28,
-        price : 55,
+        price : 35,
         isWorking: true,
         time : [
             {nineAM: "8:00 AM"},
@@ -306,7 +306,7 @@ export const INSTRUCTORS_MOCK_DATA: InstructorsProps[] = [
         rating : 4.3,
         mainPageReview : false,
         howManyFeedback : 24,
-        price : 55,
+        price : 30,
         isWorking: true,
         time : [
             {nineAM: "8:00 AM"},
