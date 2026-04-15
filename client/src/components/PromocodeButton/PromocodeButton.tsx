@@ -56,7 +56,7 @@ export const PromocodeButton = () => {
                 <div className="bg-[#80AAEF] p-4 md:p-7 rounded">
                     <div>
                         <div className="flex items-baseline justify-between">
-                            <h5 className="text-[22px] leading-[120%] pb-4 md:pb-5">Promocode</h5>
+                            <h5 className="text-[22px] leading-[120%] pb-4 md:pb-5">Promo code</h5>
                             <div className="pb-1 cursor-pointer" onClick={() => setIsActive(false)}>
                                 <MinusIcon/>
                             </div>
