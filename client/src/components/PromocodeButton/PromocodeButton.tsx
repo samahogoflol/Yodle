@@ -47,7 +47,7 @@ export const PromocodeButton = () => {
                 className={`${isActive ? "hidden" : "block"} bg-[#80AAEF] flex items-center justify-between p-4 md:p-7 rounded cursor-pointer transition-all`}
              >
                 <h5 className={`text-[20px] leading-[130%] opacity-60`}>
-                    Have a promocode?
+                    Have a promo code?
                 </h5>
                 <PlusIcon className="opacity-60"/>
             </div>
