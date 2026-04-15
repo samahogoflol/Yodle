@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
 
 import DataAndTimeSummaryCard from "../../components/DataAndTimeSummaryCard/DataAndTimeSummaryCard";
@@ -19,13 +19,18 @@ import Footer from "../../components/Footer/Footer";
 
 const BookingConfirmed = () => {
 
+    const navigate = useNavigate();
     const {isMobile} = useWindowWidth()
-
-    const {bookingDetails} = useBookingDetails()
+    const {bookingDetails, clearBookingDetails} = useBookingDetails()
 
     const finalPrice = bookingDetails.instructor 
         ? calculateBookingPrice(bookingDetails as BookingDetailsProps)
         : 0;
+
+    const handleBackHome = () => {
+        clearBookingDetails(); 
+        void navigate("/");     
+    };
 
     return (
         <div>
@@ -69,7 +74,7 @@ const BookingConfirmed = () => {
                                 <div className="flex justify-center">
                                     <ButtonSearchInstruktor
                                     name="Back to Home"
-                                    onClick={() => null}
+                                    onClick={handleBackHome}
                                     className="mt-6"
                                     />
                                 </div>
@@ -83,7 +88,7 @@ const BookingConfirmed = () => {
                         <div className="flex justify-center">
                             <ButtonSearchInstruktor
                                 name="Back to Home"
-                                onClick={() => null}
+                                onClick={handleBackHome}
                                 className="mt-6"
                             />
                         </div>
