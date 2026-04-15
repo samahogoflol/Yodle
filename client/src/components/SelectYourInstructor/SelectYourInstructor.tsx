@@ -10,7 +10,7 @@ interface SelectYourInstructorProps {
 const SelectYourInstructor:React.FC<SelectYourInstructorProps> = ({onFilterChange, sortCriteria}) => {
 
     return (
-        <div className="bg-[#80AAEF] rounded w-full md:mt-7 px-4 md:px-7 flex flex-col md:flex-row md:justify-between">
+        <div className="bg-[#80AAEF] rounded w-full px-4 md:px-7 flex flex-col md:flex-row md:justify-between">
             <div className="text-[26px] font-semibold leading-[130%] pt-4 md:pt-7 md:pb-[35px]">
                  <h2 className="text-[22px] leading-[120%] font-medium md:text-[26px] md:leading-[130%] md:font-semibold">Your Instructor</h2>
             </div>

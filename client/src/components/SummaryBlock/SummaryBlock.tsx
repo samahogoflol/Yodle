@@ -9,6 +9,7 @@ import TypeSummeryCard from "../TypeSummeryCard/TypeSummeryCard";
 import ParticipantsSummaryCard from "../ParticipantsSummaryCard/ParticipantsSummaryCard";
 import InstructorsSummaryBlock from "../InstructorsSummaryBlock/InstructorsSummaryBlock";
 import TotalPriceSummaryBlock from "../TotalPriceSummaryBlock/TotalPriceSummaryBlock";
+import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
 
 interface SummaryBlockProps {
     showLocation: boolean;
@@ -20,21 +21,49 @@ interface SummaryBlockProps {
     totalPriceStyles : string;
     linkButtonTo?: string; 
     formId?: string;
+    isSticky?: boolean;
     onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void; 
 }
 
-const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime, showInstructor, showType, showParticipants, buttonText, totalPriceStyles, linkButtonTo, formId, onClick}) => {
+const SummaryBlock:React.FC<SummaryBlockProps> = ({
+    showLocation, showDataAndTime, showInstructor, showType, showParticipants, 
+    buttonText, totalPriceStyles, linkButtonTo, formId, isSticky, onClick
+}) => {
 
+    const {isDesktop} = useWindowWidth();
     const {bookingDetails} = useBookingDetails();
 
     const finalPrice = bookingDetails.instructor 
     ? calculateBookingPrice(bookingDetails as BookingDetailsProps)
     : 0;
 
+    const renderButton = () => (
+        <div className="w-full mt-5 md:mt-0">
+            {formId ? (
+                <div className="flex justify-center">
+                    <ButtonSearchInstruktor
+                        name={buttonText}
+                        type="submit" 
+                        form={formId}
+                    />
+                </div>
+            ) : (
+                <Link onClick={onClick} to={linkButtonTo || "#"}>
+                    <div className="flex justify-center">
+                        <ButtonSearchInstruktor
+                            name={buttonText}
+                        />
+                    </div>
+                </Link>
+            )}
+        </div>
+    );
+
     return (
-        <div>
+        <div className={`h-fit ${isSticky ? "md:sticky md:top-2" : ""}`}>
              <div className="bg-[#80AAEF] rounded p-4 md:p-7 flex flex-col gap-4">
-                <h2 className="text-[22px] md:text-[26px] md:font-semibold md:mb-6 leading-[130%]">Summary</h2>
+                <h2 className="text-[22px] md:text-[26px] md:font-semibold leading-[130%]">Summary</h2>
+                
                 {showType && (
                     <TypeSummeryCard typeOfSport={bookingDetails.typeOfSport} />
                 )}
@@ -62,33 +91,16 @@ const SummaryBlock:React.FC<SummaryBlockProps> = ({showLocation, showDataAndTime
                         instructorTotalReviews={bookingDetails.instructor?.howManyFeedback}
                     />
                 )}
-                <div className="pt-3 md:pt-6">
+                
+                <div className="pt-3 ">
                     <TotalPriceSummaryBlock
                         finalPrice={finalPrice.toFixed(2)}
                         totalPriceStyles={totalPriceStyles}
                     />
                 </div>
+                {isDesktop && renderButton()}
             </div>
-
-            <div className="w-full mt-6">
-                {formId ? (
-                    <div className="flex justify-center">
-                        <ButtonSearchInstruktor
-                            name={buttonText}
-                            type="submit" 
-                            form={formId}
-                        />
-                    </div>
-                ) : (
-                    <Link onClick={onClick} to={linkButtonTo || "#"}>
-                        <div className="flex justify-center">
-                            <ButtonSearchInstruktor
-                                name={buttonText}
-                            />
-                        </div>
-                    </Link>
-                )}
-            </div>
+            {!isDesktop && renderButton()}
         </div>
     );
 }

@@ -1,10 +1,38 @@
+import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useBookingDetails } from '../../utilities/customHooks/useBookingDetails';
+
+interface ContactInfoFormValues {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    email: string;
+}
 
 const ContactInfo = () => {
+
+    const { setBookingDetails } = useBookingDetails();
+
     const {
         register,
         formState: { errors },
-    } = useFormContext();
+        watch
+    } = useFormContext<ContactInfoFormValues>();
+
+    const watchedFirstName = watch('firstName');
+    const watchedLastName = watch('lastName');
+    const watchedPhoneNumber = watch('phoneNumber');
+    const watchedEmail = watch('email');
+
+    useEffect(() => {
+        setBookingDetails(prev => ({
+            ...prev,
+            firstName: watchedFirstName || "",
+            lastName: watchedLastName || "",
+            phoneNumber: watchedPhoneNumber || "",
+            email: watchedEmail || ""
+        }));
+    }, [watchedFirstName, watchedLastName, watchedPhoneNumber, watchedEmail, setBookingDetails]);
 
     return (
          <div className="col-span-2 bg-[#80AAEF] rounded p-4 md:p-7">
@@ -35,7 +63,7 @@ const ContactInfo = () => {
                             </label>
                         </div>
                         {errors.firstName && (
-                            <p className='text-red-600 mt-1'>{errors.firstName.message as string}</p>
+                            <p className='text-red-600 mt-1'>{errors.firstName?.message as string}</p>
                         )}
                     </div>
                     <div>
@@ -61,7 +89,7 @@ const ContactInfo = () => {
                             </label>
                         </div>
                         {errors.lastName && (
-                            <p className='text-red-600 mt-1'>{errors.lastName.message as string}</p>
+                            <p className='text-red-600 mt-1'>{errors.lastName?.message as string}</p>
                         )}
                     </div> 
                 </div>
@@ -86,11 +114,10 @@ const ContactInfo = () => {
                         >
                             Phone Number
                         </label>
+                        {errors.phoneNumber && (
+                            <p className='text-red-600 mt-1'>{errors.phoneNumber?.message as string}</p>
+                        )}
                     </div>
-                    {errors.phoneNumber && (
-                        <p className='text-red-600 mt-1'>{errors.phoneNumber.message as string}</p>
-                    )}
-                    
                     <div className='relative'>
                         <input
                             id='email' 
@@ -111,7 +138,7 @@ const ContactInfo = () => {
                             Email
                         </label>
                         {errors.email && (
-                            <p className='text-red-600 mt-1'>{errors.email.message as string}</p>
+                            <p className='text-red-600 mt-1'>{errors.email?.message as string}</p>
                         )}
                     </div> 
                 </div>

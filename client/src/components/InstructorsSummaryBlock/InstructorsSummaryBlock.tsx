@@ -1,6 +1,3 @@
-import { StarIcon } from "../UI/Icons/StarIcon";
-import { useWindowWidth } from "../../utilities/customHooks/useWindowWidth";
-
 interface InstructorsSummaryBlockProps {
     instructorId? : number;
     instructorPhoto? : string;
@@ -10,13 +7,12 @@ interface InstructorsSummaryBlockProps {
     instructorTotalReviews? : number;
 }
 
-const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instructorExperience,instructorId,instructorName,instructorPhoto,instructorRating,instructorTotalReviews}) => {
-    const {isMobile} = useWindowWidth();
+const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instructorId,instructorName,instructorPhoto}) => {
 
     return (
-        <div className="bg-white py-2 md:py-4 px-4 ">
+        <div className="flex flex-col bg-white py-2 px-4 gap-2 ">
             <h2 className="leading-[130%] md:text-[#696969]">Instructor</h2>
-            <div className="flex items-center mt-3 mb-3">
+            <div className="flex items-center ">
                 {instructorPhoto? (
                     <>
                         <img 
@@ -30,15 +26,6 @@ const InstructorsSummaryBlock:React.FC<InstructorsSummaryBlockProps> = ({instruc
                 }
                 <p className="pl-2 text-[18px] md:text-[20px]">{instructorName}</p>
             </div>
-
-            {!isMobile && (
-                <div className="flex items-center">
-                    <StarIcon/> 
-                    <h5 className="pl-2 pr-5 ">{instructorRating} ({instructorTotalReviews})</h5>
-                    <h5>{instructorExperience} years exp</h5>
-                </div>
-            )}
-
         </div>
     )
 }

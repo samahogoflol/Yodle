@@ -11,7 +11,7 @@ return (
         </div>
         <div className="md:hidden">
             <a href="tel:+4408762122213" className="block mb-5 hover:text-[#2E78E5]">
-                +44 (0) 876 2122213
+                +1 916 690 1778
             </a>
         </div>  
         <div className="md:mt-30">
@@ -48,7 +48,7 @@ return (
             <nav>
                 <ul>
                     <a href="tel:+4408762122213">
-                        <li className="mb-[29px] hover:text-[#2E78E5]">+44 (0) 876 2122213</li>
+                        <li className="mb-[29px] hover:text-[#2E78E5]">+1 916 690 1778</li>
                     </a>
                 </ul>
             </nav>

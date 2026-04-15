@@ -1,4 +1,4 @@
-import { Plus, Minus } from "./UI/Icons/MinusAndPlus";
+import { PlusIcon, MinusIcon } from "./UI/Icons/MinusAndPlus";
 import { useBookingDetails } from "../utilities/customHooks/useBookingDetails";
 
 const CalculateParticipants = () => {
@@ -28,13 +28,13 @@ const CalculateParticipants = () => {
     const unActiveClass = "text-[#696969] cursor-default"
 
     return (
-        <div className="w-full bg-[#80AAEF] mt-5 md:mt-16 p-4 md:p-7 rounded">
+        <div className="w-full bg-[#80AAEF]  p-4 md:p-7 rounded">
            <h2 className="text-[22px] mb-4 md:text-[26px] md:font-semibold md:mb-6">Number of Participants</h2>
            <div className="flex items-center gap-1 md:gap-2 p-4 md:py-5 md:px-4 bg-white">
             <div 
                 className="py-3" 
                 onClick={handleMinus}>
-                <Minus
+                <MinusIcon
                 className={currentParticipants <= 1? unActiveClass : "cursor-pointer " }
                 />
             </div>
@@ -42,7 +42,7 @@ const CalculateParticipants = () => {
             <div 
             className="py-3" 
             onClick={handlePlus}>
-                <Plus
+                <PlusIcon
                 className={currentParticipants === 4 ? unActiveClass : "cursor-pointer "}
                 />
             </div>

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { searchInstructorSchema } from "../validation/searchInstructorSchema";
 import { RESORTS_BY_STATE } from "../../data/resortsList";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
-import type { BookingDetailsState } from "../../store/BookingDetailsContext";
 
 import Checkbox from "../UI/Checkbox";
 import Location from "../UI/Icons/Location";
@@ -16,13 +15,6 @@ import "../../styles/index.css"
 
 type SportType = 'Skiing' | 'Snowboarding' | 'Guiding' | null;
 
-interface SearchData {
-    sport: SportType; 
-    state: string | null;
-    resort: string | null;
-    date: Date | null; 
-}
-
 const ALL_RESORTS_TO_STATE = Object.entries(RESORTS_BY_STATE).reduce((acc, [stateKey, resorts]) => {
     const StateName = stateKey.charAt(0).toUpperCase() + stateKey.slice(1); 
     resorts.forEach(resort => {
@@ -33,20 +25,17 @@ const ALL_RESORTS_TO_STATE = Object.entries(RESORTS_BY_STATE).reduce((acc, [stat
 
 const SearchInstructor = () => {
 
-    const {setBookingDetails} = useBookingDetails();
+    const {bookingDetails, setBookingDetails} = useBookingDetails();
 
     const [errors, setErrors] = useState<Record<string,string>>({});
-
     const navigate = useNavigate();
 
-    const [searchData, setSearchData] = useState<SearchData>({
-        sport: null,
-        state: null,
-        resort: null,
-        date: null,
-    });
+    const currentSport = (bookingDetails.typeOfSport as SportType) || null;
+    const currentStateValue = bookingDetails.location || null;
+    const currentResort = bookingDetails.resort || null;
+    const currentDate = bookingDetails.date;
 
-    const currentStateKey = searchData.state?.toLowerCase();
+    const currentStateKey = currentStateValue?.toLowerCase();
     
     const allResortNames = useMemo(() => {
         return Object.values(RESORTS_BY_STATE).flat();
@@ -56,100 +45,69 @@ const SearchInstructor = () => {
         ? RESORTS_BY_STATE[currentStateKey as keyof typeof RESORTS_BY_STATE] || []
         : allResortNames; 
 
-    const handleChange = (key: keyof SearchData, value: string | Date | null) => {
+    const handleChange = (key: 'sport' | 'state' | 'resort' | 'date', value: string | Date | null) => {
 
         setErrors(prev => {
-        if (!prev[key]) return prev;
-
-        const updated = { ...prev };
-        delete updated[key];
-        return updated;
+            if (!prev[key]) return prev;
+            const updated = { ...prev };
+            delete updated[key];
+            return updated;
         });
 
-        setSearchData(prevData => {
-            const newState = {
-                ...prevData,
-                [key]: value, 
-            };
+        setBookingDetails(prevDetails => {
+            const newState = { ...prevDetails };
             
             if (key === 'state') {
-                newState.resort = null; 
-            }
-            if (key === 'resort' && value) {
-                const selectedResort = value as string;
-                const correspondingState = ALL_RESORTS_TO_STATE[selectedResort];
-                if (correspondingState) {
-                    newState.state = correspondingState;
+                newState.location = (value as string) || '';
+                newState.resort = ''; 
+            } 
+            else if (key === 'resort') {
+                const selectedResort = (value as string) || '';
+                newState.resort = selectedResort;
+
+                if (selectedResort) {
+                    const correspondingState = ALL_RESORTS_TO_STATE[selectedResort];
+                    if (correspondingState) {
+                        newState.location = correspondingState;
+                    }
                 }
+            }
+            else if (key === 'date') {
+                newState.date = value as Date | null;
+            } 
+            else if (key === 'sport') {
+                newState.typeOfSport = (value as string) || '';
             }
 
             return newState;
         });
-
-        setBookingDetails(prevDetails => {
-            let update: Partial<BookingDetailsState> = {};
-            const currentValue = value;
-            
-            if (key === 'state' || (key === 'resort' && currentValue)) {
-                
-                let resortName = prevDetails.resort;
-                let stateName = prevDetails.location;
-
-                if (key === 'resort') {
-                    resortName = (currentValue as string) || '';
-                    stateName = ALL_RESORTS_TO_STATE[resortName] || prevDetails.location;
-                } else if (key === 'state') {
-                    stateName = (currentValue as string) || '';
-                    if (!stateName) {
-                         resortName = '';
-                    }
-                }
-                
-                update = {
-                    location: stateName,
-                    resort: resortName
-                };
-
-            } else if (key === 'date') {
-                
-                update = {
-                    date: currentValue as Date | null, 
-                };
-            } else if (key === "sport") {
-                update = {
-                    typeOfSport : currentValue as string || "",
-                }
-            }
-
-            return {
-                ...prevDetails,
-                ...update,
-            };
-    })
-    }
+    };
 
     const handleSportChange = (sport: SportType) => {
-        const newValue = searchData.sport === sport  
-        ? null
-        : sport;
-        
-        handleChange("sport", newValue)
+        const newValue = currentSport === sport ? null : sport;
+        handleChange("sport", newValue);
     };
 
     const handleSubmit = () => {
-    const result = searchInstructorSchema.safeParse(searchData);
+        const dataToValidate = {
+            sport: currentSport,
+            state: currentStateValue,
+            resort: currentResort,
+            date: currentDate,
+        };
 
-    if (!result.success) {
-    const fieldErrors: Record<string, string> = {};
+        const result = searchInstructorSchema.safeParse(dataToValidate);
 
-    result.error.issues.forEach(err => {
-      const field = err.path[0] as string;
-      fieldErrors[field] = err.message;
-    });
+        if (!result.success) {
+            const fieldErrors: Record<string, string> = {};
+            result.error.issues.forEach(err => {
+                const field = err.path[0] as string;
+                fieldErrors[field] = err.message;
+            });
 
-        setErrors(fieldErrors);
-        return; 
-    }
+            setErrors(fieldErrors);
+            return; 
+        }
         setErrors({});
         void navigate("findYourInstructor");
     };
@@ -163,35 +121,35 @@ const SearchInstructor = () => {
             <div className={`flex gap-6 md:gap-8 ${errors.sport ? "animate-shake" : ""}`}>
                 <Checkbox 
                     label={"Skiing"}
-                    checked = {searchData.sport === 'Skiing'}
+                    checked = {currentSport === 'Skiing'}
                     onChange={() => handleSportChange("Skiing")}
-                    className={`${searchData.sport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black `}
+                    className={`${currentSport === "Skiing" ? "text-white hover:text-white" :  "" } hover:text-black `}
                 />
                 <Checkbox 
                     label={"Snowboarding"}
-                    checked = {searchData.sport === 'Snowboarding'}
+                    checked = {currentSport === 'Snowboarding'}
                     onChange={() => handleSportChange("Snowboarding")}
-                    className={`${searchData.sport === "Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
+                    className={`${currentSport === "Snowboarding" ? "text-white hover:text-white" :  "" } hover:text-black `}
                 />
                 <Checkbox 
                     label={"Guiding"}
-                    checked = {searchData.sport === "Guiding"}
+                    checked = {currentSport === "Guiding"}
                     onChange={() => handleSportChange("Guiding")}
-                    className={`${searchData.sport === "Guiding" ? "text-white hover:text-white" :  "" } hover:text-black `}
+                    className={`${currentSport === "Guiding" ? "text-white hover:text-white" :  "" } hover:text-black `}
                 />
             </div>
             <div className="flex flex-col md:grid md:grid-cols-[1.32fr_2fr_1.1fr] px-5 md:px-0 gap-6 md:gap-5">
                 <div className={`group`}>
-                    <div className={`${searchData.state? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-2.5 md:mb-3 group-hover:text-black `}>
+                    <div className={`${currentStateValue ? "group-hover:text-white" : ""} text-white flex items-center mt-6 gap-2 mb-2.5 md:mb-3 group-hover:text-black `}>
                         <Location/>
                         <p>State</p>
                     </div>
                     <Dropdown
                         options={["California", "Oregon", "Washington" ]}
-                        value={searchData.state}
+                        value={currentStateValue}
                         placeholder="Choose the State"
                         onChange={(newValue) => handleChange("state", newValue)}
-                        className={` ${searchData.state? "bg-primary-selected border-none group-hover:text-white" : ""} 
+                        className={` ${currentStateValue ? "bg-primary-selected border-none group-hover:text-white" : ""} 
                         border-1 border-white text-white group-hover:text-black group-hover:border-black w-full 
                         ${ errors.state ? "border-red-500 text-red-600" : "border-white text-white w-full" }`}
                         isFilterBtn={false}
@@ -201,16 +159,16 @@ const SearchInstructor = () => {
                     )}
                 </div>
             <div className={`group`}>
-              <div className={` ${searchData.resort? "group-hover:text-white" : ""} text-white flex items-center md:mt-6 gap-2 mb-2.5 md:mb-3 group-hover:text-black`}>
+              <div className={` ${currentResort ? "group-hover:text-white" : ""} text-white flex items-center md:mt-6 gap-2 mb-2.5 md:mb-3 group-hover:text-black`}>
                 <ResortIcon/>
                 <p>Resort</p>
               </div>
                 <Dropdown
                     options={resortOptions}
-                    value={searchData.resort}
+                    value={currentResort}
                     placeholder="Choose the Resort"
                     onChange={(newValue) => handleChange("resort", newValue)}
-                    className={` ${searchData.resort? "bg-primary-selected border-none group-hover:text-white" : ""}  border-1 border-white text-white group-hover:text-black group-hover:border-black`}
+                    className={` ${currentResort ? "bg-primary-selected border-none group-hover:text-white" : ""}  border-1 border-white text-white group-hover:text-black group-hover:border-black`}
                     isFilterBtn={false}
                />
                {errors.resort && (
@@ -221,7 +179,7 @@ const SearchInstructor = () => {
             <div className={`group`}>
                 <div className="md:mt-6">
                     <DateField
-                        data={searchData.date}
+                        data={currentDate}
                         onSelect={(newValue) => handleChange("date", newValue)}
                     />
                     {errors.date && (

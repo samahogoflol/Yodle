@@ -97,7 +97,7 @@ const BookingConfirmed = () => {
                         viewBox="0 0 477 594"
                     />
                 </div>
-                <div className="absolute bottom-[-30px] right-15 md:bottom-0 md:top-[4vw] md:right-[7vw] md:rotate-60">
+                <div className="absolute bottom-[-30px] right-15 md:top-20">
                     <BigSnow
                         width="64px"
                         height="64px"

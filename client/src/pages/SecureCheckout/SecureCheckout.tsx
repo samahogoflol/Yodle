@@ -7,16 +7,25 @@ import { PromocodeButton } from "../../components/PromocodeButton/PromocodeButto
 import ContactInfo from "../../components/ContactInfo/ContactInfo";
 import Payment from "../../components/Payment/Payment";
 import SummaryBlock from "../../components/SummaryBlock/SummaryBlock";
+import { useBookingDetails } from '../../utilities/customHooks/useBookingDetails';
 
 const SecureCheckout = () => {
 
-    const { isMobile } = useWindowWidth();
-    const navigate = useNavigate();
+    const { bookingDetails } = useBookingDetails();
 
     const methods = useForm({
         resolver: zodResolver(fullCheckoutSchema),
-        mode: 'onBlur'
+        mode: 'onBlur',
+        defaultValues: {
+            firstName: bookingDetails.firstName || "",
+            lastName: bookingDetails.lastName || "",
+            email: bookingDetails.email || "",
+            phoneNumber: bookingDetails.phoneNumber || "",
+        }
     });
+
+    const { isMobile } = useWindowWidth();
+    const navigate = useNavigate();
 
     const onSubmit = () => {
         void navigate("/bookingConfirmed");

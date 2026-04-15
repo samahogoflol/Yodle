@@ -87,7 +87,7 @@ const Header = () => {
             </nav>
             
             <div className="hidden md:flex items-center justify-end gap-10">
-                <a className="hover:text-blue-400" href="tel:+4408762122213">+44 (0) 876 2122213</a>
+                <a className="hover:text-blue-400" href="tel:+4408762122213">+1 916 690 1778</a>
                 <button
                     type="button" 
                     onClick={() => setModalType("register")}

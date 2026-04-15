@@ -2,7 +2,7 @@ interface Props {
     className?: string;
 }
 
-export const Minus:React.FC<Props> = ({className}) => {
+export const MinusIcon:React.FC<Props> = ({className}) => {
     return (
         <svg 
         width="15"
@@ -24,7 +24,7 @@ export const Minus:React.FC<Props> = ({className}) => {
     
 }
 
-export const Plus:React.FC<Props> = ({className}) => {
+export const PlusIcon:React.FC<Props> = ({className}) => {
     return (
     <svg 
         width="15" 

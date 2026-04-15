@@ -125,30 +125,34 @@ const FindYourInstructor = () => {
 
     return (
         <div className="mb-16 relative z-10">
-            <h1 className="text-center text-[38px] md:text-[56px] font-medium md:font-semibold mt-20 md:mt-40 mb-[30px] md:mb-[85px] ">Find Your Instructor</h1>
+            <h1 className="text-center text-[38px] md:text-[56px] font-medium md:font-semibold mt-20 md:mt-30 mb-[30px] md:mb-20">Find Your Instructor</h1>
             {!isMobile  && (
                 <div>
                     <div className="grid grid-cols-3 px-[85px] gap-7 z-10">
-                        <div className="col-span-2 z-10">
-                            <TimeAndDuration
-                                timeError={showErrors && !bookingDetails.bookingStartTime}
-                                durationError={showErrors && !bookingDetails.lessonTime}
-                            />
-                            <CalculateParticipants/>
-
-                             {showErrors && !bookingDetails.instructor && (
-                                <p className="text-red-600  text-center mt-5">
-                                    Please, select an instructor
-                                </p>
-                            )}
-
-                            <SelectYourInstructor
-                                sortCriteria={filterCriteria}
-                                onFilterChange={handleFilterUpdate}
-                            />
-                            <InstructorCard
-                                instructors={instructorsToDisplay}
-                            />
+                        <div className="flex flex-col col-span-2 z-10 gap-y-7">
+                            <div>
+                                <TimeAndDuration
+                                    timeError={showErrors && !bookingDetails.bookingStartTime}
+                                    durationError={showErrors && !bookingDetails.lessonTime}
+                                />
+                            </div>
+                            <div>
+                                <CalculateParticipants/>
+                                {showErrors && !bookingDetails.instructor && (
+                                    <p className="text-red-600  text-center mt-5">
+                                        Please, select an instructor
+                                    </p>
+                                )}
+                            </div>
+                            <div>
+                                <SelectYourInstructor
+                                    sortCriteria={filterCriteria}
+                                    onFilterChange={handleFilterUpdate}
+                                />
+                                <InstructorCard
+                                    instructors={instructorsToDisplay}
+                                />
+                           </div>
                         </div>
                         <div className="z-10">
                             <SummaryBlock 
@@ -158,9 +162,10 @@ const FindYourInstructor = () => {
                                 showParticipants={true}
                                 showType={true}
                                 buttonText="Proceed to Checkout"
-                                totalPriceStyles="flex text-[26px] font-semibold justify-between w-full p-4"
+                                totalPriceStyles="flex text-[26px] font-semibold justify-between w-full px-4"
                                 linkButtonTo="/secureCheckout"
                                 onClick={handleDesktopNext}
+                                isSticky={true}
                             />
                         </div>
                     </div>

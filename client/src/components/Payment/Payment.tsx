@@ -14,8 +14,6 @@ const Payment = () => {
             <h2 className="text-[22px] md:text-[26px] md:font-semibold pb-4 md:pb-6 leading-[130%]">Payment Details</h2>
             <div className="flex flex-col">
                 <h2 className='font-normal text-[18px] leading-[120%]'>Please enter your credit card information to complete the booking</h2>
-                
-                {/* Замінили <form> на <div> */}
                 <div className='gap-5 md:gap-6 flex flex-col pt-4 md:pt-6'>
                     <div>
                         <div className="relative">
@@ -33,8 +31,7 @@ const Payment = () => {
                                 peer-focus:top-0
                                 peer-focus:text-sm
                                 peer-focus:opacity-100
-                                peer-not-placeholder-shown:opacity-0
-                                "
+                                peer-not-placeholder-shown:opacity-0"
                             >
                                 Name on card
                             </label>

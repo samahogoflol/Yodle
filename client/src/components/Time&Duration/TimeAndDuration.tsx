@@ -4,7 +4,7 @@ import ClockIcon from "../UI/Icons/Clock"
 import DurationButton from "../UI/DurationButton";
 import clsx from "clsx";
 import { parse, addHours, format } from 'date-fns';
-import { useState , useMemo} from "react";
+import { useMemo} from "react";
 import { useBookingDetails } from "../../utilities/customHooks/useBookingDetails";
 
 interface TimeAndDurationProps {
@@ -16,8 +16,8 @@ const TimeAndDuration = ({ timeError, durationError }: TimeAndDurationProps) => 
 
     const {bookingDetails, setBookingDetails} = useBookingDetails();
 
-    const [availableTime, setAvailableTime] = useState(bookingDetails.bookingStartTime || "Select the time");
-    const [isTimeSelected, setIsTimeSelected] = useState(!!bookingDetails.bookingStartTime);
+    const availableTime = bookingDetails.bookingStartTime || "Select the time";
+    const isTimeSelected = !!bookingDetails.bookingStartTime; 
     const timeOptions = ["9:00 AM", "10:00 AM", "11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM"];
     const durationOptions = ["2 hours", "4 hours", "6 hours"];
 
@@ -47,9 +47,6 @@ const TimeAndDuration = ({ timeError, durationError }: TimeAndDurationProps) => 
                 bookingEndTime: newBookingEndTime, 
             };
         });
-
-        setAvailableTime(newTime)
-        setIsTimeSelected(true)
     }
 
     const handleSelectLessonTime = (duration : null | string) => {
